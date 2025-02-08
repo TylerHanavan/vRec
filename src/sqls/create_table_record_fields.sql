@@ -1,0 +1,1 @@
+CREATE TABLE record_fields (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, record_definition_id INT NOT NULL, field_name VARCHAR(100) NOT NULL, field_type VARCHAR(100) NOT NULL, FOREIGN KEY (record_definition_id) REFERENCES record_definitions(id) ON DELETE CASCADE);

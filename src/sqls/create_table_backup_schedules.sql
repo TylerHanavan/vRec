@@ -1,0 +1,1 @@
+CREATE TABLE backup_schedules (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, table_name VARCHAR(200) NOT NULL, backup_type VARCHAR(40), frequency VARCHAR(40) NOT NULL, destination VARCHAR(400) NOT NULL);

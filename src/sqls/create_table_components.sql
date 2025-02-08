@@ -1,0 +1,1 @@
+CREATE TABLE components (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, component_name VARCHAR(400) NOT NULL, component_pattern VARCHAR(400) NOT NULL, component_result VARCHAR(10000) NOT NULL);

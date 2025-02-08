@@ -1,0 +1,49 @@
+.hidden {
+    display: none;
+}
+
+main > .container {
+    padding: 60px 15px 0;
+}
+
+.container {
+    padding-top: 60px;
+}
+
+
+.form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    flex: 1;
+}
+
+.modal-body table {
+    width: 100%; /* Ensure the table takes up the full modal width */
+    table-layout: fixed; /* Force fixed layout to control cell size */
+}
+
+.modal-body th, .modal-body td {
+    word-wrap: break-word; /* Break long words */
+    white-space: normal; /* Allow text to wrap */
+    overflow-wrap: break-word; /* Ensure long content breaks properly */
+    padding: 8px; /* Add some padding for better readability */
+    text-align: left; /* Optional: Align text to the left */
+}
+
+.highlight-old {
+    background-color: #f8d7da; /* Light red for old values */
+    color: #721c24;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.highlight-new {
+    background-color: #d4edda; /* Light green for new values */
+    color: #155724;
+    padding: 2px 4px;
+    border-radius: 4px;
+}

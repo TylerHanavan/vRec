@@ -1,0 +1,10 @@
+INSERT INTO pages (id, uri, title, description, body) VALUES (1, '/admin/edit-page', 'Edit Page - Admin', 'Edit pages', '{{admin.page.editor}}');
+INSERT INTO pages (id, uri, title, description, body) VALUES (2, '/admin/pages', 'List Pages - Admin', 'List pages', '{{admin.pages.list}}');
+INSERT INTO pages (id, uri, title, description, body) VALUES (3, '/admin', 'Dashboard - Admin', 'Admin dashboard', '');
+INSERT INTO pages (id, uri, title, description, body) VALUES (4, '/admin/export-data', 'Export Data - Admin', 'Export Data', '{{admin.data.export}}');
+INSERT INTO pages (id, uri, title, description, body) VALUES (5, '/admin/export', 'Hidden Export Page', 'Export', '');
+INSERT INTO pages (id, uri, title, description, body) VALUES (6, '/admin/import-data', 'Import Data - Admin', 'Import Data', '{{admin.data.import}}');
+INSERT INTO pages (id, uri, title, description, body) VALUES (7, '/admin/import', 'Hidden Import Page', 'Import', '');
+INSERT INTO pages (id, uri, title, description, body) VALUES (8, '/admin/health', 'System Health - Admin', 'Show system health', '{{admin.health}}');
+INSERT INTO pages (id, uri, title, description, body) VALUES (9, '/admin/backups', 'Backups - Admin', 'Show system health', '{{admin.health}}');
+INSERT INTO pages (id, uri, title, description, body) VALUES (10, '/admin/view-table', 'View Table - Admin', 'View Table', '');

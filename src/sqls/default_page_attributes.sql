@@ -1,0 +1,12 @@
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (2, 'admin_shortcut', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (1, 'admin_page_editing_restricted', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (2, 'admin_page_editing_restricted', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (3, 'admin_shortcut', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (1, 'admin_page_list_hidden', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (4, 'admin_page_editing_restricted', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (5, 'admin_page_editing_restricted', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (5, 'admin_page_list_hidden', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (6, 'admin_page_editing_restricted', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (7, 'admin_page_editing_restricted', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (7, 'admin_page_list_hidden', 'true');
+INSERT INTO page_attributes (page_id, attr_key, attr_value) VALUES (8, 'admin_shortcut', 'true');

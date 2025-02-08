@@ -1,0 +1,10 @@
+START performance_test.bat
+START performance_test.bat
+START performance_test.bat
+START performance_test.bat
+START performance_test.bat
+START performance_test.bat
+START performance_test.bat
+START performance_test.bat
+START performance_test.bat
+START performance_test.bat
