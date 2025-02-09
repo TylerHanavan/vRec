@@ -55,6 +55,8 @@
 
     $conn = get_database_connection(get_config_value('DB.IP'), get_config_value('DB.USER'), get_config_value('DB.PASSWORD'));
 
+    $_CMS['logger']->log("Init get_database_connection() with config IP, USER, PASSWORD");
+
     $server_path = isset($_GET['cms_path']) ? '/' . $_GET['cms_path'] : '/';
 
     $_CMS['path'] = rtrim($server_path, '/');
