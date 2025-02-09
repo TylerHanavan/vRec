@@ -53,7 +53,7 @@
 
     require dirname(__FILE__) . '/lib/sql_helper.php';
 
-    $conn = null;
+    $conn = get_database_connection(get_config_value('DB.IP'), get_config_value('DB.USER'), get_config_value('DB.PASSWORD'));
 
     $server_path = isset($_GET['cms_path']) ? '/' . $_GET['cms_path'] : '/';
 
@@ -87,7 +87,7 @@
 
     require dirname(__FILE__) . '/lib/account.php';
 
-    $database = new MySQLDatabase(array('username' => 'root', 'password' => 'password', 'servername' => 'localhost', 'dbname' => 'sedicms'));
+    $database = new MySQLDatabase(array('username' => get_config_value('DB.USER'), 'password' => get_config_value('DB.PASSWORD'), 'servername' => get_config_value('DB.IP'), 'dbname' => 'sedicms'));
 
     $_CMS['logged_in'] = false;
 
