@@ -79,7 +79,7 @@ error_reporting(E_ALL);
     
         function call_hook(&$parameters, $conditions) {
 
-            $this->logger->log("BEGIN HookManager::call_hook");
+            $this->logger->log("BEGIN HookManager::call_hook " . $conditions['layer']);
     
             if(!isset($parameters['_GET']) || $parameters['_GET'] == null)
                 $parameters['_GET'] = array();
@@ -104,7 +104,7 @@ error_reporting(E_ALL);
                             $this->logger->log('HOOKMON - Tried calling hook but could not find function: ' . $hook->get_function());
                     }
 
-            $this->logger->log("END HookManager::call_hook");
+            $this->logger->log("END HookManager::call_hook " . $conditions['layer']);
         }
 
         function get_hooks_for_condition($condition, $value) {
