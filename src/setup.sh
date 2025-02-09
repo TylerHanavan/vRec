@@ -21,7 +21,7 @@ echo "Sleeping for 5 seconds...";
 sleep 5
 
 # TODO: install apache2
-# TODO: install mysql/postgres/etc
+# TODO: install mysql-server/postgres/etc
 # TODO: configure DB
 # TODO: configure apache2 config
 # TODO: install libapache2-mod-php and php-mysql --- sudo apt install php libapache2-mod-php php-mysql
