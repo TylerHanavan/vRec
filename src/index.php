@@ -59,6 +59,8 @@
 
     $server_path = isset($_GET['cms_path']) ? '/' . $_GET['cms_path'] : '/';
 
+    $server_path = '/' . ltrim($server_path, '/');
+
     $_CMS['path'] = rtrim($server_path, '/');
     $_CMS['www_dir'] = dirname(__FILE__);
 
@@ -163,6 +165,8 @@
 
     spawn_worker();
 
+    $_CMS['logger']->log("New page visit: " . $_CMS['path']);
+
     if($_CMS['path'] == '/admin/worker') {
 
         if((!isset($_GET['action']) || $_GET['action'] == null || $_GET['action'] == '') && (!isset($_POST['action']) || $_POST['action'] == null || $_POST['action'] == '')) {
@@ -199,7 +203,25 @@
         $tables = list_tables();
     }
 
+    $tables_string = '';
+
+    for($x = 0; $x < sizeof($tables); $x++) {
+        $tables_string .= $tables[$x] . ', ';
+    }
+
+    $_CMS['logger']->log("Tables found: " . $tables_string);
+
     $required_tables = get_required_tables();
+
+    $required_tables_string = '';
+
+    for($x = 0; $x < sizeof($required_tables); $x++) {
+        $required_tables_string .= $required_tables[$x] . ', ';
+    }
+
+    $_CMS['logger']->log("Tables required: " . $required_tables_string);
+
+    $_CMS['logger']->log("Populating javascript files to load");
 
     $javascript_files_to_load = array();
     $javascript_files_to_load['main.js']['server_path'] = $_CMS['www_dir'] . '/lib/client/main.js';
@@ -209,6 +231,8 @@
     $javascript_files_to_load['modal.js']['server_path'] = $_CMS['www_dir'] . '/lib/client/modal.js';
     $javascript_files_to_load['modal.js']['hash'] = md5_file($javascript_files_to_load['modal.js']['server_path']);
     $javascript_files_to_load['modal.js']['client_path'] = '/modal.js?v=' . $javascript_files_to_load['modal.js']['hash'];
+    
+    $_CMS['logger']->log("Pre- spawn_worker()");
 
     if(isset($_CMS['js_files']) && !empty($_CMS['js_files'])) {
         foreach($_CMS['js_files'] as $key => $value) {
@@ -220,6 +244,7 @@
 
     for($x = 0; $x < sizeof($required_tables); $x++) {
         if(!in_array($required_tables[$x], $tables)) {
+            $_CMS['logger']->log("Missing some tables, redirecting to /setup");
             header('Location: /setup');
             graceful_exit();
         }
