@@ -44,6 +44,14 @@ sleep 5
 #a2enmod ssl
 #a2enmod headers
 
+#apache2.conf update the /var/www Directory
+#<Directory /var/www/>
+#        Options Indexes FollowSymLinks
+#        AllowOverride None
+#        Require all granted
+#</Directory>
+
+
 
 sudo a2enmod rewrite && echo "rewrite successfully enabled" || echo "rewrite not successfully enabled";
 
