@@ -266,6 +266,17 @@ class RecordsFilterTable extends FilterTable {
             //delBtn.attr('data-target', '#audit-modal');
             delBtn.attr('record-delete-row-id', row_id);
             delBtn.text('Delete');
+            delBtn.click(function(event) {
+                let record_id = $(this).attr('record-delete-row-id');
+                let record_name = $(this).parent().parent().parent().attr('xhr-record-name');
+                let callbackFn = function(data) {
+                    let parsed_data = JSON.parse(data);
+                    if(parsed_data['status'] == 'success') {
+                        tr.hide();
+                    }
+                };
+                query_xhr("/xhr/delete-record", "POST", {"record_name": record_name, "row_id": record_id}, callbackFn);
+            });
             actions.append(delBtn);
 
             //TODO: Add other buttons (Edit, Delete, Copy)
