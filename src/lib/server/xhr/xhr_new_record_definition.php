@@ -20,6 +20,16 @@
             while($seeking) {
                 
                 $field_name = $_POST['field_name'.$counter] ?? null;
+
+                if($field_name !== null && in_array($field_name, array('sysr_deleted', 'sysr_created_at'))) {
+                    $response['xhr_response_type'] = 'error';
+                    $response['error'] = "$field_name is a reserved field name";
+
+                    echo json_encode($response);
+        
+                    graceful_exit();
+                }
+
                 $field_type = $_POST['field_type'.$counter] ?? null;
                 $field_length = null;
 
