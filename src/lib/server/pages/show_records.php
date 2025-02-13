@@ -4,7 +4,7 @@
 
     function add_show_records(&$data) {
 
-        $body = '<br /><br /><br /><p>Available Record Types:</p><br />';
+        $body = '';
 
         $database = $data['_CMS']['database'];
 
