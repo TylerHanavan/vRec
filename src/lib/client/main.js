@@ -509,6 +509,7 @@ class RecordDefinitionsFilterTable extends FilterTable {
             let form = $(this).parent().parent().children('.modal-body').children('form');
             let alert = $(this).parent().parent().children('.modal-body').children('.alert-success');
 
+            console.log(form);
     
             let data = form.serialize();
             $.ajax({
