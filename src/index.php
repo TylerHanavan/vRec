@@ -145,6 +145,7 @@
     require dirname(__FILE__) . '/lib/server/xhr/xhr_new_record_definition.php';
     require dirname(__FILE__) . '/lib/server/xhr/xhr_login.php';
     require dirname(__FILE__) . '/lib/server/xhr/xhr_signup.php';
+    require dirname(__FILE__) . '/lib/server/xhr/xhr_delete_record.php';
     
     require dirname(__FILE__) . '/lib/server/xhr/xhr_new_audit.php';
     require dirname(__FILE__) . '/lib/server/xhr/xhr_audit.php';
