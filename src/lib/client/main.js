@@ -271,7 +271,7 @@ class RecordsFilterTable extends FilterTable {
                 let record_name = $(this).parent().parent().parent().attr('xhr-record-name');
                 let callbackFn = function(data) {
                     let parsed_data = JSON.parse(data);
-                    if(parsed_data['status'] == 'success') {
+                    if(parsed_data['xhr_response_status'] == 'success') {
                         tr.hide();
                     }
                 };
