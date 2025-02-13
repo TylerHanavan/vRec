@@ -12,6 +12,13 @@ function xhr_signup(&$data) {
         $password = $_POST['password'] ?? null;
         $email = $_POST['email'] ?? null;
 
+        if(get_config_value('ACCOUNTS.SIGNUPS.ENABLED') !== 'true') {
+            $response['xhr_response_status'] = 'error';
+            $response['error'] = 'Signup is disabled';
+            echo json_encode($response);
+            graceful_exit();
+        }
+
         if(!$username || !$password || !$email) {
             $response['xhr_response_status'] = 'error';
             $response['error'] = 'Missing required fields';
