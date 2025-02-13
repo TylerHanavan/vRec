@@ -245,7 +245,11 @@
 
             $sql = rtrim($sql, ' AND ');
 
-            return true;
+            $stmt = $this->connection->prepare($sql);
+
+            $res = $stmt->execute();
+
+            return $res;
         }
 
         public function get_column_declaration($field, $type, $length = 0) : string {
