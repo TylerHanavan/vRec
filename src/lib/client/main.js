@@ -275,7 +275,7 @@ class RecordsFilterTable extends FilterTable {
                         tr.hide();
                     }
                 };
-                query_xhr("/xhr/delete-record", "POST", {"record_name": record_name, "row_id": record_id}, callbackFn);
+                query_xhr("/xhr/delete-record", "POST", {"record_name": record_name, "record_id": record_id}, callbackFn);
             });
             actions.append(delBtn);
 
