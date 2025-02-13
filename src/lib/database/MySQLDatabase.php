@@ -231,6 +231,20 @@
         public function delete_record($table_name, $criteria) : bool {
             if($this->connection == null)
                 $this->connect();
+            if($criteria == null || !is_array($criteria))
+                return false;
+            if($table_name == null || !is_string($table_name))
+                return false;
+
+            $sql = "DELETE FROM $table_name WHERE ";
+
+            foreach($criteria as $field => $args) {
+                $value = $this->escapeString($args['value']);
+                $sql .= $field . ' = ' . $this->get_column_quote_character($args['type']) . $value . $this->get_column_quote_character($args['type']) . ' AND ';
+            }
+
+            $sql = rtrim($sql, ' AND ');
+
             return true;
         }
 
