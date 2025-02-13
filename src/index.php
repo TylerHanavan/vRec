@@ -610,16 +610,21 @@
                     $record->order_by('executed', 'DESC')->field('schedule_id', ColumnTypes::INT, $table['schedule_id']);
     
                     $records = $database->get_records($record);
-    
-                    $last_backup = $records[0]->get_fields()['executed']['value'];
 
-                    $last_backup_timestamp = new DateTime($last_backup);
-                    $now = new DateTime();
+                    if($records == null || sizeof($records) == 0) {
+                        $last_backup = 'Never';
+                        $elapsed_time = 'N/A';
+                    } else {
+                        $last_backup = $records[0]->get_fields()['executed']['value'];
     
-    
-                    $diff = $last_backup_timestamp->diff($now);
-    
-                    $elapsed_time = get_elapsed_time($diff);
+                        $last_backup_timestamp = new DateTime($last_backup);
+                        $now = new DateTime();
+        
+        
+                        $diff = $last_backup_timestamp->diff($now);
+        
+                        $elapsed_time = get_elapsed_time($diff);
+                    }
                 } else {
                     $last_backup = 'Never';
                     $elapsed_time = 'N/A';
