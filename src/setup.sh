@@ -129,6 +129,12 @@ if [ `grep "^BACKEND.LOG.DIR" "$config_file" | wc -l` -eq 0 ] ;
     echo "BACKEND.LOG.DIR=/opt/sedicms/logs/backend" >> $config_file
 fi
 
+if [ `grep "^ACCOUNTS.SIGNUPS.ENABLED" "$config_file" | wc -l` -eq 0 ] ;
+    then
+    echo "ACCOUNTS.SIGNUPS.ENABLED not found in $config_file";
+    echo "ACCOUNTS.SIGNUPS.ENABLED=true" >> $config_file
+fi
+
 sudo apt-get install php-curl && echo "php-curl successfully installed" || echo "php-curl not successfully created";
 
 
