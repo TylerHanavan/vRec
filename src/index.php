@@ -255,7 +255,7 @@
 
     $_CMS['logger']->log("Getting page props");
 
-    $_PAGE = get_page_props($database, $_CMS['path']);
+    //$_PAGE = get_page_props($database, $_CMS['path']);
 
     if($_PAGE == null) {
         $_PAGE['id'] = null;
@@ -267,7 +267,7 @@
 
     $_CMS['logger']->log("Returning page body content");
 
-    if(!isset($data_pass['hijacked_body'])) {
+    /*if(!isset($data_pass['hijacked_body'])) {
 
         $_CMS['logger']->log("No hijacked body detected");
 
@@ -281,7 +281,7 @@
     if($_CMS['path'] == '/admin' || str_starts_with($_CMS['path'], '/admin/')) {
 
         //echo get_admin_shortcuts_html();
-    }
+    }*/
 
     $_CMS['logger']->log("End of PHP logic");
 
