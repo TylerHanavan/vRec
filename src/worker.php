@@ -9,10 +9,12 @@
     require dirname(__FILE__) . '/lib/server/job/worker.php';
     require dirname(__FILE__) . '/lib/sql_helper.php';
 
+    $_INSTALL_LOCATION = getenv('VREC_INSTALL_LOCATION');
+
     try {
-        $config_file_contents = read_flat_file('/opt/sedicms/config');
+        $config_file_contents = read_flat_file($_INSTALL_LOCATION . '/config');
     } catch(Exception $e) {
-        worker_log("Unable to read config file contents: /opt/sedicms/config", "ERROR");
+        worker_log("Unable to read config file contents: $_INSTALL_LOCATION/config", "ERROR");
         worker_log($e->getMessage(), "ERROR");
     }
 
@@ -95,12 +97,13 @@
     }
 
     function execute_worker_job($job) {
+        global $_INSTALL_LOCATION;
 
         $namespace = $job['namespace'];
         $plugin_file = $job['plugin_file'];
         $func = $job['func'];
 
-        $jobs_path = '/opt/sedicms/worker/jobs/';
+        $jobs_path = $_INSTALL_LOCATION . '/worker/jobs/';
 
         worker_log("Running worker job $namespace, $plugin_file, $func. Full path: " . $jobs_path . $namespace . '/' . $plugin_file);
 

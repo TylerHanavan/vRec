@@ -6,6 +6,8 @@
 
     $full_timer_start = microtime(true);
 
+    $_INSTALL_LOCATION = getenv('VREC_INSTALL_LOCATION');
+
     $request_method = $_SERVER['REQUEST_METHOD']; // GET, POST, PUT, DELETE...
     $request_uri = rtrim($_SERVER['REQUEST_URI'], '/'); // /example?foo=bar1&foo=bar2 => /example?foo=bar2
     $request_is_https = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') == true; // false
@@ -53,7 +55,7 @@
 
     require dirname(__FILE__) . '/lib/sql_helper.php';
 
-    $conn = get_database_connection(get_config_value('DB.IP'), get_config_value('DB.USER'), get_config_value('DB.PASSWORD'));
+    $conn = get_database_connection(get_config_value('DB.IP'), get_config_value('DB.USER'), get_config_value('DB.PASSWORD'), get_config_value('DB.NAME'));
 
     $_CMS['logger']->log("Init get_database_connection() with config IP, USER, PASSWORD");
 
@@ -91,7 +93,7 @@
 
     require dirname(__FILE__) . '/lib/account.php';
 
-    $database = new MySQLDatabase(array('username' => get_config_value('DB.USER'), 'password' => get_config_value('DB.PASSWORD'), 'servername' => get_config_value('DB.IP'), 'dbname' => 'sedicms'));
+    $database = new MySQLDatabase(array('username' => get_config_value('DB.USER'), 'password' => get_config_value('DB.PASSWORD'), 'servername' => get_config_value('DB.IP'), 'dbname' => get_config_value('DB.NAME')));
 
     $_CMS['logged_in'] = false;
 
@@ -116,7 +118,7 @@
 
     $hookman->call_hook($data_pass, array('logged_in' => $_CMS['logged_in'], 'url' => $_CMS['path'], 'layer' => 'plugin_load_pre'));
 
-    PluginManager::getInstance('/opt/sedicms/plugins', $_CMS['logger'], $hookman);
+    PluginManager::getInstance($_INSTALL_LOCATION . '/plugins', $_CMS['logger'], $hookman);
 
     $hookman->call_hook($data_pass, array('logged_in' => $_CMS['logged_in'], 'url' => $_CMS['path'], 'layer' => 'plugin_load_post'));
 
