@@ -3,9 +3,9 @@
     $_CONF = array();
 
     if(PHP_OS_FAMILY == 'Windows') {
-        $_CONF['config_path'] = 'C:\SediCMS\config';
+        $_CONF['config_path'] = $_INSTALL_LOCATION . '\config';
     } else {
-        $_CONF['config_path'] = '/opt/sedicms/config';
+        $_CONF['config_path'] = $_INSTALL_LOCATION . '/config';
     }
 
     try {
