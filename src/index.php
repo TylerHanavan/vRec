@@ -527,9 +527,6 @@
     function get_page_body($page_id) {
         global $conn;
 
-        if($conn == null)
-            $conn = get_database_connection();
-
         $query = "SELECT body FROM pages WHERE id = :id";
         $stmt = $conn->prepare($query);
 
@@ -584,9 +581,6 @@
 
     function get_all_pages() {
         global $conn;
-
-        if($conn == null)
-            $conn = get_database_connection();
 
         $query = 'SELECT id, uri, title, description, body FROM pages';
 
@@ -715,9 +709,6 @@
     function get_admin_shortcuts() {
         global $conn;
 
-        if($conn == null)
-            $conn = get_database_connection();
-
         $query = 'SELECT p.uri, p.title FROM pages AS p, page_attributes AS pa WHERE p.id = pa.page_id AND pa.attr_key = \'admin_shortcut\' AND pa.attr_value = \'true\'';
 
         $stmt = $conn->prepare($query);
@@ -740,9 +731,6 @@
 
     function get_page_attribute($page_id, $page_attr) {
         global $conn;
-
-        if($conn == null)
-            $conn = get_database_connection();
 
         $query = "SELECT pa.attr_value FROM pages AS p, page_attributes AS pa WHERE p.id = pa.page_id AND pa.attr_key = :attr_key AND p.id = :page_id";
         $stmt = $conn->prepare($query);

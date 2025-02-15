@@ -19,9 +19,6 @@
     function replace_components($body) {
         global $conn;
 
-        if($conn == null)
-            $conn = get_database_connection();
-
         $components = get_components($conn);
         foreach($components as $component) {
             $pattern = $component['component_pattern'];

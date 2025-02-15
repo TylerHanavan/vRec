@@ -42,6 +42,7 @@
     $db_user = $config['DB.USER'];
     $db_pass = $config['DB.PASSWORD'];
     $db_ip = $config['DB.IP'];
+    $db_name = $config['DB.NAME'];
 
     $domain = $config['BACKEND.DOMAIN'];
 
@@ -60,9 +61,10 @@
         worker_log("DB.USER set to $db_user", 'DEBUG');
         worker_log("DB.PASS set to $db_pass", 'DEBUG');
         worker_log("DB.IP set to $db_ip", 'DEBUG');
+        worker_log("DB.NAME set to $db_name", 'DEBUG');
     }
 
-    $conn = get_database_connection($db_ip, $db_user, $db_pass);
+    $conn = get_database_connection($db_ip, $db_user, $db_pass, $db_name);
 
     if($conn == null) {
         worker_log("Unable to connect to the database!", "ERROR");

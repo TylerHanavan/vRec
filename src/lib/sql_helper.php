@@ -19,9 +19,6 @@
     function list_tables() {
         global $conn;
 
-        if($conn == null)
-            $conn = get_database_connection();
-
         $query = 'SHOW TABLES';
         $stmt = $conn->prepare($query);
         $stmt->execute();
@@ -39,9 +36,6 @@
 
     function get_table_columns($table) {
         global $conn;
-
-        if($conn == null)
-            $conn = get_database_connection();
 
         $query = "SHOW COLUMNS FROM $table";
         $stmt = $conn->prepare($query);
@@ -62,9 +56,6 @@
 
     function insert_table_entry($table, $columns, $data) {
         global $conn;
-
-        if($conn == null)
-            $conn = get_database_connection();
 
         $columns_string = '(';
         $values_string = '(';
@@ -110,9 +101,6 @@
     function export_table($table) {
         global $conn;
 
-        if($conn == null)
-            $conn = get_database_connection();
-
         $query = "SELECT * FROM $table";
         $stmt = $conn->prepare($query);
         $stmt->execute();
@@ -137,9 +125,6 @@
     function create_table($table) {
         global $conn;
 
-        if($conn == null)
-            $conn = get_database_connection();
-
         $query = get_table_create_query($table);
 
         if($query == null || $query == '' || !isset($query))
@@ -160,9 +145,6 @@
     function update_table($table, $updates) {
         global $conn;
 
-        if($conn == null)
-            $conn = get_database_connection();
-
         for($x = 0; $x < sizeof($updates); $x++) {
             $update = $updates[$x];
             $id = $update['id'];
@@ -181,9 +163,6 @@
             return null;
 
         global $conn;
-
-        if($conn == null)
-            $conn = get_database_connection();
 
         $stmt = $conn->prepare($query);
         $stmt->execute();
