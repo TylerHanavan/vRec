@@ -262,8 +262,6 @@ class RecordsFilterTable extends FilterTable {
             let delBtn = $("<button></button>");
             delBtn.addClass('btn');
             delBtn.addClass('btn-danger');
-            //delBtn.attr('data-toggle', 'modal');
-            //delBtn.attr('data-target', '#audit-modal');
             delBtn.attr('record-delete-row-id', row_id);
             delBtn.text('Delete');
             delBtn.click(function(event) {
