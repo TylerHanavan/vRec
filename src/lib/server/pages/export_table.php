@@ -13,14 +13,11 @@
 
             $compress_flag = !array_key_exists('compress', $_GET) ? false : ($_GET['compress'] == 'true' ? true : false);
 
-            // Create filename
             $filename = 'SediCMS_export_' . $_GET['table'] . date( 'Y-m-d_H-i-s' ) . '.json';
 
             if($compress_flag)
                 $filename = $filename . '.gz';
 
-            // Force download .json file with JSON in it
-            //header("Content-type: application/vnd.ms-excel");
             header("Content-Type: application/force-download");
             header("Content-Type: application/download");
             header("Content-disposition: " . $filename);
