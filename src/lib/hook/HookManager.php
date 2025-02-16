@@ -162,15 +162,6 @@ error_reporting(E_ALL);
                 echo "<br /><br /><br />";
 
             }
-
-            /*foreach($this->get_default_hooks() as $condition => $value) {
-                if(isset($this->hooksIndex[$condition]) && isset($this->hooksIndex[$condition][$value])) {
-                    var_dump($this->hooksIndex[$condition][$value]);
-                    echo "\n\n";
-                    $hooks = array_uintersect($hooks, $this->hooksIndex[$condition][$value], array($this, 'compare_hooks'));
-                }
-            }*/
-
             return $hooks ?? array();
         }
 
