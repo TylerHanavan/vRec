@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Running SediCMS setup script..."
+echo "Running vRec setup script..."
 
 # Ensure the script runs as root
 if [ "$EUID" -ne 0 ]; then
@@ -9,10 +9,10 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Prompt for installation location with a default option
-read -p "Where do you want to install SediCMS? (default: $INSTALL_DIR) " INSTALL_DIR
+read -p "Where do you want to install vRec? (default: $INSTALL_DIR) " INSTALL_DIR
 INSTALL_DIR=${INSTALL_DIR:-$INSTALL_DIR}  # Use default if empty
 
-echo "Installing SediCMS in: $INSTALL_DIR"
+echo "Installing vRec in: $INSTALL_DIR"
 
 # Confirm the installation directory
 read -p "Is this correct? (y/N) " confirm
