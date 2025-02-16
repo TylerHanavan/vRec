@@ -8,7 +8,6 @@ function do_filter_table(event) {
     let table_element = event.data.table_element;
     let rows = get_table_body_rows(table_element);
     if(rows == null) {
-        //console.log("No rows found in filter table");
         return null;
     }
     let searchText = search.val().toLowerCase();
@@ -65,7 +64,6 @@ function hide_element_with_delay(element, delay) {
 
 function query_xhr(url, method, data, callback) {
     if(callback == null || callback == undefined) {
-        //console.log('query_xhr: callback is null or undefined : (' + callback + ')');
     }
     $.ajax({
         url: url,
@@ -158,8 +156,6 @@ class RecordsFilterTable extends FilterTable {
     updateTable(elements, record_name, xhr_response, filter_search_criteria) {
         const startTime = Date.now();
         let tbody = $("<tbody></tbody>");
-
-        //console.log('RecordsFilterTable::updateTable: xhr_response', xhr_response);
     
         for(let i = 0; i < xhr_response['records'].length; i++) {
             let record = xhr_response['records'][i];
@@ -346,8 +342,6 @@ class RecordsFilterTable extends FilterTable {
 
         let record_name = xhr_response['record_definition']['record_name'];
 
-        //console.log('FilterTable::populateFilterTable: xhr_response', xhr_response);
-
         var retModal = this.generateModal(xhr_response['record_definition']['record_fields'], record_name);
 
         if(Array.isArray(retModal)) {
@@ -477,7 +471,6 @@ class RecordDefinitionsFilterTable extends FilterTable {
         const startTime = Date.now();
         let filter_table = this;
         let modal = new Modal('add-new-record-definition-modal', 'Add New Record Definition');
-        //console.log('RecordDefinitionsFilterTable::generateModal: fields', fields);
         let form = modal.addForm('POST', '/xhr/new-record-definition', fields);
 
         let row = $("<div></div>").addClass('form-row align-items-center');  
@@ -546,8 +539,6 @@ class RecordDefinitionsFilterTable extends FilterTable {
         this.table_element = table;
         table.addClass('styled-table');
 
-        //console.log('RecordDefinitionsFilterTable::populateFilterTable: xhr_response', xhr_response);
-
         elements.append(this.generateModal(xhr_response['record_definitions']).populateModal());
 
         let h2 = $("<h2></h2>");
@@ -587,7 +578,6 @@ class RecordDefinitionsFilterTable extends FilterTable {
         tr.append(actionsTh);
 
         for(var i in xhr_response['record_definitions']) {
-            //console.log(i);
             let tr = $("<tr></tr>");
             tr.addClass('table-body-row');
             let td = $("<td></td>");
@@ -630,7 +620,6 @@ document.addEventListener('DOMContentLoaded', function(){
                     filter_table.setHtmlElement(table);
                     filter_table.populateFilterTable();
                 }, function(data) {
-                    //console.log(data);
                 });
             }
             if(xhr_table_type == 'show-record-definitions') {
@@ -640,7 +629,6 @@ document.addEventListener('DOMContentLoaded', function(){
                     filter_table.setHtmlElement(table);
                     filter_table.populateFilterTable();
                 }, function(data) {
-                    //console.log(data);
                 });
             }
         }
@@ -746,7 +734,6 @@ document.addEventListener('DOMContentLoaded', function(){
             }
 
             const data = await response.json();
-            //console.log('Login response:', data);
             
             if (data.xhr_response_status === 'success') {
                 $(loginModal.html_element).modal('hide');
@@ -781,7 +768,6 @@ document.addEventListener('DOMContentLoaded', function(){
             }
 
             const data = await response.json();
-            //console.log('Signup response:', data);
             
             if (data.xhr_response_status === 'success') {
                 $(loginModal.html_element).modal('hide');
@@ -884,7 +870,6 @@ function ajaxInlineEditor(record_name, record_id, field_name, field_type, new_va
         method: 'POST',
         data: data_payload,
         success: function(data) {
-            //console.log('Update response:', data);
             $element.text(new_value);
         },
         error: function(data) {
