@@ -1,4 +1,4 @@
-<?php declare(strict_types=1); // strict typing
+<?php declare(strict_types=1);
 
     $hookman->add_hook('add_record_page', array('url' => '/admin/add-record', 'layer' => 'page_load_pre'));
 
