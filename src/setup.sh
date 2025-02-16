@@ -1,24 +1,25 @@
 #!/bin/bash
 
-echo "Running SediCMS setup script...";
+echo "Running SediCMS setup script..."
 
-if [ "$EUID" -ne 0 ] ;
-    then echo "Please run as root";
-    exit
+# Ensure the script runs as root
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run as root"
+    exit 1
 fi
 
-echo "This script will make a number of changes to your system";
-echo "Please cancel the script if you do not wish to do the following";
-echo "- Create directories and subdirectories under /opt/sedicms/";
-echo "- Create SediCMS config file";
-echo "- Enable a2enmod rewrite";
-echo "- Update folder ownership under /opt/sedicms/ to belong to www-data";
-echo "- Enable php curl";
+# Prompt for installation location with a default option
+read -p "Where do you want to install SediCMS? (default: $INSTALL_DIR) " INSTALL_DIR
+INSTALL_DIR=${INSTALL_DIR:-$INSTALL_DIR}  # Use default if empty
 
-echo " ";
-echo "Sleeping for 5 seconds...";
+echo "Installing SediCMS in: $INSTALL_DIR"
 
-sleep 5
+# Confirm the installation directory
+read -p "Is this correct? (y/N) " confirm
+if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+    echo "Installation aborted."
+    exit 1
+fi
 
 # TODO: install apache2
 # TODO: install mysql-server/postgres/etc
@@ -55,16 +56,16 @@ sleep 5
 
 sudo a2enmod rewrite && echo "rewrite successfully enabled" || echo "rewrite not successfully enabled";
 
-sudo mkdir -p /opt/sedicms/logs/worker && echo "/opt/sedicms/logs/worker successfully created" || echo "/opt/sedicms/logs/worker not successfully created";
-sudo mkdir -p /opt/sedicms/logs/backend && echo "/opt/sedicms/logs/backend successfully created" || echo "/opt/sedicms/logs/backend not successfully created";
-sudo mkdir -p /opt/sedicms/backups && echo "/opt/sedicms/backups successfully created" || echo "/opt/sedicms/backups not successfully created";
-sudo mkdir -p /opt/sedicms/templates && echo "/opt/sedicms/templates successfully created" || echo "/opt/sedicms/templates not successfully created";
-sudo mkdir -p /opt/sedicms/plugins && echo "/opt/sedicms/plugins successfully created" || echo "/opt/sedicms/plugins not successfully created";
+sudo mkdir -p $INSTALL_DIR/logs/worker && echo "$INSTALL_DIR/logs/worker successfully created" || echo "$INSTALL_DIR/logs/worker not successfully created";
+sudo mkdir -p $INSTALL_DIR/logs/backend && echo "$INSTALL_DIR/logs/backend successfully created" || echo "$INSTALL_DIR/logs/backend not successfully created";
+sudo mkdir -p $INSTALL_DIR/backups && echo "$INSTALL_DIR/backups successfully created" || echo "$INSTALL_DIR/backups not successfully created";
+sudo mkdir -p $INSTALL_DIR/templates && echo "$INSTALL_DIR/templates successfully created" || echo "$INSTALL_DIR/templates not successfully created";
+sudo mkdir -p $INSTALL_DIR/plugins && echo "$INSTALL_DIR/plugins successfully created" || echo "$INSTALL_DIR/plugins not successfully created";
 
-chown www-data:www-data /opt/sedicms/logs/worker && echo "/opt/sedicms/logs/worker successfully chowned" || echo "/opt/sedicms/logs/worker not successfully chowned";
-chown www-data:www-data /opt/sedicms/logs/backend && echo "/opt/sedicms/logs/backend successfully chowned" || echo "/opt/sedicms/logs/backend not successfully chowned";
+chown www-data:www-data $INSTALL_DIR/logs/worker && echo "$INSTALL_DIR/logs/worker successfully chowned" || echo "$INSTALL_DIR/logs/worker not successfully chowned";
+chown www-data:www-data $INSTALL_DIR/logs/backend && echo "$INSTALL_DIR/logs/backend successfully chowned" || echo "$INSTALL_DIR/logs/backend not successfully chowned";
 
-config_file="/opt/sedicms/config"
+config_file="$INSTALL_DIR/config"
 
 sudo touch $config_file && echo "$config_file successfully created" || echo "$config_file not successfully created";
 
@@ -108,7 +109,7 @@ fi
 if [ `grep "^AUDIT.DIR" "$config_file" | wc -l` -eq 0 ] ;
     then
     echo "AUDIT.DIR not found in $config_file";
-    echo "AUDIT.DIR=/opt/sedicms/audit" >> $config_file
+    echo "AUDIT.DIR=$INSTALL_DIR/audit" >> $config_file
 fi
 
 if [ `grep "^AUDIT.BUFFER_SIZE" "$config_file" | wc -l` -eq 0 ] ;
@@ -120,13 +121,13 @@ fi
 if [ `grep "^WORKER.LOG.DIR" "$config_file" | wc -l` -eq 0 ] ;
     then
     echo "WORKER.LOG.DIR not found in $config_file";
-    echo "WORKER.LOG.DIR=/opt/sedicms/logs/worker" >> $config_file
+    echo "WORKER.LOG.DIR=$INSTALL_DIR/logs/worker" >> $config_file
 fi
 
 if [ `grep "^BACKEND.LOG.DIR" "$config_file" | wc -l` -eq 0 ] ;
     then
     echo "BACKEND.LOG.DIR not found in $config_file";
-    echo "BACKEND.LOG.DIR=/opt/sedicms/logs/backend" >> $config_file
+    echo "BACKEND.LOG.DIR=$INSTALL_DIR/logs/backend" >> $config_file
 fi
 
 if [ `grep "^ACCOUNTS.SIGNUPS.ENABLED" "$config_file" | wc -l` -eq 0 ] ;
