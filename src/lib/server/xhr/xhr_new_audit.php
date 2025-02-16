@@ -83,7 +83,6 @@
                 'raw_audit_json' => array('type' => 'TEXT', 'value' => $audit_json),
                 'cms_path' => array('type' => 'TEXT', 'value' => $cms_path),
                 'http_response_body' => array('type' => 'TEXT', 'value' => $audit_http_response_body)
-                //'http_response_body' => array('type' => 'TEXT', 'value' => json_encode($audit_data['http_response']))
             );
 
             $record = new Record('audit_events', $fields);
