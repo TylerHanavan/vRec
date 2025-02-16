@@ -113,7 +113,6 @@ class Modal {
                 input.datepicker({
                     dateFormat: 'yy-mm-dd'
                 });
-                //console.log('datepicker');
             }
         }
 
