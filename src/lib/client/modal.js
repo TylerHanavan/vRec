@@ -84,8 +84,6 @@ class Modal {
         form.attr('action', action);
         this.getModalBody().append(form);
 
-        //console.log('addForm: fields', fields);
-
         for(let i = 0; i < fields.length; i++) {
             let field = fields[i];
             if(field['field_name'] == 'id')
