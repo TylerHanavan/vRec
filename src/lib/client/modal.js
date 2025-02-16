@@ -108,8 +108,6 @@ class Modal {
             div.append(input);
             form.append(div);
 
-            //console.log(field);
-
             if(field['field_type'] == '3') {
                 input.addClass('pop-datepicker');
                 input.datepicker({
