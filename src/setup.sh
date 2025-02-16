@@ -106,6 +106,12 @@ if [ `grep "^DB.IP" "$config_file" | wc -l` -eq 0 ] ;
     echo "DB.IP=localhost" >> $config_file
 fi
 
+if [ `grep "^DB.NAME" "$config_file" | wc -l` -eq 0 ] ;
+    then
+    echo "DB.NAME not found in $config_file";
+    echo "DB.NAME=vrec" >> $config_file
+fi
+
 if [ `grep "^AUDIT.DIR" "$config_file" | wc -l` -eq 0 ] ;
     then
     echo "AUDIT.DIR not found in $config_file";
