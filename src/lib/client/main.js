@@ -230,7 +230,6 @@ class RecordsFilterTable extends FilterTable {
                     tr.append(th);
                     th.text(headers[i]);
                 }
-                //TODO: Don't re-render the table every time the audit button is clicked, reuse rows and append or hide
                 let callbackFn = function(data) {
                     let auditData = JSON.parse(data);
                     if(auditData != null && auditData['audit_events'] != null && auditData['audit_events'].length > 0) {
