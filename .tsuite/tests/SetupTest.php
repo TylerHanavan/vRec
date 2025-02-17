@@ -20,9 +20,9 @@
     }
 
     function test_setup_page_5() {
-        assertEquals(2, 5, '5 should be equal to 5');
+        assertEquals(5, 5, '5 should be equal to 5');
         assertTrue(false, 'true should be true');
-        assertFalse(true, 'true should be true');
+        assertFalse(false, 'true should be true');
     }
 
 ?>
