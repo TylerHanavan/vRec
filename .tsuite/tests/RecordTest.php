@@ -16,13 +16,14 @@
     function test_account_4() {
         assertEquals(5, 5, '5 should be equal to 5');
         assertTrue(true, 'true should be true');
-        assertFalse(false, 'true should be true');
+        assertFalse(false, 'false should be false');
     }
 
     function test_account_5() {
         assertEquals(5, 5, '5 should be equal to 5');
         assertTrue(true, 'true should be true');
-        assertFalse(false, 'true should be true');
+        assertFalse(false, 'false should be false');
+        assertFalse(0, '0 should be false');
     }
 
 ?>
