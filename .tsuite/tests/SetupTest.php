@@ -1,5 +1,9 @@
 <?php
 
+    function test_first_setup($properties) {
+        assertEquals('localhost:80', $properties['endpoint_url'], 'endpoint url mismatch');
+    }
+
     function test_setup_page() {
         assertEquals(1, 1, '1 should be equal to 1');
     }
