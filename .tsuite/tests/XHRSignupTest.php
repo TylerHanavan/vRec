@@ -18,8 +18,8 @@
         assertEquals('{"xhr_response_type":"signup","xhr_response_status":"error","error":"Username must be between 3 and 50 characters"}', $response['response'], 'response mismatch');
     }
 
-    function test_xhr_signup_3($properties) {
+    /*function test_xhr_signup_3($properties) {
 
-    }
+    }*/
 
 ?>
