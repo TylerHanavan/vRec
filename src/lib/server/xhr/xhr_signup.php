@@ -15,6 +15,7 @@ function xhr_signup(&$data) {
         if(get_config_value('ACCOUNTS.SIGNUPS.ENABLED') !== 'true') {
             $response['xhr_response_status'] = 'error';
             $response['error'] = 'Signup is disabled';
+            http_response_code(500);
             echo json_encode($response);
             graceful_exit();
         }
@@ -22,6 +23,8 @@ function xhr_signup(&$data) {
         if(!$username || !$password || !$email) {
             $response['xhr_response_status'] = 'error';
             $response['error'] = 'Missing required fields';
+            
+            http_response_code(400);
             echo json_encode($response);
             graceful_exit();
         }
@@ -30,6 +33,7 @@ function xhr_signup(&$data) {
         if (strlen($username) < 3 || strlen($username) > 50) {
             $response['xhr_response_status'] = 'error';
             $response['error'] = 'Username must be between 3 and 50 characters';
+            http_response_code(400);
             echo json_encode($response);
             graceful_exit();
         }
@@ -37,6 +41,7 @@ function xhr_signup(&$data) {
         if (strlen($password) < 8) {
             $response['xhr_response_status'] = 'error';
             $response['error'] = 'Password must be at least 8 characters';
+            http_response_code(400);
             echo json_encode($response);
             graceful_exit();
         }
@@ -44,6 +49,7 @@ function xhr_signup(&$data) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $response['xhr_response_status'] = 'error';
             $response['error'] = 'Invalid email format';
+            http_response_code(400);
             echo json_encode($response);
             graceful_exit();
         }
@@ -56,10 +62,12 @@ function xhr_signup(&$data) {
             } else {
                 $response['xhr_response_status'] = 'error';
                 $response['error'] = 'Failed to create account. Username or email may already exist.';
+                http_response_code(500);
             }
         } catch (Exception $e) {
             $response['xhr_response_status'] = 'error';
             $response['error'] = 'Server error occurred';
+            http_response_code(500);
         }
 
         echo json_encode($response);
