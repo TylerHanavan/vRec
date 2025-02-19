@@ -5,7 +5,7 @@
 
         $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array(), true);
 
-        assertEquals(200, $response['http_code'], 'http code mismatch');
+        assertEquals(400, $response['http_code'], 'http code mismatch');
         assertEquals('{"xhr_response_type":"signup","xhr_response_status":"error","error":"Missing required fields"}', $response['response'], 'response mismatch');
     }
 
