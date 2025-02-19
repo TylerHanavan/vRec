@@ -3,7 +3,7 @@
     function test_first_setup($properties) {
         assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
-        $response = test_curl($properties['endpoint_url'] . '/xhr/signup', 'POST', array());
+        $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array(), true);
 
         assertEquals(200, $response['http_code'], 'http code mismatch');
         assertEquals('{"xhr_response_type":"signup","xhr_response_status":"error","error":"Missing required fields"}', $response['response'], 'response mismatch');
