@@ -36,4 +36,13 @@
         assertEquals('{"xhr_response_type":"signup","xhr_response_status":"error","error":"Invalid email format"}', $response['response'], 'response mismatch');
     }
 
+    function test_xhr_signup_5($properties) {
+        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
+
+        $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array('username' => 'kevin', 'email' => 'example@example.com', 'password' => '123456'), true);
+
+        assertEquals(400, $response['http_code'], 'http code mismatch');
+        assertEquals('{"xhr_response_type":"signup","xhr_response_status":"error","error":"Password must be at least 8 characters"}', $response['response'], 'response mismatch');
+    }
+
 ?>
