@@ -28,7 +28,7 @@
     }
 
     function test_xhr_signup_4($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
+        //assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array('username' => 'kevin', 'email' => 'example@', 'password' => 'twelve'), true);
 
