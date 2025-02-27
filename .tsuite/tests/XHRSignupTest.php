@@ -1,5 +1,14 @@
 <?php
 
+    function first_function_trigger_setup($properties) {
+        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
+
+        $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array(), true);
+
+        assertEquals(302, $response['http_code'], 'http code mismatch');
+        assertEquals('<p>You are missing the <b>pages</b> table. Generating...</p>', $response['response'], 'response mismatch');
+    }
+
     function test_xhr_signup_1($properties) {
         assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
