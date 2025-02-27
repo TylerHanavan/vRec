@@ -147,7 +147,11 @@
         for($x = 0; $x < sizeof($required_tables); $x++) {
             if(!in_array($required_tables[$x], $tables)) {
                 $_CMS['logger']->log("Missing some tables, redirecting to /setup");
-                header('Location: /setup');
+                if($_CMS['https']) {
+                    header('Location: https://' . get_config_value('BACKEND.DOMAIN') . '/setup');
+                } else {
+                    header('Location: http://' . get_config_value('BACKEND.DOMAIN') . '/setup');
+                }
                 graceful_exit();
             }
         }
