@@ -68,6 +68,10 @@
 
     if($_CMS['path'] == '') $_CMS['path'] = '/';
 
+    if($_CMS['path'] != '/log' && $_CMS['path'] != '/favicon.ico') {
+        $_CMS['logger']->log("New page visit: " . $_CMS['path']);
+    }
+
     $_CMS['site_name'] = 'Site Title';
 
     require dirname(__FILE__) . '/lib/hook/Hook.php';
@@ -200,10 +204,6 @@
     $_CMS['AUDITMON'] = $auditmon;
 
     $parsed_uri = parse_url($request_uri, PHP_URL_PATH); // /example
-
-    if($_CMS['path'] != '/log' && $_CMS['path'] != '/favicon.ico') {
-        $_CMS['logger']->log("New page visit: " . $_CMS['path']);
-    }
 
     $hookman->call_hook($data_pass, array('logged_in' => $_CMS['logged_in'], 'url' => $_CMS['path'], 'layer' => 'page_load_pre'));
 
