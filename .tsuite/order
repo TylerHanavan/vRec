@@ -1,1 +1,2 @@
 tests/XHRSignupTest.php
+tests/XHRSetupTest.php
