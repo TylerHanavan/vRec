@@ -30,10 +30,13 @@
         var_dump($response_array);
         
         assertTrue(isset($response_array['xhr_table_create_status']), 'xhr_table_create_status not set');
-        assertEquals($response_array['xhr_table_create_status'], 'true', 'response status mismatch');
+        assertEquals($response_array['xhr_table_create_status'], 'true', 'xhr_table_create_status response status mismatch');
         
         assertTrue(isset($response_array['xhr_record_def_insert_status']), 'xhr_record_def_insert_status not set');
-        assertEquals($response_array['xhr_record_def_insert_status'], 'true', 'response status mismatch');
+        foreach(['t1', 't2', 't3'] as $field_name) {
+            assertTrue(isset($response_array[$field_name]), "$field_name not set");
+            assertEquals($response_array['xhr_record_def_insert_status'][$field_name], 'true', "xhr_record_def_insert_status[$field_name] response status mismatch");
+        }
 
         assertEquals(200, $response['http_code'], 'http code mismatch');
 
