@@ -1,2 +1,7 @@
 export MYSQL_PWD="${DB_PASS}"
-mysql -u ${DB_USER} ${DB_NAME} -e "DROP TABLE test; DROP TABLE pages; DROP TABLE sessions; DROP TABLE accounts; DROP TABLE record_fields; DROP TABLE record_definitions"
+mysql -u ${DB_USER} ${DB_NAME} -e "DROP TABLE test"
+mysql -u ${DB_USER} ${DB_NAME} -e "DROP TABLE pages"
+mysql -u ${DB_USER} ${DB_NAME} -e "DROP TABLE sessions"
+mysql -u ${DB_USER} ${DB_NAME} -e "DROP TABLE accounts"
+mysql -u ${DB_USER} ${DB_NAME} -e "DROP TABLE record_fields"
+mysql -u ${DB_USER} ${DB_NAME} -e "DROP TABLE record_definitions"
