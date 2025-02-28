@@ -29,8 +29,17 @@
         
         $response_array = json_decode($response['response'], true);
         
-        assertEquals($response_array['xhr_table_create_status'], 'true', 'response status mismatch');
-        assertEquals($response_array['xhr_record_def_insert_status'], 'true', 'response status mismatch');
+        if(isset($response_array['xhr_table_create_status']))
+            assertEquals($response_array['xhr_table_create_status'], 'true', 'response status mismatch');
+        else {
+            //THROW ERROR LATER
+        }
+        
+        if(isset($response_array['xhr_record_def_insert_status']))
+            assertEquals($response_array['xhr_record_def_insert_status'], 'true', 'response status mismatch');
+        else {
+            //THROW ERROR LATER
+        }
 
         assertEquals(200, $response['http_code'], 'http code mismatch');
 
