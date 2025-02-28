@@ -30,7 +30,7 @@
         $response_array = json_decode($response['response'], true);
         assertTrue(isset($response_array['session_token']), 'session token not set');
         assertEquals($response_array['xhr_response_status'], 'success', 'response status mismatch');
-        assertEquals($response_array('xhr_response_type'), 'login', 'response type mismatch');
+        assertEquals($response_array['xhr_response_type'], 'login', 'response type mismatch');
     }
 
 ?>
