@@ -45,7 +45,6 @@
             $query = $this->get_create_table_query($record);
 
             $stmt = $this->connection->prepare($query);
-            echo $query;
 
             $res = $stmt->execute();
 
