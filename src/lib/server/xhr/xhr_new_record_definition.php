@@ -52,7 +52,6 @@
 
                 if($field_name === null || $field_type === null) {
                     $seeking = false;
-                    echo "seeking = false\n; counter = $counter\n; field_name = $field_name\n; field_type = $field_type\n";
                 } else {
                     $raw_fields[$field_name] = array('type' => $field_type, 'length' => $field_length);
                 }
@@ -78,8 +77,6 @@
 
                 $fetch_record_def_record = $database->get_records(new Record('record_definitions', array('table_name' => array('type' => ColumnTypes::VARCHAR, 'value' => $record_def_name, 'length' => 255))));
                 $record_definition_id = $fetch_record_def_record[0]->get_field('id')['value'];
-
-                var_dump($raw_fields);
 
                 foreach($raw_fields as $field_name => $field_data) {
                     // Convert numeric field type to string representation
