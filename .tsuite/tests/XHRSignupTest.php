@@ -54,4 +54,10 @@
         assertEquals('{"xhr_response_type":"signup","xhr_response_status":"error","error":"Password must be at least 8 characters"}', $response['response'], 'response mismatch');
     }
 
+    function test_xhr_success_signup($properties) {
+        $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array('username' => 'username', 'email' => 'example@example.com', 'password' => '12345678'), true);
+        assertEquals(200, $response['http_code'], 'http code mismatch');
+        assertEquals('{"xhr_response_type":"signup","xhr_response_status":"success","message":"Account created successfully"}', $response['response'], 'response mismatch');
+    }
+
 ?>
