@@ -79,21 +79,6 @@ error_reporting(E_ALL);
             $this->flushing[$path] = false;
         }
 
-        /*private function write_to_file($path, $message) {
-            $cmd = "mkdir -p " . dirname($path) . "";
-            $output = '';
-
-            exec($cmd, $output);
-
-            $cmd = "touch $path &";
-
-            exec($cmd, $output);
-
-            $ffile = fopen($path, "a") or die ("Unable to open $path");
-            fwrite($ffile, $message);
-            fclose($ffile);
-        }*/
-
     }
 
 ?>

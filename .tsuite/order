@@ -1,0 +1,4 @@
+tests/XHRSignupTest.php
+tests/XHRSetupTest.php
+tests/XHRLoginTest.php
+tests/XHRRecordDefinitionTest.php

@@ -68,6 +68,10 @@
 
     if($_CMS['path'] == '') $_CMS['path'] = '/';
 
+    if($_CMS['path'] != '/log' && $_CMS['path'] != '/favicon.ico') {
+        $_CMS['logger']->log("New page visit: " . $_CMS['path']);
+    }
+
     $_CMS['site_name'] = 'Site Title';
 
     require dirname(__FILE__) . '/lib/hook/Hook.php';
@@ -113,6 +117,52 @@
     }
 
     $_CMS['database'] = $database;
+
+    if($_CMS['cache'] != false) {
+        $cached_tables = retrieve_cache('list_sql_tables_in_db');
+
+        if($cached_tables != false) {
+            $tables = $cached_tables;
+        } else {
+            $tables = list_tables();
+            store_cache('list_sql_tables_in_db', $tables, 20);
+        }
+    } else {
+        $tables = list_tables();
+    }
+
+    $tables_string = '';
+
+    for($x = 0; $x < sizeof($tables); $x++) {
+        $tables_string .= $tables[$x] . ', ';
+    }
+
+    $_CMS['logger']->log("Tables found: " . $tables_string);
+
+    $required_tables_string = '';
+
+    $required_tables = get_required_tables();
+
+    if($_CMS['path'] !== '/setup') {
+        for($x = 0; $x < sizeof($required_tables); $x++) {
+            if(!in_array($required_tables[$x], $tables)) {
+                if($_CMS['https']) {
+                    $_CMS['logger']->log("Missing some tables, redirecting to https://" . get_config_value('BACKEND.DOMAIN') . "/setup");
+                    header('Location: https://' . get_config_value('BACKEND.DOMAIN') . '/setup');
+                } else {
+                    $_CMS['logger']->log("Missing some tables, redirecting to http://" . get_config_value('BACKEND.DOMAIN') . "/setup");
+                    header('Location: http://' . get_config_value('BACKEND.DOMAIN') . '/setup');
+                }
+                graceful_exit();
+            }
+        }
+    }
+
+    for($x = 0; $x < sizeof($required_tables); $x++) {
+        $required_tables_string .= $required_tables[$x] . ', ';
+    }
+
+    $_CMS['logger']->log("Tables required: " . $required_tables_string);
 
     require dirname(__FILE__) . '/lib/plugin/PluginManager.php';
 
@@ -160,10 +210,6 @@
 
     $parsed_uri = parse_url($request_uri, PHP_URL_PATH); // /example
 
-    if($_CMS['path'] != '/log' && $_CMS['path'] != '/favicon.ico') {
-        $_CMS['logger']->log("New page visit: " . $_CMS['path']);
-    }
-
     $hookman->call_hook($data_pass, array('logged_in' => $_CMS['logged_in'], 'url' => $_CMS['path'], 'layer' => 'page_load_pre'));
 
     spawn_worker();
@@ -193,37 +239,6 @@
 
     }
 
-    if($_CMS['cache'] != false) {
-        $cached_tables = retrieve_cache('list_sql_tables_in_db');
-
-        if($cached_tables != false) {
-            $tables = $cached_tables;
-        } else {
-            $tables = list_tables();
-            store_cache('list_sql_tables_in_db', $tables, 20);
-        }
-    } else {
-        $tables = list_tables();
-    }
-
-    $tables_string = '';
-
-    for($x = 0; $x < sizeof($tables); $x++) {
-        $tables_string .= $tables[$x] . ', ';
-    }
-
-    $_CMS['logger']->log("Tables found: " . $tables_string);
-
-    $required_tables = get_required_tables();
-
-    $required_tables_string = '';
-
-    for($x = 0; $x < sizeof($required_tables); $x++) {
-        $required_tables_string .= $required_tables[$x] . ', ';
-    }
-
-    $_CMS['logger']->log("Tables required: " . $required_tables_string);
-
     $_CMS['logger']->log("Populating javascript files to load");
 
     $javascript_files_to_load = array();
@@ -242,14 +257,6 @@
             $javascript_files_to_load[$key]['server_path'] = $value;
             $javascript_files_to_load[$key]['hash'] = md5_file($value);
             $javascript_files_to_load[$key]['client_path'] = '/' . $key . '?v=' . $javascript_files_to_load[$key]['hash'];
-        }
-    }
-
-    for($x = 0; $x < sizeof($required_tables); $x++) {
-        if(!in_array($required_tables[$x], $tables)) {
-            $_CMS['logger']->log("Missing some tables, redirecting to /setup");
-            header('Location: /setup');
-            graceful_exit();
         }
     }
 

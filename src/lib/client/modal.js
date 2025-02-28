@@ -84,8 +84,6 @@ class Modal {
         form.attr('action', action);
         this.getModalBody().append(form);
 
-        //console.log('addForm: fields', fields);
-
         for(let i = 0; i < fields.length; i++) {
             let field = fields[i];
             if(field['field_name'] == 'id')
@@ -110,14 +108,11 @@ class Modal {
             div.append(input);
             form.append(div);
 
-            //console.log(field);
-
             if(field['field_type'] == '3') {
                 input.addClass('pop-datepicker');
                 input.datepicker({
                     dateFormat: 'yy-mm-dd'
                 });
-                //console.log('datepicker');
             }
         }
 
