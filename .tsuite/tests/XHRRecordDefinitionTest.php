@@ -25,7 +25,7 @@
         $data['field_name2'] = 't3';
         global $session_token;
         $response = test_curl($properties['endpoint_url'] . '/xhr/new-record-definition', $data, true, $session_token);
-        var_dump($response['response']);
+        var_dump($response);
         assertEquals(200, $response['http_code'], 'http code mismatch');
         assertStrContains('<!doctype html>', $response['response'], 'response mismatch');
     }
