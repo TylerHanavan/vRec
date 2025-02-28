@@ -1,2 +1,2 @@
 export MYSQL_PWD="${DB_PASS}"
-mysql -u ${DB_USER} ${DB_NAME} -e "DROP TABLE pages"
+mysql -u ${DB_USER} ${DB_NAME} -e "DROP TABLE pages; DROP TABLE accounts"
