@@ -26,8 +26,14 @@
         global $session_token;
         $response = test_curl($properties['endpoint_url'] . '/xhr/new-record-definition', $data, true, $session_token);
         var_dump($response);
+        
+        $response_array = json_decode($response['response'], true);
+        
+        assertEquals($response_array['xhr_table_create_status'], 'true', 'response status mismatch');
+        assertEquals($response_array['xhr_record_def_insert_status'], 'true', 'response status mismatch');
+
         assertEquals(200, $response['http_code'], 'http code mismatch');
-        assertStrContains('<!doctype html>', $response['response'], 'response mismatch');
+
     }
 
 ?>
