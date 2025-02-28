@@ -1,5 +1,7 @@
 <?php
 
+    $session_token = null;
+
     function test_login_1($properties) {
         $response = test_curl($properties['endpoint_url'] . '/xhr/login', array('username' => 'username'), true);
         assertEquals(200, $response['http_code'], 'http code mismatch');
@@ -29,6 +31,10 @@
         assertEquals(200, $response['http_code'], 'http code mismatch');
         $response_array = json_decode($response['response'], true);
         assertTrue(isset($response_array['session_token']), 'session token not set');
+
+        global $session_token;
+        $session_token = $response_array['session_token'];
+
         assertEquals($response_array['xhr_response_status'], 'success', 'response status mismatch');
         assertEquals($response_array['xhr_response_type'], 'login', 'response type mismatch');
     }
