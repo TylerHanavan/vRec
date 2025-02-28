@@ -9,7 +9,6 @@
 
         $tables = array('pages', 'accounts', 'sessions', 'record_fields', 'record_definitions');
         foreach($tables as $table) {
-            $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array(), true);
             assertStrContains('<p>You are missing the <b>' . $table . '</b> table. Generating...</p>', $response['response'], 'response mismatch');
         }
     }
