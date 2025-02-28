@@ -34,7 +34,7 @@
         
         assertTrue(isset($response_array['xhr_record_def_insert_status']), 'xhr_record_def_insert_status not set');
         foreach(['t1', 't2', 't3'] as $field_name) {
-            assertTrue(isset($response_array[$field_name]), "$field_name not set");
+            assertTrue(isset($response_array['xhr_record_def_insert_status'][$field_name]), "$field_name not set");
             assertEquals($response_array['xhr_record_def_insert_status'][$field_name], true, "xhr_record_def_insert_status[$field_name] response status mismatch");
         }
 
