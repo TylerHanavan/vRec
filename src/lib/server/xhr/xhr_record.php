@@ -51,6 +51,14 @@
 
             $record_definition = $database->describe_record($record_name);
 
+            if($record_definition == null) {
+
+                $response['xhr_response_status'] = 'error';
+                $response['error'] = 'Record name does not exist';
+
+                graceful_exit(404);
+            }
+
             $response['record_definition'] = array();
             $response['record_definition']['record_name'] = $record_definition->get_record_name();
             $response['record_definition']['record_fields'] = array();
