@@ -285,7 +285,7 @@
             return "'";
         }
 
-        public function describe_record($table) : ?Record {
+        public function describe_record($table) {
             if($this->connection == null)
                 $this->connect();
 
