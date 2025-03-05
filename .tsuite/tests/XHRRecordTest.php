@@ -29,7 +29,7 @@
 
         $response_arr = json_decode($response['response'], true);
 
-        var_dump($response_arr);
+        //var_dump($response_arr);
 
         assertEquals(200, $response['http_code'], 'http code mismatch');
 
@@ -55,7 +55,7 @@
         assertTrue(isset($response_arr['record_definition']['record_fields'][2]), 'record_definition.record_fields[2] is not set');
         assertTrue(isset($response_arr['record_definition']['record_fields'][3]), 'record_definition.record_fields[3] is not set');
 
-        var_dump($response_arr['record_definition']['record_fields']);
+        var_dump($response_arr['record_definition']);
 
         assertEquals('id', $response_arr['record_definition']['record_fields'][0]['field_name'], 'record_definition.record_fields[0][\'field_name\'] is bad');
         assertEquals(0, $response_arr['record_definition']['record_fields'][0]['field_type'], 'record_definition.record_fields[0][\'field_type\'] is bad');
