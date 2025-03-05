@@ -53,13 +53,15 @@
         assertTrue(isset($response_arr['record_definition']['record_fields'][2]), 'record_definition.record_fields[2] is not set');
         assertTrue(isset($response_arr['record_definition']['record_fields'][3]), 'record_definition.record_fields[3] is not set');
 
-        var_dump($response_arr['record_definition']);
-
-        echo 'extra debug message';
+        var_dump($response_arr);
 
         assertEquals('id', $response_arr['record_definition']['record_fields'][0]['field_name'], 'record_definition.record_fields[0][\'field_name\'] is bad');
         assertEquals(0, $response_arr['record_definition']['record_fields'][0]['field_type'], 'record_definition.record_fields[0][\'field_type\'] is bad');
         assertEquals(null, $response_arr['record_definition']['record_fields'][0]['field_length'], 'record_definition.record_fields[0][\'field_length\'] is bad');
+
+        assertEquals('t1', $response_arr['record_definition']['record_fields'][1]['field_name'], 'record_definition.record_fields[1][\'field_name\'] is bad');
+        assertEquals(1, $response_arr['record_definition']['record_fields'][1]['field_type'], 'record_definition.record_fields[1][\'field_type\'] is bad');
+        assertEquals(255, $response_arr['record_definition']['record_fields'][1]['field_length'], 'record_definition.record_fields[1][\'field_length\'] is bad');
 
     }
 
