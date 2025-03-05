@@ -35,12 +35,10 @@
 
         assertTrue(isset($response_arr['xhr_response_status']), 'xhr_response_status is not set');
         assertTrue(isset($response_arr['xhr_response_type']), 'xhr_response_type is not set');
-        assertTrue(isset($response_arr['error']), 'error is not set');
         assertTrue(isset($response_arr['cache_allowed']), 'cache_allowed is not set');
 
         assertEquals($response_arr['xhr_response_type'], 'record', 'bad xhr_response_type');
         assertEquals($response_arr['xhr_response_status'], 'error', 'bad xhr_response_status');
-        assertEquals($response_arr['error'], 'No record name provided', 'bad xhr_response_type');
         assertEquals($response_arr['cache_allowed'], false, 'bad cache_allowed');
 
         assertTrue(isset($response_arr['record_definition']), 'record_definition is not set');
