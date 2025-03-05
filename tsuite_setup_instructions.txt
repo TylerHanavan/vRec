@@ -1,0 +1,38 @@
+Create the virtual host
+Give virtual host a separate port (usually using 1347)
+Give the virtual host the needed redirect rules, <Directory> rules, and VREC_INSTALL_LOCATION 
+        DocumentRoot /var/www/vrec
+
+        <Directory /var/www/vrec/>
+                Options Indexes FollowSymLinks
+                AllowOverride All
+                Require all granted
+        </Directory>
+
+        RewriteEngine On
+        RewriteCond %{REQUEST_URI} !/index.php.*$
+
+        RewriteCond %{HTTP_HOST}  ^([^.]+\.[^.]+)$
+        RewriteCond %{REQUEST_URI} ^/(.*)$
+        RewriteRule ^(.*)$ /index.php?dm=%1&cms_path=$1 [L,QSA]
+
+        RewriteRule ^(.*)$ /index.php?cms_path=$0 [L,QSA]
+
+        SetEnv VREC_INSTALL_LOCATION /opt/vrec
+
+Enable the virtual host
+Run the vRec setup.sh
+Set the following config Options
+    BACKEND.REQUIRE.HTTPS=false
+    BACKEND.REQUIRE.DOMAIN=false
+    BACKEND.DOMAIN=HOSTNAME:1347
+    DB.USER=vrec_admin
+    DB.PASSWORD=password
+    DB.IP=localhost
+    DB.NAME=vrec
+    AUDIT.DIR=/opt/vrec/audit
+    AUDIT.BUFFER_SIZE=20
+    WORKER.LOG.DIR=/opt/vreclogs/worker
+    BACKEND.LOG.DIR=/opt/vrec/logs/backend
+    ACCOUNTS.SIGNUPS.ENABLED=true
+Change HOSTNAME in BACKEND.DOMAIN to whatever hostname you are using.

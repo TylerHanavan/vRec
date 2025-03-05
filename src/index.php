@@ -146,13 +146,8 @@
     if($_CMS['path'] !== '/setup') {
         for($x = 0; $x < sizeof($required_tables); $x++) {
             if(!in_array($required_tables[$x], $tables)) {
-                if($_CMS['https']) {
-                    $_CMS['logger']->log("Missing some tables, redirecting to https://" . get_config_value('BACKEND.DOMAIN') . "/setup");
-                    header('Location: https://' . get_config_value('BACKEND.DOMAIN') . '/setup');
-                } else {
-                    $_CMS['logger']->log("Missing some tables, redirecting to http://" . get_config_value('BACKEND.DOMAIN') . "/setup");
-                    header('Location: http://' . get_config_value('BACKEND.DOMAIN') . '/setup');
-                }
+                $_CMS['logger']->log('Missing some tables, redirecting to /setup');
+                header('Location: /setup');
                 graceful_exit();
             }
         }
