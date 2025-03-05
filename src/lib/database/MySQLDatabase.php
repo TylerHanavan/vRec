@@ -285,20 +285,26 @@
             return "'";
         }
 
-        public function describe_record($table) : Record {
+        public function describe_record($table) {
             if($this->connection == null)
                 $this->connect();
 
-            $query = "DESCRIBE $table";
+            try {
 
-            $stmt = $this->connection->prepare($query);
+                $query = "DESCRIBE $table";
 
-            $stmt->execute();
+                $stmt = $this->connection->prepare($query);
 
-            $ret = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt->execute();
+
+                $ret = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch(Exception $e) {
+                return null;
+            }
 
             // Record type not found
-            if(!is_array($ret) || sizeof($ret) == 0)
+            if(!is_array($ret) || sizeof($ret) == 0 || $ret == null || $ret == false)
                 return null;
 
             $fields = array();

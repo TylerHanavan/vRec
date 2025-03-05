@@ -73,4 +73,29 @@
 
     }
 
+    function test_get_record_not_exist($properties) {
+        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
+
+        global $session_token;
+        $response = test_curl($properties['endpoint_url'] . '/xhr/record', array('record_name' => 'badtype'), true, $session_token);
+
+        $response_arr = json_decode($response['response'], true);
+
+        assertEquals(404, $response['http_code'], 'http code mismatch');
+
+        assertTrue(isset($response_arr) && !empty($response_arr), 'response array empty');
+
+        assertTrue(isset($response_arr['xhr_response_status']), 'xhr_response_status is not set');
+        assertTrue(isset($response_arr['xhr_response_type']), 'xhr_response_type is not set');
+        assertTrue(isset($response_arr['cache_allowed']), 'cache_allowed is not set');
+        assertTrue(isset($response_arr['cache_hit']), 'cache_hit is not set');
+
+        assertEquals('record', $response_arr['xhr_response_type'], 'bad xhr_response_type');
+        assertEquals('error', $response_arr['xhr_response_status'], 'bad xhr_response_status');
+        assertEquals('Record name does not exist', $response_arr['error'], 'bad error');
+        assertTrue(!is_string($response_arr['cache_allowed']), 'cache_allowed returned a string');
+        assertTrue(!is_int($response_arr['cache_allowed']), 'cache_allowed returned an int');
+
+    }
+
 ?>

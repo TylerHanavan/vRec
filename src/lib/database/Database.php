@@ -17,7 +17,7 @@
         abstract public function update_record($table_name, $record, $criteria) : bool;
         abstract public function delete_record($table_name, $criteria) : bool;
 
-        abstract public function describe_record($table) : Record;
+        abstract public function describe_record($table);
 
         abstract public function show_record_definitions() : array;
 
