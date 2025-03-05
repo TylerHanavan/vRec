@@ -41,7 +41,7 @@
 
         assertEquals('record', $response_arr['xhr_response_type'], 'bad xhr_response_type');
         assertEquals('success', $response_arr['xhr_response_status'], 'bad xhr_response_status');
-        assertEquals(true, $response_arr['cache_allowed'], 'bad cache_allowed');
+        assertTrue($response_arr['cache_allowed'], 'bad cache_allowed');
 
         assertTrue(isset($response_arr['record_definition']), 'record_definition is not set');
         assertTrue(isset($response_arr['record_definition']['record_name']), 'record_definition.record_name is not set');
