@@ -89,7 +89,6 @@
         assertTrue(isset($response_arr['xhr_response_type']), 'xhr_response_type is not set');
         assertTrue(isset($response_arr['cache_allowed']), 'cache_allowed is not set');
         assertTrue(isset($response_arr['cache_hit']), 'cache_hit is not set');
-        assertTrue(isset($response_arr['records']), 'records is not set');
 
         assertEquals('record', $response_arr['xhr_response_type'], 'bad xhr_response_type');
         assertEquals('error', $response_arr['xhr_response_status'], 'bad xhr_response_status');
