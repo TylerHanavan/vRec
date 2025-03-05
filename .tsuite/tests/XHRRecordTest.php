@@ -62,6 +62,14 @@
         assertEquals('t1', $response_arr['record_definition']['record_fields'][1]['field_name'], 'record_definition.record_fields[1][\'field_name\'] is bad');
         assertEquals(1, $response_arr['record_definition']['record_fields'][1]['field_type'], 'record_definition.record_fields[1][\'field_type\'] is bad');
         assertEquals(255, $response_arr['record_definition']['record_fields'][1]['field_length'], 'record_definition.record_fields[1][\'field_length\'] is bad');
+        
+        assertEquals('t2', $response_arr['record_definition']['record_fields'][2]['field_name'], 'record_definition.record_fields[2][\'field_name\'] is bad');
+        assertEquals(0, $response_arr['record_definition']['record_fields'][2]['field_type'], 'record_definition.record_fields[2][\'field_type\'] is bad');
+        assertEquals(null, $response_arr['record_definition']['record_fields'][2]['field_length'], 'record_definition.record_fields[2][\'field_length\'] is bad');
+
+        assertEquals('t3', $response_arr['record_definition']['record_fields'][3]['field_name'], 'record_definition.record_fields[3][\'field_name\'] is bad');
+        assertEquals(0, $response_arr['record_definition']['record_fields'][3]['field_type'], 'record_definition.record_fields[3][\'field_type\'] is bad');
+        assertEquals(null, $response_arr['record_definition']['record_fields'][3]['field_length'], 'record_definition.record_fields[3][\'field_length\'] is bad');
 
     }
 
