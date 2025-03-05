@@ -29,6 +29,8 @@
 
         $response_arr = json_decode($response['response'], true);
 
+        var_dump($response_arr);
+
         assertEquals(200, $response['http_code'], 'http code mismatch');
 
         assertTrue(isset($response_arr) && !empty($response_arr), 'response array empty');
