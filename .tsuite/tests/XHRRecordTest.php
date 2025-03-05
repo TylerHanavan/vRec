@@ -54,6 +54,8 @@
         assertTrue(isset($response_arr['record_definition']['record_fields'][2]), 'record_definition.record_fields[2] is not set');
         assertTrue(isset($response_arr['record_definition']['record_fields'][3]), 'record_definition.record_fields[3] is not set');
 
+        assertEquals(isset($response_arr['record_definition']['record_fields'][0]['field_name']), 'id', 'record_definition.record_fields[0][\'field_name\'] is bad');
+
     }
 
 ?>
