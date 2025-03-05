@@ -57,6 +57,7 @@
                 $response['error'] = 'Record name does not exist';
 
                 http_response_code(404);
+                echo json_encode($response);
                 graceful_exit();
             }
 

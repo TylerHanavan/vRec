@@ -297,6 +297,8 @@
 
             $ret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            var_dump($ret);
+
             // Record type not found
             if(!is_array($ret) || sizeof($ret) == 0)
                 return null;
