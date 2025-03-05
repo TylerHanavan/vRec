@@ -50,6 +50,9 @@
         assertEquals($response_arr['record_definition']['record_name'], 'test', 'bad record_definition.record_name');
 
         assertTrue(isset($response_arr['record_definition']['record_fields'][0]), 'record_definition.record_fields[0] is not set');
+        assertTrue(isset($response_arr['record_definition']['record_fields'][1]), 'record_definition.record_fields[1] is not set');
+        assertTrue(isset($response_arr['record_definition']['record_fields'][2]), 'record_definition.record_fields[2] is not set');
+        assertTrue(isset($response_arr['record_definition']['record_fields'][3]), 'record_definition.record_fields[3] is not set');
 
     }
 
