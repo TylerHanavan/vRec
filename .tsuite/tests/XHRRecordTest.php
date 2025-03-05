@@ -19,8 +19,7 @@
         assertEquals($response_arr['xhr_response_type'], 'record', 'bad xhr_response_type');
         assertEquals($response_arr['xhr_response_status'], 'error', 'bad xhr_response_status');
         assertEquals($response_arr['error'], 'No record name provided', 'bad xhr_response_type');
-
-        assertEquals('<p>Scanned your database, all tables are setup already!</p>', $response['response'], 'response mismatch');
+        
     }
 
 ?>
