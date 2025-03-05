@@ -56,7 +56,8 @@
                 $response['xhr_response_status'] = 'error';
                 $response['error'] = 'Record name does not exist';
 
-                graceful_exit(404);
+                http_response_code(404);
+                graceful_exit();
             }
 
             $response['record_definition'] = array();
