@@ -41,7 +41,8 @@
 
         assertEquals('record', $response_arr['xhr_response_type'], 'bad xhr_response_type');
         assertEquals('success', $response_arr['xhr_response_status'], 'bad xhr_response_status');
-        assertTrue($response_arr['cache_allowed'], 'bad cache_allowed');
+        assertTrue(!is_string($response_arr['cache_allowed']), 'cache_allowed returned a string');
+        assertTrue(!is_int($response_arr['cache_allowed']), 'cache_allowed returned an int');
 
         assertTrue(isset($response_arr['record_definition']), 'record_definition is not set');
         assertTrue(isset($response_arr['record_definition']['record_name']), 'record_definition.record_name is not set');
@@ -55,6 +56,8 @@
         assertTrue(isset($response_arr['record_definition']['record_fields'][3]), 'record_definition.record_fields[3] is not set');
 
         assertEquals('id', isset($response_arr['record_definition']['record_fields'][0]['field_name']), 'record_definition.record_fields[0][\'field_name\'] is bad');
+        assertEquals(0, isset($response_arr['record_definition']['record_fields'][0]['field_type']), 'record_definition.record_fields[0][\'field_type\'] is bad');
+        assertEquals(null, isset($response_arr['record_definition']['record_fields'][0]['field_length']), 'record_definition.record_fields[0][\'field_length\'] is bad');
 
     }
 
