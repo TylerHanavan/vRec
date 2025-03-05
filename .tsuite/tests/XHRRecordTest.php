@@ -57,6 +57,8 @@
 
         var_dump($response_arr['record_definition']);
 
+        echo 'extra debug message';
+
         assertEquals('id', $response_arr['record_definition']['record_fields'][0]['field_name'], 'record_definition.record_fields[0][\'field_name\'] is bad');
         assertEquals(0, $response_arr['record_definition']['record_fields'][0]['field_type'], 'record_definition.record_fields[0][\'field_type\'] is bad');
         assertEquals(null, $response_arr['record_definition']['record_fields'][0]['field_length'], 'record_definition.record_fields[0][\'field_length\'] is bad');
