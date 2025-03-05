@@ -3,7 +3,8 @@
     function test_record_insert_1($properties) {
         assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
-        $response = test_curl($properties['endpoint_url'] . '/xhr/record', array(), true);
+        global $session_token;
+        $response = test_curl($properties['endpoint_url'] . '/xhr/record', array(), true, $session_token);
 
         $response_arr = json_decode($response['response'], true);
 
