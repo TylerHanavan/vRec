@@ -7,18 +7,13 @@
           {
             "shell": [
               "export MYSQL_PWD=\"${DB_PASS}\"",
-              "echo \"Showing tables\"",
-              "mysql -u ${DB_USER} ${DB_NAME} -e \"SHOW TABLES\"",
-              "echo \"Deleting tables\"",
-              "mysql -u ${DB_USER} ${DB_NAME} -e \"DROP TABLE test\"",
-              "mysql -u ${DB_USER} ${DB_NAME} -e \"DROP TABLE pages\"",
-              "mysql -u ${DB_USER} ${DB_NAME} -e \"DROP TABLE sessions\"",
-              "mysql -u ${DB_USER} ${DB_NAME} -e \"DROP TABLE accounts\"",
-              "mysql -u ${DB_USER} ${DB_NAME} -e \"DROP TABLE record_fields\"",
-              "mysql -u ${DB_USER} ${DB_NAME} -e \"DROP TABLE record_definitions\"",
-              "echo \"Deleted all tables\"",
-              "echo \"Showing tables\"",
-              "mysql -u ${DB_USER} ${DB_NAME} -e \"SHOW TABLES\""
+              "echo \"Dropping database ${DB_NAME}\"",
+              "mysql -u ${DB_USER} -e \"DROP DATABASE ${DB_NAME}\"",
+              "echo \"Creating database ${DB_NAME}\"",
+              "mysql -u ${DB_USER} -e \"CREATE DATABASE ${DB_NAME}\"",
+              "echo \"TODO: Recreate user\"",
+              "echo \"Granting privileges to ${DB_USER} on ${DB_NAME}\"",
+              "mysql -u ${DB_USER} -e \"GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}';\"",
             ]
           }
         ]
