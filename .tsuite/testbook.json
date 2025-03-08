@@ -6,7 +6,6 @@
         "actions": [
           {
             "shell": [
-              "export MYSQL_PWD=\"${DB_PASS}\"",
               "echo \"Dropping database ${DB_NAME}\"",
               "mysql -u ${DB_USER} -e \"DROP DATABASE ${DB_NAME}\"",
               "echo \"Creating database ${DB_NAME}\"",
