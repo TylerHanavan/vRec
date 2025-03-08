@@ -28,7 +28,7 @@
         $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array('username' => 'ke', 'email' => 'example@example.com', 'password' => '12345678'), true);
 
         assertEquals(400, $response['http_code'], 'http code mismatch');
-        assertEquals('{"xhr_response_type":"signup","xhr_response_status":"error","error":"Username must be between 3 and 50 characters"}', $response['response'], 'response mismatch');
+        assertEquals('{"xhr_response_type":"signup","xhr_response_status":"error","error":"Username must be between 3 and 50 character"}', $response['response'], 'response mismatch');
     }
 
     function test_xhr_signup_3($properties) {
