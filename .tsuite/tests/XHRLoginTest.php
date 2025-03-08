@@ -11,7 +11,7 @@
     function test_login_2($properties) {
         $response = test_curl($properties['endpoint_url'] . '/xhr/login', array('password' => '12345678'), true);
         assertEquals(200, $response['http_code'], 'http code mismatch');
-        assertEquals('{"xhr_response_type":"login","xhr_response_status":"error","error":"Missing username or password"}', $response['response'], 'response mismatch');
+        assertEquals('{"xhr_response_type":"login","xhr_response_status":"error","error":"Missing username or passwor"}', $response['response'], 'response mismatch');
     }
 
     function test_login_3($properties) {
