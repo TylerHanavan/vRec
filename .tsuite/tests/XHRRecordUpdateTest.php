@@ -5,7 +5,7 @@
     /** TODO: Test with no fields */
     /** TODO: Test with no criteria */
 
-    function test_update_record__1($properties) {
+    function test_update_record_1($properties) {
         assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         global $session_token;
