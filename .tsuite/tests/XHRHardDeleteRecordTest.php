@@ -12,8 +12,8 @@
 
         assertTrue(isset($response_arr) && !empty($response_arr), 'response array empty');
 
-        assertEquals('delete_record', 'xhr_response_type', 'mismatching xhr_response_type');
-        assertEquals('success', 'xhr_response_status', 'mismatching xhr_response_status');
+        assertEquals('delete_record', $response_arr['xhr_response_type'], 'mismatching xhr_response_type');
+        assertEquals('success', $response_arr['xhr_response_status'], 'mismatching xhr_response_status');
 
     }
 
@@ -86,8 +86,6 @@
                 assertTrue(isset($records[$x][$t]['value']), "there is no record $x field $t value");
             }
         }
-
-        assertTrue()
 
         assertEquals(1, $records[0]['id']['value'], 'record 0 id value is wrong');
         assertEquals('1', $records[0]['t1']['value'], 'record 0 t1 value is wrong');
