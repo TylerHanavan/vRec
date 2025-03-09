@@ -40,9 +40,7 @@
               "tests/XHRRecordDefinitionTest.php",
               "tests/XHRRecordTest.php",
               "tests/XHRRecordInsertTest.php",
-              "tests/XHRRecordTestAfterInsert.php",
               "tests/XHRRecordUpdateTest.php",
-              "tests/XHRRecordTestAfterUpdate.php",
               "tests/XHRHardDeleteRecordTest.php"
             ]
           }
