@@ -84,7 +84,8 @@
                 assertTrue(isset($records[$x][$t]['type']), "there is no record $x field $t type");
                 //assertTrue(isset($records[$x][$t]['length']), "there is no record $x field $t length");
                 assertTrue(isset($records[$x][$t]['value']), "there is no record $x field $t value");
-                assertTrue($records[$x][$t]['value'] != 2, 'record #2 still exists');
+                if($t == 'id')
+                    assertTrue($records[$x][$t]['value'] != 2, 'record #2 still exists');
             }
         }
 
