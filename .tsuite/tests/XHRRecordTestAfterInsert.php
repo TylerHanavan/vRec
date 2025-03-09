@@ -69,17 +69,17 @@
             
         }
 
-        assertEquals(1, $records[0]['t1']['value'], 'record 0 t1 value is wrong');
-        assertEquals(2, $records[0]['t2']['value'], 'record 0 t2 value is wrong');
-        assertEquals(3, $records[0]['t3']['value'], 'record 0 t3 value is wrong');
+        assertEquals('1', $records[0]['t1']['value'], 'record 0 t1 value is wrong');
+        assertEquals('2', $records[0]['t2']['value'], 'record 0 t2 value is wrong');
+        assertEquals('3', $records[0]['t3']['value'], 'record 0 t3 value is wrong');
 
-        assertEquals(4, $records[1]['t1']['value'], 'record 1 t1 value is wrong');
-        assertEquals(4, $records[1]['t2']['value'], 'record 1 t2 value is wrong');
-        assertEquals(5, $records[1]['t3']['value'], 'record 1 t3 value is wrong');
+        assertEquals('4', $records[1]['t1']['value'], 'record 1 t1 value is wrong');
+        assertEquals('4', $records[1]['t2']['value'], 'record 1 t2 value is wrong');
+        assertEquals('5', $records[1]['t3']['value'], 'record 1 t3 value is wrong');
 
-        assertEquals(5, $records[2]['t1']['value'], 'record 2 t1 value is wrong');
-        assertEquals(6, $records[2]['t2']['value'], 'record 2 t2 value is wrong');
-        assertEquals(7, $records[2]['t3']['value'], 'record 1 t3 value is wrong');
+        assertEquals('5', $records[2]['t1']['value'], 'record 2 t1 value is wrong');
+        assertEquals('6', $records[2]['t2']['value'], 'record 2 t2 value is wrong');
+        assertEquals('7', $records[2]['t3']['value'], 'record 1 t3 value is wrong');
 
     }
 
