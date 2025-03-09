@@ -82,7 +82,7 @@
         assertEquals(3, $records[2]['id']['value'], 'record 2 id value is wrong');
         assertEquals('5', $records[2]['t1']['value'], 'record 2 t1 value is wrong');
         assertEquals(6, $records[2]['t2']['value'], 'record 2 t2 value is wrong');
-        assertEquals(7, $records[2]['t3']['value'], 'record 1 t3 value is wrong');
+        assertEquals(7, $records[2]['t3']['value'], 'record 2 t3 value is wrong');
 
     }
 
