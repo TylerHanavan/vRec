@@ -57,7 +57,7 @@
 
         $fields = ['id', 't1', 't2', 't3'];
 
-        for($x = 0; $x < 3; $x++) {
+        for($x = 0; $x < sizeof($records); $x++) {
             assertTrue(isset($records[$x]), "there is no record $x");
 
             foreach($fields as $t) {

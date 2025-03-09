@@ -76,7 +76,7 @@
 
         assertTrue(2, sizeof($records), 'wrong number of records returned');
 
-        for($x = 0; $x < 2; $x++) {
+        for($x = 0; $x < sizeof($records); $x++) {
             assertTrue(isset($records[$x]), "there is no record $x");
 
             foreach($fields as $t) {
@@ -84,6 +84,7 @@
                 assertTrue(isset($records[$x][$t]['type']), "there is no record $x field $t type");
                 //assertTrue(isset($records[$x][$t]['length']), "there is no record $x field $t length");
                 assertTrue(isset($records[$x][$t]['value']), "there is no record $x field $t value");
+                assertTrue($records[$x][$t]['value'] != 2, 'record #2 still exists');
             }
         }
 
