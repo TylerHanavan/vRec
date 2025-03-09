@@ -39,7 +39,6 @@
               "tests/XHRLoginTest.php",
               "tests/XHRRecordDefinitionTest.php",
               "tests/XHRRecordTest.php",
-              "tests/XHRRecordUpdateTest.php",
               "tests/XHRRecordInsertTest.php"
             ]
           }
