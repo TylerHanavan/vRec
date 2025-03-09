@@ -69,6 +69,8 @@
             
         }
 
+        var_dump($records[0]);
+
         assertEquals('1', $records[0]['t1']['value'], 'record 0 t1 value is wrong');
         assertEquals('2', $records[0]['t2']['value'], 'record 0 t2 value is wrong');
         assertEquals('3', $records[0]['t3']['value'], 'record 0 t3 value is wrong');
