@@ -4,7 +4,7 @@
         assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         global $session_token;
-        $response = test_curl($properties['endpoint_url'] . '/new', array('record_name' => 'test', 't1' => 1, 't2' => 2, 't3' => 3), true, $session_token);
+        $response = test_curl($properties['endpoint_url'] . '/new', array('table' => 'test', 't1' => 1, 't2' => 2, 't3' => 3), true, $session_token);
 
         $response_arr = json_decode($response['response'], true);
 
