@@ -57,6 +57,8 @@
 
         $fields = ['id', 't1', 't2', 't3'];
 
+        assertTrue(sizeof($records) == 3, 'wrong number of records returned');
+
         for($x = 0; $x < sizeof($records); $x++) {
             assertTrue(isset($records[$x]), "there is no record $x");
 
