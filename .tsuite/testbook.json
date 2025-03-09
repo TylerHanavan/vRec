@@ -1,5 +1,16 @@
 {
     "stages": {
+      "install": {
+        "title": "Install vRec",
+        "description": "Copies the files to the install location",
+        "actions": [
+          {
+            "shell": [
+              "cp -r ${DOWNLOAD_LOCATION}/src/* ${INSTALL_LOCATION}"
+            ]
+          }
+        ]
+      },
       "setupDB": {
         "title": "Setup MySQL Database",
         "description": "This test drops the MySQL database if it exists, creates a new database, creates the user and grants the permissions to the user.",
