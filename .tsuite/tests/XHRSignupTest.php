@@ -9,7 +9,7 @@
 
         $tables = array('pages', 'accounts', 'sessions', 'record_fields', 'record_definitions');
         foreach($tables as $table) {
-            assertStrContains('<p>You are missing th <b>' . $table . '</b> table. Generating...</p>', $response['response'], 'response mismatch');
+            assertStrContains('<p>You are missing the <b>' . $table . '</b> table. Generating...</p>', $response['response'], 'response mismatch');
         }
 
         echo "Finished setting up the database tables";
