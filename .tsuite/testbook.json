@@ -1,0 +1,50 @@
+{
+    "stages": {
+      "install": {
+        "title": "Install vRec",
+        "description": "Copies the files to the install location",
+        "actions": [
+          {
+            "shell": [
+              "cp -r ${DOWNLOAD_LOCATION}/src/* ${INSTALL_LOCATION} && echo \"No errors while copying from ${DOWNLOAD_LOCATION}/src/* to ${INSTALL_LOCATION}\""
+            ]
+          }
+        ]
+      },
+      "setupDB": {
+        "title": "Setup MySQL Database",
+        "description": "This test drops the MySQL database if it exists, creates a new database, creates the user and grants the permissions to the user.",
+        "actions": [
+          {
+            "shell": [
+              "echo \"Dropping database ${DB_NAME}\"",
+              "mysql -u ${DB_USER} -e \"DROP DATABASE ${DB_NAME}\"",
+              "echo \"Creating database ${DB_NAME}\"",
+              "mysql -u ${DB_USER} -e \"CREATE DATABASE ${DB_NAME}\"",
+              "echo \"TODO: Recreate user\"",
+              "echo \"Granting privileges to ${DB_USER} on ${DB_NAME}\"",
+              "mysql -u ${DB_USER} -e \"GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}';\""
+            ]
+          }
+        ]
+      },
+      "runXHRTests": {
+        "title": "Run XHR Tests",
+        "description": "This runs the vRec XHR tests.",
+        "actions": [
+          {
+            "php": [
+              "tests/XHRSignupTest.php",
+              "tests/XHRSetupTest.php",
+              "tests/XHRLoginTest.php",
+              "tests/XHRRecordDefinitionTest.php",
+              "tests/XHRRecordTest.php",
+              "tests/XHRRecordInsertTest.php",
+              "tests/XHRRecordUpdateTest.php",
+              "tests/XHRHardDeleteRecordTest.php"
+            ]
+          }
+        ]
+      }
+    }
+  }

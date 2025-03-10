@@ -11,6 +11,8 @@
         foreach($tables as $table) {
             assertStrContains('<p>You are missing the <b>' . $table . '</b> table. Generating...</p>', $response['response'], 'response mismatch');
         }
+
+        echo "Finished setting up the database tables";
     }
 
     function test_xhr_signup_1($properties) {
