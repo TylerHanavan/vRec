@@ -46,6 +46,8 @@
 
         assertEquals('success', $response_arr['xhr_response_status'], 'mismatching xhr_response_status');
 
+        echo "Finished inserting third `test` record";
+
     }    
     
     function test_get_record_after_insert_1($properties) {
