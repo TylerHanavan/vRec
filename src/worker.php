@@ -93,8 +93,6 @@
     function get_worker_jobs() {        
         $response = do_xhr('/xhr/worker/jobs', array(), false);
 
-        var_dump($response);
-
         return json_decode($response['response'], true)['worker_jobs'];
     }
 
