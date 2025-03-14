@@ -1,12 +1,25 @@
 {
     "stages": {
+      "build":
+      {
+        "title": "Build vRec with Composer",
+        "description": "Builds",
+        "actions": [
+          {
+            "shell": [
+              "cd ${DOWNLOAD_LOCATION} && composer install 2>&1"
+            ]
+          }
+        ]
+      },
       "install": {
         "title": "Install vRec",
         "description": "Copies the files to the install location",
         "actions": [
           {
             "shell": [
-              "cp -r ${DOWNLOAD_LOCATION}/src/* ${INSTALL_LOCATION} && echo \"No errors while copying from ${DOWNLOAD_LOCATION}/src/* to ${INSTALL_LOCATION}\""
+              "cp -r ${DOWNLOAD_LOCATION}/src/* ${INSTALL_LOCATION} && echo \"No errors while copying from ${DOWNLOAD_LOCATION}/src/* to ${INSTALL_LOCATION}\" || \"There was a problem copying the files from ${DOWNLOAD_LOCATION}/src/* to ${INSTALL_LOCATION}\"",
+              "mkdir ${INSTALL_LOCATION}/vendor; cp -r ${DOWNLOAD_LOCATION}/vendor/* ${INSTALL_LOCATION}/vendor && echo \"No errors while copying from ${DOWNLOAD_LOCATION}/vendor/* to ${INSTALL_LOCATION}/vendor\" || \"There was a problem copying the files from ${DOWNLOAD_LOCATION}/vendor/* to ${INSTALL_LOCATION}/vendor\""
             ]
           }
         ]

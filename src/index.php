@@ -6,6 +6,8 @@
 
     $full_timer_start = microtime(true);
 
+    require __DIR__ . '/vendor/autoload.php';
+
     $_INSTALL_LOCATION = getenv('VREC_INSTALL_LOCATION');
 
     $request_method = $_SERVER['REQUEST_METHOD']; // GET, POST, PUT, DELETE...
