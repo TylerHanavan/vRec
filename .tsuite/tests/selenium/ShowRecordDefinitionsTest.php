@@ -9,7 +9,9 @@
 
         $selenium = $properties['selenium'];
 
-        $selenium->get($properties['endpoint_url']);
+        $selenium->get($properties['endpoint_url'] . '/');
+
+        echo $properties['endpoint_url'] . "\n";
 
         echo "Before wait\n";
 
