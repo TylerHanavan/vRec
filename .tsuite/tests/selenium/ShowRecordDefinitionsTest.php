@@ -10,7 +10,7 @@
         $selenium->get($properties['endpoint_url']);
 
         $selenium->wait(20, 500)->until(
-            WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'));
+            WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
         );
 
         $login_element = $selenium->findElement(WebDriverBy::id('login-link'));
