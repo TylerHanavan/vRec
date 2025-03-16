@@ -1,5 +1,6 @@
 <?php
 
+    use Facebook\WebDriver\Remote\WebDriverBy;
 
     function test_selenium_1($properties) {
 
