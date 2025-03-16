@@ -12,6 +12,7 @@
         $selenium->get($properties['endpoint_url']);
 
         echo "Before wait\n";
+        echo $selenium->getPageSource();
 
         $selenium->wait(30, 500)->until(
             WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
