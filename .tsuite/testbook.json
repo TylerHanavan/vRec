@@ -7,7 +7,7 @@
         "actions": [
           {
             "shell": [
-              "cd ${DOWNLOAD_LOCATION} && composer install 2>&1"
+              "cd ${DOWNLOAD_LOCATION} && composer install 2>&1 && composer dump-autoload 2>&1"
             ]
           }
         ]
