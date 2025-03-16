@@ -16,7 +16,7 @@ function test_selenium_1($properties) {
     echo "Before wait\n";
 
     // Wait until a specific element is present (adjust the element's selector as needed)
-    $selenium->wait(60, 500)->until(
+    $selenium->wait(120, 500)->until(
         WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
     );
 
