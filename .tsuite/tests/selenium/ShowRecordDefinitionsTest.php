@@ -17,6 +17,8 @@
 
         assertEquals('Logint', $login_element->getText());
 
+        echo "End of test";
+
     }
 
 ?>
