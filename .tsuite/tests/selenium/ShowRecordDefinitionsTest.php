@@ -15,7 +15,7 @@
 
         $login_element = $selenium->findElement(WebDriverBy::id('login-link'));
 
-        assertEquals('Login', $login_element->getText());
+        assertEquals('Logint', $login_element->getText());
 
     }
 
