@@ -17,6 +17,8 @@
 
         $login_element = $selenium->findElement(WebDriverBy::id('login-link'));
 
+        if($login_element == null) throw new Exception("#login-link not found");
+
         assertEquals('Logint', $login_element->getText());
 
         echo "End of test";
