@@ -13,7 +13,7 @@
 
         echo "Before wait\n";
 
-        $selenium->wait(20, 500)->until(
+        $selenium->wait(30, 500)->until(
             WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
         );
 
