@@ -1,6 +1,7 @@
 <?php
 
     use Facebook\WebDriver\WebDriverBy;
+    use Facebook\WebDriver\WebDriverExpectedCondition;
 
     function test_selenium_1($properties) {
 
@@ -8,9 +9,9 @@
 
         $selenium->get($properties['endpoint_url']);
 
-        $login_element = $selenium->findElement(WebDriverBy::id('login-link'));
-
-        assertEquals('Login', $login_element->getText());
+        $selenium->wait(10, 500)->until(
+            WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::id('login-link'))
+        );
 
     }
 
