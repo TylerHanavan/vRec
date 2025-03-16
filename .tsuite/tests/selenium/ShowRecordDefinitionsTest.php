@@ -5,6 +5,8 @@
 
     function test_selenium_1($properties) {
 
+        echo "Start of test";
+
         $selenium = $properties['selenium'];
 
         $selenium->get($properties['endpoint_url']);
