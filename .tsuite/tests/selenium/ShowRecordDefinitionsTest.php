@@ -12,7 +12,7 @@
         var_dump($properties);
 
         $selenium->wait(20, 500)->until(
-            WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::id('login-link'))
+            WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
         );
 
     }
