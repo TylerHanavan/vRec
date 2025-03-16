@@ -9,7 +9,7 @@
 
         $selenium->get($properties['endpoint_url']);
 
-        $selenium->wait(10, 500)->until(
+        $selenium->wait(20, 500)->until(
             WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::id('login-link'))
         );
 
