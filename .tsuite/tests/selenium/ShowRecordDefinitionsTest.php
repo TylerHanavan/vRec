@@ -15,8 +15,14 @@
         echo $selenium->getPageSource();
 
         $selenium->wait(30, 500)->until(
-            WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
+            function($selenium) {
+                return $selenium->executeScript('return document.readyState') === 'complete';
+            }
         );
+
+        /*$selenium->wait(30, 500)->until(
+            WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
+        );*/
 
         echo "After wait\n";
 
