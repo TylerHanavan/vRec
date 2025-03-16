@@ -1,44 +1,32 @@
 <?php
 
-    use Facebook\WebDriver\WebDriverBy;
-    use Facebook\WebDriver\WebDriverExpectedCondition;
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverExpectedCondition;
 
-    function test_selenium_1($properties) {
+function test_selenium_1($properties) {
 
-        echo "Start of test\n";
+    echo "Start of test\n";
 
-        $selenium = $properties['selenium'];
+    $selenium = $properties['selenium'];
 
-        $selenium->get($properties['endpoint_url'] . '/');
+    $selenium->get($properties['endpoint_url'] . '/');
 
-        echo $properties['endpoint_url'] . "\n";
+    echo $properties['endpoint_url'] . "\n";
 
-        echo "Before wait\n";
+    echo "Before wait\n";
 
-        $selenium->wait(60, 500)->until(
-            function($selenium) {
-                return $selenium->executeScript('return document.readyState') === 'complete';
-            }
-        );
+    // Wait until a specific element is present (adjust the element's selector as needed)
+    $selenium->wait(60, 500)->until(
+        WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
+    );
 
-        echo $selenium->getPageSource();
+    echo "After wait\n";
 
-        /*$selenium->wait(30, 500)->until(
-            WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
-        );*/
+    // You can check for JavaScript-rendered content here by waiting for an element or using executeScript
 
-        echo "After wait\n";
+    echo $selenium->getPageSource();
 
-        //$login_element = $selenium->findElement(WebDriverBy::id('login-link'));
+    echo "End of test";
 
-        echo "After find\n";
-
-        //if($login_element == null) throw new Exception("#login-link not found");
-
-        //assertEquals('Logint', $login_element->getText());
-
-        echo "End of test";
-
-    }
-
+}
 ?>
