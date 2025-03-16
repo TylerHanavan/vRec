@@ -6,7 +6,9 @@
 
         $selenium->get($properties['endpoint_url']);
 
-        assertEquals('Test', $selenium->getTitle());
+        $login_element = $selenium->findElement(Facebook\WebDriver\Remote\WebDriverBy::id('login-link'));
+
+        assertEquals('Login', $element->getText());
 
     }
 
