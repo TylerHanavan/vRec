@@ -58,6 +58,17 @@
             ]
           }
         ]
+      },
+      "seleniumTests": {
+        "title": "Selenium Web Tests",
+        "description": "Test UI components with Selenium",
+        "actions": [
+          {
+            "php": [
+              "tests/selenium/ShowRecordDefinitionsTest.php"
+            ]
+          }
+        ]
       }
     }
   }
