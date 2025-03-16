@@ -5,17 +5,23 @@
 
     function test_selenium_1($properties) {
 
-        echo "Start of test";
+        echo "Start of test\n";
 
         $selenium = $properties['selenium'];
 
         $selenium->get($properties['endpoint_url']);
 
+        echo "Before wait\n";
+
         $selenium->wait(20, 500)->until(
             WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
         );
 
+        echo "After wait\n";
+
         $login_element = $selenium->findElement(WebDriverBy::id('login-link'));
+
+        echo "After find\n";
 
         if($login_element == null) throw new Exception("#login-link not found");
 
