@@ -19,14 +19,10 @@ function test_selenium_1($properties) {
         function () use ($selenium) {
             $elements = $selenium->findElements(WebDriverBy::cssSelector('div'));
     
-            return count($elements) > 2;
+            return count($elements) > 200;
         },
         'Error locating more than five elements'
     );
-
-    echo "elements " . count($elements) . "\n";
-
-    echo $selenium->getPageSource();
 
     echo "End of test";
 
