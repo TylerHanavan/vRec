@@ -11,6 +11,10 @@
 
         $selenium->get("$url/test");
 
+        sleep(5);
+
+        echo $selenium->getPageSource() . "\n";
+
         $selenium->wait(10, 500)->until(
             function () use ($selenium) {
                 $elements = $selenium->findElements(WebDriverBy::cssSelector('*'));
