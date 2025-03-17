@@ -30,7 +30,7 @@ function test_selenium_1($properties) {
 
     $element = WebDriverBy::tagName('body');
 
-    var_dump($element);
+    echo $element->getText();
 
     echo "End of test";
 
