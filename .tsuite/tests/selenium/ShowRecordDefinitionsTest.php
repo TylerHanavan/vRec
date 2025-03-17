@@ -11,14 +11,14 @@
 
         $selenium->get("$url/test");
 
-        /*$selenium->wait(10, 500)->until(
+        $selenium->wait(10, 500)->until(
             function () use ($selenium) {
-                $elements = $selenium->findElements(WebDriverBy::cssSelector('div'));
+                $elements = $selenium->findElements(WebDriverBy::cssSelector('*'));
         
-                return count($elements) > 1;
+                return count($elements) > 4;
             },
-            'Error locating two or more div elements'
-        );*/
+            'Error locating five or more elements'
+        );
         
         $selenium->wait(10, 500)->until(
             function () use ($selenium) {
