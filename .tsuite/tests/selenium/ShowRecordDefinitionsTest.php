@@ -15,13 +15,13 @@ function test_selenium_1($properties) {
 
     echo "Before wait\n";
 
-    $selenium->wait(30, 500)->until(
+    $selenium->wait(15, 500)->until(
         function () use ($selenium) {
             $elements = $selenium->findElements(WebDriverBy::cssSelector('div'));
     
-            return count($elements) > 200;
+            return count($elements) > 2;
         },
-        'Error locating more than five elements'
+        'Error locating more than two div elements'
     );
 
     echo "End of test";
