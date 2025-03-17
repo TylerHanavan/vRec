@@ -5,7 +5,7 @@ use Facebook\WebDriver\WebDriverExpectedCondition;
 
 function test_selenium_1($properties) {
 
-    $url = $properties['endpoint_url'];
+    $url = 'http://' . $properties['endpoint_url'];
 
     $selenium = $properties['selenium'];
 
