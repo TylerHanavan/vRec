@@ -15,7 +15,7 @@ function test_selenium_1($properties) {
 
     echo "Before wait\n";
 
-    $selenium->wait()->until(
+    $selenium->wait(30, 500)->until(
         function () use ($selenium) {
             $elements = $selenium->findElements(WebDriverBy::cssSelector('div'));
     
