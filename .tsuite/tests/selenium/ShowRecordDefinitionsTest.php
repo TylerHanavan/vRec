@@ -49,7 +49,14 @@
 
         $modal = $selenium->findElement(WebDriverBy::className('modal'));
 
-        echo $modal->getAttribute('style') . "\n";
+        $login_anchor = $selenium->findElement(WebDriverBy::id('login-link'));
+
+        $login_anchor->click();
+        
+        $selenium->wait(10, 500)->until(
+            WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::cssSelector('.modal')),
+            'Modal did not become visible after clicking #login-link'
+        );
 
     }
 ?>
