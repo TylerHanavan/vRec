@@ -65,7 +65,7 @@
 
         $modal_dialog = $modal_children[0];
 
-        assertEquals('diev', $modal_dialog->getTagName());
+        assertEquals('div', $modal_dialog->getTagName());
 
     }
 ?>
