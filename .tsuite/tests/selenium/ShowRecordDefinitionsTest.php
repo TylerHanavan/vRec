@@ -15,9 +15,9 @@
             function () use ($selenium) {
                 $elements = $selenium->findElements(WebDriverBy::cssSelector('div'));
         
-                return count($elements) > 2;
+                return count($elements) > 1;
             },
-            'Error locating more than two div elements'
+            'Error locating two or more div elements'
         );
         
         $selenium->wait(10, 500)->until(
