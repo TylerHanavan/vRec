@@ -67,5 +67,10 @@
 
         assertEquals('div', $modal_dialog->getTagName());
 
+        $modal_dialog_children = $modal_dialog->findElements(WebDriverBy::cssSelector('*'));
+
+        if(!isset($modal_dialog_children) || count($modal_dialog_children) == 0)
+            throw new Exception('.modal_dialog has no children');
+
     }
 ?>
