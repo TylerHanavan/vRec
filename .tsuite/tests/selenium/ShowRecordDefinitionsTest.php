@@ -13,6 +13,8 @@
 
         sleep(5);
 
+        if($properties['tester']->has_driver_quit()) throw new Exception("Selenium driver quit prior to test");
+
         echo $selenium->getPageSource() . "\n";
 
         $selenium->wait(10, 500)->until(
