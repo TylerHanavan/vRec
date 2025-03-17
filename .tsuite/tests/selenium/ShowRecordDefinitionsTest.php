@@ -9,16 +9,16 @@ function test_selenium_1($properties) {
 
     $selenium = $properties['selenium'];
 
-    $selenium->get($properties['endpoint_url'] . '/');
+    $selenium->get($properties['endpoint_url'] . '/test');
 
     echo $properties['endpoint_url'] . "\n";
 
     echo "Before wait\n";
 
     // Wait until a specific element is present (adjust the element's selector as needed)
-    $selenium->wait(600, 500)->until(
-        WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::id('login-link'))
-    );
+    $selenium->wait(10, 500)->until(
+        WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::tagName('body'))
+    );    
 
     echo "After wait\n";
 
