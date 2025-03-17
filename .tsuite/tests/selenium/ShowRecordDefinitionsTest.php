@@ -23,6 +23,8 @@ function test_selenium_1($properties) {
         },
         'Error locating more than five elements'
     );
+    
+    echo $selenium->getPageSource();
 
     echo "End of test";
 
