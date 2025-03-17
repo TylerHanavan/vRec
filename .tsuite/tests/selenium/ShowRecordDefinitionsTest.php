@@ -28,7 +28,7 @@ function test_selenium_1($properties) {
 
     sleep(20);
 
-    $element = WebDriverBy::tagName('body');
+    $element = $selenium->findElement(WebDriverBy::tagName('body'));
 
     echo $element->getText();
 
