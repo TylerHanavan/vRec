@@ -24,7 +24,7 @@
             function () use ($selenium) {
                 $elements = $selenium->findElements(WebDriverBy::id('login-link'));
         
-                return count($elements) == 1 && $elements[0]->getText() == 'Logint';
+                return count($elements) == 1 && $elements[0]->getText() == 'Login';
             },
             'Error locating login-link anchor'
         );
