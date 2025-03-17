@@ -80,9 +80,10 @@
 
         if(!isset($modal_content->getAttribute('class')) || $modal_content->getAttribute('class') == null)
             throw new Exception('Expected .modal-content but it has no classes');
-        
-        assertEquals('div', $modal_content->getTagName());
 
+        assertEquals('div', $modal_content->getTagName());
+        asssertArrayContains('.modal-content', explode(' ', $modal_dialog->getAttribute('class')));
+        
         $modal_content_children = $modal_content->findElements(WebDriverBy::cssSelector('*'));
 
         if(!isset($modal_content_children) || count($modal_content_children) == 0)
