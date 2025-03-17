@@ -72,5 +72,9 @@
         if(!isset($modal_dialog_children) || count($modal_dialog_children) == 0)
             throw new Exception('.modal_dialog has no children');
 
+        $modal_content = $modal_dialog_children[0];
+        
+        assertEquals('div', $modal_content->getTagName());
+
     }
 ?>
