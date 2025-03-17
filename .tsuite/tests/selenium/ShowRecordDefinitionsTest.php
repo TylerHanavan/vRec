@@ -9,7 +9,7 @@ function test_selenium_1($properties) {
 
     $selenium = $properties['selenium'];
 
-    $selenium->get('tsuite02:1347/test');
+    $selenium->get('http://tsuite02:1347/test');
 
     echo $properties['endpoint_url'] . "\n";
 
