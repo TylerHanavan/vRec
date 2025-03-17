@@ -58,5 +58,14 @@
             'Modal did not become visible after clicking #login-link'
         );
 
+        $modal_children = $modal->findElements(WebDriverBy::cssSelector('*'));
+
+        if(!isset($modal_children) || count($modal_children) == 0)
+            throw new Exception('.modal has no children');
+
+        $modal_dialog = $modal_children[0];
+
+        assertEquals('diev', $modal_dialog->getTagName());
+
     }
 ?>
