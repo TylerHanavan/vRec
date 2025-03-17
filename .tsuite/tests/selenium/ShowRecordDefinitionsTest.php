@@ -15,22 +15,14 @@ function test_selenium_1($properties) {
 
     echo "Before wait\n";
 
-    // Wait until a specific element is present (adjust the element's selector as needed)
-    $selenium->wait(10, 500)->until(
-        WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::tagName('body'))
+    $driver->wait()->until(
+        function () use ($driver) {
+            $elements = $driver->findElements(WebDriverBy::cssSelector('div'));
+    
+            return count($elements) > 2;
+        },
+        'Error locating more than five elements'
     );
-
-    echo "After wait\n";
-
-    // You can check for JavaScript-rendered content here by waiting for an element or using executeScript
-
-    echo $selenium->getPageSource();
-
-    sleep(20);
-
-    $element = $selenium->findElement(WebDriverBy::tagName('body'));
-
-    echo $element->getText();
 
     echo "End of test";
 
