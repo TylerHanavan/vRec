@@ -68,13 +68,11 @@
         $modal_dialog = $modal_children[0];
         $modal_dialog_class = $modal_dialog->getAttribute('class');
 
-        var_dump($modal_dialog_class);
-
         if(!isset($modal_dialog_class) || $modal_dialog_class == null)
             throw new Exception('Expected .modal-dialog but it has no classes');
 
         assertEquals('div', $modal_dialog->getTagName());
-        assertArrayContains('.modal-dialog', explode(' ', $modal_dialog_class));
+        assertArrayContains('modal-dialog', explode(' ', $modal_dialog_class));
 
         $modal_dialog_children = $modal_dialog->findElements(WebDriverBy::cssSelector('*'));
 
@@ -88,7 +86,7 @@
             throw new Exception('Expected .modal-content but it has no classes');
 
         assertEquals('div', $modal_content->getTagName());
-        assertArrayContains('.modal-content', explode(' ', $modal_content_class));
+        assertArrayContains('modal-content', explode(' ', $modal_content_class));
         
         $modal_content_children = $modal_content->findElements(WebDriverBy::cssSelector('*'));
 
