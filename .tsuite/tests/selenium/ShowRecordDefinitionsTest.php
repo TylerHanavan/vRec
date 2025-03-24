@@ -76,10 +76,8 @@
 
         $modal_dialog_children = $modal_dialog->findElements(WebDriverBy::cssSelector('*'));
 
-        if(!isset($modal_dialog_children) || count($modal_dialog_children) == 0) {
-            echo "modal-dialog has no children\n";
+        if(!isset($modal_dialog_children) || count($modal_dialog_children) == 0)
             throw new Exception('.modal-dialog has no children');
-        }
 
         $modal_content = $modal_dialog_children[0];
         $modal_content_class = $modal_content->getAttribute('class');
@@ -92,10 +90,16 @@
         
         $modal_content_children = $modal_content->findElements(WebDriverBy::cssSelector('*'));
 
-        if(!isset($modal_content_children) || count($modal_content_children) != 2) {
-            echo ".modal-content has no children\n";
+        if(!isset($modal_content_children) || count($modal_content_children) != 3)
             throw new Exception('.modal-content has no children');
-        }
+
+        $modal_header = $modal_content_children[0];
+        $modal_body = $modal_content_children[1];
+        $modal_footer = $modal_content_children[2];
+
+        assertArrayContains('modal-header', explode(' ', $modal_header->getAttribute('class')));
+        assertArrayContains('modal-body', explode(' ', $modal_body->getAttribute('class')));
+        assertArrayContains('modal-footer', explode(' ', $modal_body->getAttribute('class')));
 
         echo "Reached end of selenium tests\n";
     }
