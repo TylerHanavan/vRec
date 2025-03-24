@@ -88,7 +88,7 @@
             throw new Exception('Expected .modal-content but it has no classes');
 
         assertEquals('div', $modal_content->getTagName());
-        assertArrayContains('modal-content', explode(' ', $modal_content_class));
+        asssertArrayContains('modal-content', explode(' ', $modal_content_class));
         
         $modal_content_children = $modal_content->findElements(WebDriverBy::cssSelector('*'));
 
