@@ -80,7 +80,7 @@
             throw new Exception('.modal-dialog has no children');
 
         $modal_content = $modal_dialog_children[0];
-        $modal_content_class = $modal_dialog->getAttribute('class');
+        $modal_content_class = $modal_content->getAttribute('class');
 
         if(!isset($modal_content_class) || $modal_content_class == null)
             throw new Exception('Expected .modal-content but it has no classes');
