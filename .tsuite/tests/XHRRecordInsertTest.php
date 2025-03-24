@@ -44,7 +44,7 @@
 
         assertTrue(isset($response_arr) && !empty($response_arr), 'response array empty');
 
-        assertEquals('successs', $response_arr['xhr_response_status'], 'mismatching xhr_response_status');
+        assertEquals('success', $response_arr['xhr_response_status'], 'mismatching xhr_response_status');
 
     }
     
