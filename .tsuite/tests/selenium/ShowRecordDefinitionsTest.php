@@ -76,8 +76,10 @@
 
         $modal_dialog_children = $modal_dialog->findElements(WebDriverBy::cssSelector('*'));
 
-        if(!isset($modal_dialog_children) || count($modal_dialog_children) == 0)
+        if(!isset($modal_dialog_children) || count($modal_dialog_children) == 0) {
+            echo "modal-dialog has no children\n";
             throw new Exception('.modal-dialog has no children');
+        }
 
         $modal_content = $modal_dialog_children[0];
         $modal_content_class = $modal_content->getAttribute('class');
