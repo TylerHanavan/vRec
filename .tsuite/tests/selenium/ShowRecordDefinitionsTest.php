@@ -92,5 +92,7 @@
 
         if(!isset($modal_content_children) || count($modal_content_children) == 0)
             throw new Exception('.modal-content has no children');
+
+        echo "Reached end of selenium tests\n";
     }
 ?>
