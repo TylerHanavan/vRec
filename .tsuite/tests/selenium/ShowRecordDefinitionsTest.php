@@ -72,7 +72,7 @@
             throw new Exception('Expected .modal-dialog but it has no classes');
 
         assertEquals('div', $modal_dialog->getTagName());
-        asssertArrayContains('.modal-dialog', explode(' ', $modal_dialog_class));
+        assertArrayContains('.modal-dialog', explode(' ', $modal_dialog_class));
 
         $modal_dialog_children = $modal_dialog->findElements(WebDriverBy::cssSelector('*'));
 
@@ -86,7 +86,7 @@
             throw new Exception('Expected .modal-content but it has no classes');
 
         assertEquals('div', $modal_content->getTagName());
-        asssertArrayContains('.modal-content', explode(' ', $modal_content_class));
+        assertArrayContains('.modal-content', explode(' ', $modal_content_class));
         
         $modal_content_children = $modal_content->findElements(WebDriverBy::cssSelector('*'));
 
