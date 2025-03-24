@@ -90,8 +90,10 @@
         
         $modal_content_children = $modal_content->findElements(WebDriverBy::cssSelector('*'));
 
-        if(!isset($modal_content_children) || count($modal_content_children) == 0)
+        if(!isset($modal_content_children) || count($modal_content_children) == 0) {
+            echo ".modal-content has no children\n";
             throw new Exception('.modal-content has no children');
+        }
 
         echo "Reached end of selenium tests\n";
     }
