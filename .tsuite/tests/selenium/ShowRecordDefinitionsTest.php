@@ -166,7 +166,7 @@
         assertEquals('button', $modal_close_button->getTagName(), 'modal close button is not a button');
 
         /* Ensure the modal close button is attributed as .close */
-        assertArrayContains('cloese', explode(' ', $modal_close_button->getAttribute('class')));
+        assertArrayContains('close', explode(' ', $modal_close_button->getAttribute('class')));
 
         echo "Reached end of selenium tests\n";
     }
