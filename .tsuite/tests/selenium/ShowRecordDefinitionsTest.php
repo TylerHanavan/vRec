@@ -168,6 +168,9 @@
         /* Ensure the modal close button is attributed as .close */
         assertArrayContains('close', explode(' ', $modal_close_button->getAttribute('class')));
 
+        /* Ensure the modal close button data-dismiss attribute is "modal" */
+        assertEquals('modal', $modal_close_button->getAttribute('data-dismiss'));
+
         /* Ensure the .modal-body children exist */
         $login_forms = $modal_body->findElements(WebDriverBy::cssSelector('form'));
         if(!isset($login_forms) || count($login_forms) == 0) 
@@ -236,6 +239,8 @@
         $k='class'; $v='form-control'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
         $k='id'; $v='password'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
         $k='name'; $v='password'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
+
+        /** TODO: Add .modal-footer checks */
 
         /** TODO: Add signup-form checks */
 
