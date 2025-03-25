@@ -99,7 +99,7 @@
 
         assertArrayContains('modal-header', explode(' ', $modal_header->getAttribute('class')));
         assertArrayContains('modal-body', explode(' ', $modal_body->getAttribute('class')));
-        assertArrayContains('modal-footer', explode(' ', $modal_body->getAttribute('class')));
+        assertArrayContains('modal-footer', explode(' ', $modal_footer->getAttribute('class')));
 
         echo "Reached end of selenium tests\n";
     }
