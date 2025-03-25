@@ -182,12 +182,12 @@
         $username_form_group = $login_form_children[0];
 
         assertEquals('div', $username_form_group->getTagName(), 'username .form-group is not a div');
-        assertArrayContains('.form-group', explode(' ', $username_form_group->getAttribute('class')), 'username .form-group does not contain .form-group class');
+        assertArrayContains('form-group', explode(' ', $username_form_group->getAttribute('class')), 'username .form-group does not contain .form-group class');
 
         $password_form_group = $login_form_children[1];
 
         assertEquals('div', $password_form_group->getTagName(), 'password .form-group is not a div');
-        assertArrayContains('.form-group', explode(' ', $password_form_group->getAttribute('class')), 'password .form-group does not contain .form-group class');
+        assertArrayContains('form-group', explode(' ', $password_form_group->getAttribute('class')), 'password .form-group does not contain .form-group class');
 
         echo "Reached end of selenium tests\n";
     }
