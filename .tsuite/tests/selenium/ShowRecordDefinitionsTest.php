@@ -3,7 +3,7 @@
     use Facebook\WebDriver\WebDriverBy;
     use Facebook\WebDriver\WebDriverExpectedCondition;
 
-    function test_selenium_1($properties) {
+    function test_login_link_and_modal($properties) {
 
         $url = 'http://' . $properties['endpoint_url'];
 
@@ -167,6 +167,11 @@
 
         /* Ensure the modal close button is attributed as .close */
         assertArrayContains('close', explode(' ', $modal_close_button->getAttribute('class')));
+
+        /* Ensure the .modal-body children exist */
+        $login_forms = $modal_body->findElements(WebDriverBy::cssSelector('form'));
+        if(!isset($login_forms) || count($login_forms) == 0) 
+            throw new Exception('The .modal-body login form children do not exist');
 
         echo "Reached end of selenium tests\n";
     }
