@@ -176,8 +176,8 @@
         $login_form_1 = $login_forms[0];
         
         $login_form_children = $login_form_1->findElements(WebDriverBy::cssSelector('div'));
-
-        echo "Count :", count($login_form_children), "\n";
+        if(!isset($login_form_children) || count($login_form_children) == 2) 
+            throw new Exception('The login form 1 does not have exactly 2 children');
 
         echo "Reached end of selenium tests\n";
     }
