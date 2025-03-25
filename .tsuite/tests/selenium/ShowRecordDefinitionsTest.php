@@ -93,9 +93,9 @@
         if(!isset($modal_content_children) || count($modal_content_children) == 0)
             throw new Exception('.modal-content has no children');
 
-        $modal_header = $modal_content_children[0];
-        $modal_body = $modal_content_children[1];
-        $modal_footer = $modal_content_children[2];
+        $modal_header = $modal_content->findElements(WebDriverBy::cssSelector('.modal-header'));
+        $modal_body = $modal_content->findElements(WebDriverBy::cssSelector('.modal-body'));
+        $modal_footer = $modal_content->findElements(WebDriverBy::cssSelector('.modal-footer'));
 
         assertEquals('div', $modal_header->getTagName(), '.modal-header is not a div');
         assertEquals('div', $modal_body->getTagName(), '.modal-body is not a div');
