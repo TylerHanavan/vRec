@@ -168,6 +168,8 @@
         /* Ensure the modal close button is attributed as .close */
         assertArrayContains('close', explode(' ', $modal_close_button->getAttribute('class')));
 
+        /** TODO: Check that modal closes when you click X */
+
         /* Ensure the modal close button data-dismiss attribute is "modal" */
         assertEquals('modal', $modal_close_button->getAttribute('data-dismiss'));
 
