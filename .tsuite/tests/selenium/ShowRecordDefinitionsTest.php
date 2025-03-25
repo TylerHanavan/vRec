@@ -147,6 +147,8 @@
         if(!isset($modal_title) || count($modal_title) == 0) 
             throw new Exception('.modal-title not found');
 
+        $modal_title = $modal_title[0];
+
         /* Ensure the .modal-title is an h5 */
         assertEquals('h5', $modal_title->getTagName(), '.modal-title is not a h5');
 
@@ -157,6 +159,8 @@
         $modal_close_button = $modal_header->findElements(WebDriverBy::cssSelector('.close'));
         if(!isset($modal_close_button) || count($modal_close_button) == 0) 
             throw new Exception('modal close button doesn\'t exist');
+
+        $modal_close_button = $modal_close_button[0];
 
         /* Ensure the modal close button is a button */
         assertEquals('button', $modal_close_button->getTagName(), 'modal close button is not a button');
