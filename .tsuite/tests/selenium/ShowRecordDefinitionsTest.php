@@ -193,6 +193,20 @@
         assertEquals('label', $username_label->getTagName(), 'username label is not a label element');
         assertEquals('username', $username_label->getAttribute('for'), 'username label `for` attribute is wrong');
 
+        $element_name = 'username <input>';
+
+        $username_input = $username_form_group->findElements(WebDriverBy::cssSelector('input'));
+        if(!isset($username_label) || count($username_label) != 1) 
+            throw new Exception("The $element_name does not exist");
+
+        $username_input = $username_input[0];
+
+        assertEquals('input', $username_input->getTagName(), "$element_name has wrong tag");
+        $k='type'; $v='text'; assertEquals($v, $username_input->getAttribute($k), "$element_name `$k` attribute is wrong");
+        $k='class'; $v='form-control'; assertEquals($v, $username_input->getAttribute($k), "$element_name `$k` attribute is wrong");
+        $k='id'; $v='username'; assertEquals($v, $username_input->getAttribute($k), "$element_name `$k` attribute is wrong");
+        $k='name'; $v='username'; assertEquals($v, $username_input->getAttribute($k), "$element_name `$k` attribute is wrong");
+
         $password_form_group = $login_form_children[1];
 
         assertEquals('div', $password_form_group->getTagName(), 'password .form-group is not a div');
@@ -206,6 +220,10 @@
 
         assertEquals('label', $password_label->getTagName(), 'password label is not a label element');
         assertEquals('password', $password_label->getAttribute('for'), 'password label `for` attribute is wrong');
+
+
+
+        /** TODO: Add signup-form checks */
 
         echo "Reached end of selenium tests\n";
     }
