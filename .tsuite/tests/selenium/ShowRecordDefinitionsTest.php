@@ -232,7 +232,7 @@
             $password_input = $password_input[0];
 
         assertEquals('input', $password_input->getTagName(), "$element_name has wrong tag");
-        $k='type'; $v='text'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
+        $k='type'; $v='password'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
         $k='class'; $v='form-control'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
         $k='id'; $v='password'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
         $k='name'; $v='password'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
