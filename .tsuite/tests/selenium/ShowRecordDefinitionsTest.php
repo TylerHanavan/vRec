@@ -97,6 +97,8 @@
         $modal_body = $modal_content_children[1];
         $modal_footer = $modal_content_children[2];
 
+        var_dump($modal_body);
+
         assertArrayContains('modal-header', explode(' ', $modal_header->getAttribute('class')));
         assertArrayContains('modal-body', explode(' ', $modal_body->getAttribute('class')));
         assertArrayContains('modal-footer', explode(' ', $modal_footer->getAttribute('class')));
