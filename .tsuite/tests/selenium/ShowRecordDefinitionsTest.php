@@ -94,8 +94,22 @@
             throw new Exception('.modal-content has no children');
 
         $modal_header = $modal_content->findElements(WebDriverBy::cssSelector('.modal-header'));
+        if(!isset($modal_header) || count($modal_header) == 0) 
+            throw new Exception('.modal-header not found');
+
+        $modal_header = $modal_header[0];
+
         $modal_body = $modal_content->findElements(WebDriverBy::cssSelector('.modal-body'));
+        if(!isset($modal_body) || count($modal_body) == 0) 
+            throw new Exception('.modal-body not found');
+
+        $modal_body = $modal_body[0];
+
         $modal_footer = $modal_content->findElements(WebDriverBy::cssSelector('.modal-footer'));
+        if(!isset($modal_footer) || count($modal_footer) == 0) 
+            throw new Exception('.modal-footer not found');
+
+        $modal_footer = $modal_footer[0];
 
         assertEquals('div', $modal_header->getTagName(), '.modal-header is not a div');
         assertEquals('div', $modal_body->getTagName(), '.modal-body is not a div');
