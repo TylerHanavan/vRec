@@ -97,6 +97,10 @@
         $modal_body = $modal_content_children[1];
         $modal_footer = $modal_content_children[2];
 
+        assertEquals('div', $modal_header->getTagName(), '.modal-header is not a div');
+        assertEquals('div', $modal_body->getTagName(), '.modal-body is not a div');
+        assertEquals('div', $modal_footer->getTagName(), '.modal-footer is not a div');
+
         var_dump($modal_body);
 
         assertArrayContains('modal-header', explode(' ', $modal_header->getAttribute('class')));
