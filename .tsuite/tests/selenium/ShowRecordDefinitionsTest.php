@@ -90,8 +90,6 @@
         
         $modal_content_children = $modal_content->findElements(WebDriverBy::cssSelector('*'));
 
-        var_dump($modal_content_children);
-
         if(!isset($modal_content_children) || count($modal_content_children) == 0)
             throw new Exception('.modal-content has no children');
 
