@@ -196,10 +196,11 @@
         $element_name = 'username <input>';
 
         $username_input = $username_form_group->findElements(WebDriverBy::cssSelector('input'));
-        if(!isset($username_label) || count($username_label) != 1) 
+        if(!isset($username_input) || (is_array($username_input) && count($username_input) != 1)) 
             throw new Exception("The $element_name does not exist");
 
-        $username_input = $username_input[0];
+        if(is_array($username_input))
+            $username_input = $username_input[0];
 
         assertEquals('input', $username_input->getTagName(), "$element_name has wrong tag");
         $k='type'; $v='text'; assertEquals($v, $username_input->getAttribute($k), "$element_name `$k` attribute is wrong");
