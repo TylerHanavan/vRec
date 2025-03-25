@@ -173,6 +173,12 @@
         if(!isset($login_forms) || count($login_forms) == 0) 
             throw new Exception('The .modal-body login form children do not exist');
 
+        $login_form_1 = $login_forms[0];
+        
+        $login_form_children = $login_form_1->findElements(WebDriverBy::cssSelector('div'));
+
+        echo "Count :", count($login_form_children), "\n";
+
         echo "Reached end of selenium tests\n";
     }
 ?>
