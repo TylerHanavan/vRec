@@ -184,10 +184,28 @@
         assertEquals('div', $username_form_group->getTagName(), 'username .form-group is not a div');
         assertArrayContains('form-group', explode(' ', $username_form_group->getAttribute('class')), 'username .form-group does not contain .form-group class');
 
+        $username_label = $username_form_group->findElements(WebDriverBy::cssSelector('label'));
+        if(!isset($username_label) || count($username_label) != 1) 
+            throw new Exception('The username label does not exist');
+
+        $username_label = $username_label[0];
+
+        assertEquals('label', $username_label->getTagName(), 'username label is not a label element');
+        assertEquals('username', $username_label->getAttribute('for'), 'username label `for` attribute is wrong');
+
         $password_form_group = $login_form_children[1];
 
         assertEquals('div', $password_form_group->getTagName(), 'password .form-group is not a div');
         assertArrayContains('form-group', explode(' ', $password_form_group->getAttribute('class')), 'password .form-group does not contain .form-group class');
+
+        $password_label = $password_form_group->findElements(WebDriverBy::cssSelector('label'));
+        if(!isset($password_label) || count($password_label) != 1) 
+            throw new Exception('The password label does not exist');
+
+        $password_label = $password_label[0];
+
+        assertEquals('label', $password_label->getTagName(), 'password label is not a label element');
+        assertEquals('password', $password_label->getAttribute('for'), 'password label `for` attribute is wrong');
 
         echo "Reached end of selenium tests\n";
     }
