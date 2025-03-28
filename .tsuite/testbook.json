@@ -4,6 +4,7 @@
       {
         "title": "Build vRec with Composer",
         "description": "Builds",
+        "stage_type": "download",
         "actions": [
           {
             "shell": [
@@ -15,6 +16,7 @@
       "install": {
         "title": "Install vRec",
         "description": "Copies the files to the install location",
+        "stage_type": "install",
         "actions": [
           {
             "shell": [
@@ -27,6 +29,7 @@
       "setupDB": {
         "title": "Setup MySQL Database",
         "description": "This test drops the MySQL database if it exists, creates a new database, creates the user and grants the permissions to the user.",
+        "stage_type": "install",
         "actions": [
           {
             "shell": [
@@ -45,6 +48,7 @@
       "runXHRTests": {
         "title": "Run XHR Tests",
         "description": "This runs the vRec XHR tests.",
+        "stage_type": "test",
         "actions": [
           {
             "php": [
@@ -63,6 +67,7 @@
       "seleniumTests": {
         "title": "Selenium Web Tests",
         "description": "Test UI components with Selenium",
+        "stage_type": "test",
         "actions": [
           {
             "php": [
