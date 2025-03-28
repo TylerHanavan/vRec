@@ -29,8 +29,6 @@ function xhr_signup(&$data) {
             graceful_exit();
         }
 
-        $finalHashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
         // Validate input
         if (strlen($username) < 3 || strlen($username) > 50) {
             $response['xhr_response_status'] = 'error';
@@ -50,7 +48,7 @@ function xhr_signup(&$data) {
 
         try {
             $account = new Account($data['_CMS']['database']);
-            if ($account->createAccount($username, $finalHashedPassword, $email)) {
+            if ($account->createAccount($username, $password, $email)) {
                 $response['xhr_response_status'] = 'success';
                 $response['message'] = 'Account created successfully';
             } else {

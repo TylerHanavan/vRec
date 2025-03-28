@@ -22,9 +22,7 @@ function xhr_login(&$data) {
         try {
             $account = new Account($data['_CMS']['database']);
 
-            $finalHashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-            $userId = $account->verifyPassword($username, $finalHashedPassword);
+            $userId = $account->verifyPassword($username, $password);
             
             if ($userId) {
                 // Create session token
