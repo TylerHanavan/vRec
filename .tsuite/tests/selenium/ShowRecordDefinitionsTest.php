@@ -246,6 +246,8 @@
 
         if(!isset($login_button) || count($login_button) != 1) 
             throw new Exception('The Login button does not exist');
+        
+        if(is_array($login_button)) $login_button = $login_button[0];
 
         $username_input->click();
 
