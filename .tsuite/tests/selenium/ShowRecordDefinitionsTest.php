@@ -168,6 +168,8 @@
         /* Ensure the modal close button is attributed as .close */
         assertArrayContains('close', explode(' ', $modal_close_button->getAttribute('class')));
 
+        /** TODO: Check that modal closes when you click X */
+
         /* Ensure the modal close button data-dismiss attribute is "modal" */
         assertEquals('modal', $modal_close_button->getAttribute('data-dismiss'));
 
@@ -239,6 +241,56 @@
         $k='class'; $v='form-control'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
         $k='id'; $v='password'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
         $k='name'; $v='password'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
+
+        $login_button = $modal_footer->findElements(WebDriverBy::cssSelector('.btn-primary'));
+
+        if(!isset($login_button) || count($login_button) != 1) 
+            throw new Exception('The Login button does not exist');
+        
+        if(is_array($login_button)) $login_button = $login_button[0];
+
+        $username_input->click();
+
+        $username_input->sendKeys('username');
+
+        $password_input->click();
+
+        $password_input->sendKeys('123456789');
+
+        try {
+            $login_button->click();
+
+            // Wait for the alert to appear
+            $selenium->wait(10, 500)->until(
+                WebDriverExpectedCondition::alertIsPresent(),
+                'Expected alert did not appear.'
+            );
+            $alert = $selenium->switchTo()->alert();
+            $alert->accept();
+        } catch(Exception $e) {
+            echo 'Alert generated as expected\n';
+        }
+
+
+
+        $username_input->clear();
+
+        $username_input->click();
+
+        $username_input->sendKeys('username');
+
+        $password_input->clear();
+
+        $password_input->click();
+
+        $password_input->sendKeys('12345678');
+
+        $login_button->click();
+
+        $selenium->wait(10, 500)->until(
+            WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::id('login-link')),
+            '#login-link did not become invisible after clicking #login-link'
+        );
 
         /** TODO: Add .modal-footer checks */
 

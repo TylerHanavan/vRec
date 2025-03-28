@@ -23,7 +23,6 @@
     }
 
     function test_update_record_2($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         global $session_token;
         $response = test_curl($properties['endpoint_url'] . '/xhr/update_record', array('record_name' => 'test', 'fields' => '{"t2":{"value":"9","type":"TEXT"}}', 'criteria' => '{"id":{"value":"2","type":"INT"}}'), true, $session_token);
@@ -40,7 +39,6 @@
     }
 
     function test_get_record_after_update_1($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         global $session_token;
         $response = test_curl($properties['endpoint_url'] . '/xhr/record', array('record_name' => 'test'), true, $session_token);

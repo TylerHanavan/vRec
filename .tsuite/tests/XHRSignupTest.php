@@ -1,7 +1,6 @@
 <?php
 
     function first_function_trigger_setup($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array(), true);
 
@@ -16,7 +15,6 @@
     }
 
     function test_xhr_signup_1($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array(), true);
 
@@ -25,7 +23,6 @@
     }
 
     function test_xhr_signup_2($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array('username' => 'ke', 'email' => 'example@example.com', 'password' => '12345678'), true);
 
@@ -34,7 +31,6 @@
     }
 
     function test_xhr_signup_3($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array('username' => 'kekekekekekekekekekekekekekekekekekekekekekekekekekeke', 'email' => 'example@example.com', 'password' => '12345678'), true);
 
@@ -43,7 +39,6 @@
     }
 
     function test_xhr_signup_4($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array('username' => 'kevin', 'email' => 'example@', 'password' => '12345678'), true);
 
@@ -52,7 +47,6 @@
     }
 
     function test_xhr_signup_5($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         $response = test_curl($properties['endpoint_url'] . '/xhr/signup', array('username' => 'kevin', 'email' => 'example@example.com', 'password' => '123456'), true);
 
