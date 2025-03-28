@@ -259,6 +259,26 @@
 
         $login_button->click();
 
+        // Wait for the alert to appear
+        $selenium->wait(10, 500)->until(
+            WebDriverExpectedCondition::alertIsPresent(),
+            'Expected alert did not appear.'
+        );
+
+        $username_input->clear();
+
+        $username_input->click();
+
+        $username_input->sendKeys('username');
+
+        $passowrd_input->clear();
+
+        $password_input->click();
+
+        $password_input->sendKeys('12345678');
+
+        $login_button->click();
+
         $selenium->wait(10, 500)->until(
             WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::id('login-link')),
             '#login-link did not become invisible after clicking #login-link'
