@@ -279,7 +279,7 @@
 
         $username_input->sendKeys('username');
 
-        $passowrd_input->clear();
+        $password_input->clear();
 
         $password_input->click();
 
