@@ -722,6 +722,15 @@ document.addEventListener('DOMContentLoaded', function(){
     async function handleLogin() {
         const formData = new FormData(document.getElementById('login-form'));
 
+        const password = formData.get("password");
+
+        if(password) {
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(password, saltRounds); // Hash password
+    
+            formData.set("password", hashedPassword); // Replace original password with hashed version
+        }
+
         try {
             const response = await fetch('/xhr/login', {
                 method: 'POST',
@@ -755,6 +764,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
     async function handleSignup() {
         const formData = new FormData(document.getElementById('signup-form'));
+
+        const password = formData.get("password");
+
+        if(password) {
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(password, saltRounds); // Hash password
+    
+            formData.set("password", hashedPassword); // Replace original password with hashed version
+        }
 
         try {
             const response = await fetch('/xhr/signup', {
