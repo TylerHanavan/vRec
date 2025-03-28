@@ -1,7 +1,6 @@
 <?php
 
     function setup_test_after_fully_setup($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         $response = test_curl($properties['endpoint_url'] . '/setup', array(), true);
 

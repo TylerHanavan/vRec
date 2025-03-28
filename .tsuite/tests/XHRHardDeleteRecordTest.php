@@ -1,7 +1,6 @@
 <?php
 
     function test_hard_delete_record_1($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         global $session_token;
         $response = test_curl($properties['endpoint_url'] . '/xhr/delete-record', array('record_name' => 'test', 'record_id' => 2), true, $session_token);
@@ -18,7 +17,6 @@
     }
 
     function test_get_record_after_hard_delete_1($properties) {
-        assertEquals('localhost:1347', $properties['endpoint_url'], 'endpoint url mismatch');
 
         global $session_token;
         $response = test_curl($properties['endpoint_url'] . '/xhr/record', array('record_name' => 'test'), true, $session_token);
