@@ -265,7 +265,7 @@
                 WebDriverExpectedCondition::alertIsPresent(),
                 'Expected alert did not appear.'
             );
-        } catch(Exception e) {
+        } catch(Exception $e) {
             echo 'Alert generated as expected\n';
         }
 
