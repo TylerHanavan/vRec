@@ -12,7 +12,7 @@ function xhr_login(&$data) {
         $username = $_POST['username'] ?? null;
         $password = $_POST['password'] ?? null;
 
-        if(!$username || !$password) {
+        if(!$username || !$password || $username == null || $password == null || $username === '' || $password === '') {
             $response['xhr_response_status'] = 'error';
             $response['error'] = 'Missing username or password';
             echo json_encode($response);
@@ -21,7 +21,10 @@ function xhr_login(&$data) {
 
         try {
             $account = new Account($data['_CMS']['database']);
-            $userId = $account->verifyPassword($username, $password);
+
+            $finalHashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            $userId = $account->verifyPassword($username, $finalHashedPassword);
             
             if ($userId) {
                 // Create session token
