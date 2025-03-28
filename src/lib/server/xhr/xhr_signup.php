@@ -20,7 +20,7 @@ function xhr_signup(&$data) {
             graceful_exit();
         }
 
-        if(!$username || !$password || !$email) {
+        if(!$username || !$password || !$email || $username == null || $password == null || $email == null || $username === '' || $password === '' || $email === '') {
             $response['xhr_response_status'] = 'error';
             $response['error'] = 'Missing required fields';
             
@@ -29,18 +29,12 @@ function xhr_signup(&$data) {
             graceful_exit();
         }
 
+        $finalHashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
         // Validate input
         if (strlen($username) < 3 || strlen($username) > 50) {
             $response['xhr_response_status'] = 'error';
             $response['error'] = 'Username must be between 3 and 50 characters';
-            http_response_code(400);
-            echo json_encode($response);
-            graceful_exit();
-        }
-
-        if (strlen($password) < 8) {
-            $response['xhr_response_status'] = 'error';
-            $response['error'] = 'Password must be at least 8 characters';
             http_response_code(400);
             echo json_encode($response);
             graceful_exit();
@@ -56,7 +50,7 @@ function xhr_signup(&$data) {
 
         try {
             $account = new Account($data['_CMS']['database']);
-            if ($account->createAccount($username, $password, $email)) {
+            if ($account->createAccount($username, $finalHashedPassword, $email)) {
                 $response['xhr_response_status'] = 'success';
                 $response['message'] = 'Account created successfully';
             } else {
