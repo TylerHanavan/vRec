@@ -1,5 +1,4 @@
-
-import bcrypt from 'bcryptjs';  // For ES modules
+const bcrypt = require('bcryptjs');  // For CommonJS
 
 function get_table_body_rows(table_element) {
     return table_element.children('tbody').children('tr.table-body-row');
