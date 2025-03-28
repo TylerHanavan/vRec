@@ -260,7 +260,7 @@
         $login_button->click();
 
         $selenium->wait(10, 500)->until(
-            WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector($login_button->getCssSelector())),
+            WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::id('login-link')),
             '#login-link did not become invisible after clicking #login-link'
         );
 
