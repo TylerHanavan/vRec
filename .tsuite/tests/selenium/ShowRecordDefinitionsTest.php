@@ -265,7 +265,7 @@
                 WebDriverExpectedCondition::alertIsPresent(),
                 'Expected alert did not appear.'
             );
-            $alert = $driver->switchTo()->alert();
+            $alert = $selenium->switchTo()->alert();
             $alert->accept();
         } catch(Exception $e) {
             echo 'Alert generated as expected\n';
