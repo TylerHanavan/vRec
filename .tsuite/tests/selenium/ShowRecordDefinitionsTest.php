@@ -255,7 +255,7 @@
 
         $password_input->click();
 
-        $password_input->sendKeys('12345678');
+        $password_input->sendKeys('123456789');
 
         $login_button->click();
 
