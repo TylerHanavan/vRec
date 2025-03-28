@@ -242,6 +242,26 @@
         $k='id'; $v='password'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
         $k='name'; $v='password'; assertEquals($v, $password_input->getAttribute($k), "$element_name `$k` attribute is wrong");
 
+        $login_button = $modal_footer->findElements(WebDriverBy::cssSelector('.btn-primary'));
+
+        if(!isset($login_button) || count($login_button) != 1) 
+            throw new Exception('The Login button does not exist');
+
+        $username_input->click();
+
+        $username_input->sendKeys('username');
+
+        $password_input->click();
+
+        $password_input->sendKeys('12345678');
+
+        $login_button->click();
+
+        $selenium->wait(10, 500)->until(
+            WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::cssSelector($login_button->getCssSelector())),
+            '#login-link did not become invisible after clicking #login-link'
+        );
+
         /** TODO: Add .modal-footer checks */
 
         /** TODO: Add signup-form checks */
