@@ -66,7 +66,7 @@
       },
       "seleniumTests": {
         "title": "Selenium Web Tests",
-        "description": "Test UI components with Selenium",
+        "description": "Test UI components with Selenium.",
         "stage_type": "test",
         "actions": [
           {
