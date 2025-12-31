@@ -19,7 +19,7 @@
                 'http_response' => '<p>Test</p>',
                 'old_record_json' => '1',
                 'new_record_json' => '2',
-                'row_id' = 1
+                'row_id' => 1
             )
         ),
          true, $session_token);
