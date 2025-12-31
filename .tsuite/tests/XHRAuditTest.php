@@ -13,7 +13,7 @@
                         '_POST' => array(
                             'record_name' => 'test'
                         ),
-                        'user_id' = 2
+                        'user_id' => 2
                     )
                 ),
                 'http_response' => '<p>Test</p>',
