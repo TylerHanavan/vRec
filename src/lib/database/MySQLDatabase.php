@@ -79,7 +79,9 @@ declare(strict_types=1);
             $sql .= ') VALUES (';
 
             foreach ($record->get_fields() as $field => $args) {
-                $value = $this->escapeString($args['value']);
+                $value = $args['value'];
+                if(is_string($value))
+                    $value = $this->escapeString($value);
                 if($value != null)
                     $sql .= $this->get_column_quote_character($args['type']) . $value . $this->get_column_quote_character($args['type']) . ', ';
             }
