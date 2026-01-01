@@ -34,7 +34,7 @@ class Account {
         return $this->db->insert_record($record);
     }
 
-    public function verifyPassword(string $username, string $password): bool {
+    public function verifyPassword(string $username, string $password): mixed {
         // Create record for query
         $queryRecord = new Record('accounts', array());
         $queryRecord->field('username', ColumnTypes::VARCHAR, $username);
