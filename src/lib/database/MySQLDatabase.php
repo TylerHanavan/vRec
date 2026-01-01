@@ -162,6 +162,8 @@ declare(strict_types=1);
 
             $query = $this->get_records_query($record);
 
+            echo "$query\n";
+
             $stmt = $this->connection->prepare($query);
 
             $stmt->execute();
@@ -284,14 +286,14 @@ declare(strict_types=1);
             if(is_int($type)) {
                 $type = ColumnTypes::translate_string($type);
             }
-            return $type == ColumnTypes::VARCHAR;
+            return $type === ColumnTypes::VARCHAR;
         }
 
         public function get_column_quote_character(int|string $type): string {
             if(is_int($type)) {
                 $type = ColumnTypes::translate_string($type);
             }
-            if($type == ColumnTypes::INT || $type == ColumnTypes::BOOLEAN)
+            if($type === ColumnTypes::INT || $type === ColumnTypes::BOOLEAN)
                 return "";
             return "'";
         }
