@@ -22,9 +22,9 @@ declare(strict_types=1);
 
         abstract public function show_record_definitions() : array;
 
-        abstract public function get_column_declaration(string $field, string $type, int $length) : string;
-        abstract public function get_column_requires_length(string $type) : bool;
-        abstract public function get_column_quote_character(string $type) : string;
+        abstract public function get_column_declaration(string $field, int $type, int $length) : string;
+        abstract public function get_column_requires_length(int $type) : bool;
+        abstract public function get_column_quote_character(int $type) : string;
 
     }
 

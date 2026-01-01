@@ -252,7 +252,7 @@ declare(strict_types=1);
             return $res;
         }
 
-        public function get_column_declaration(string $field, string $type, int $length = 0): string {
+        public function get_column_declaration(string $field, int $type, int $length = 0): string {
 
             switch($type) {
                 case ColumnTypes::VARCHAR:
@@ -276,11 +276,11 @@ declare(strict_types=1);
             }
         }
 
-        public function get_column_requires_length(string $type): bool {
+        public function get_column_requires_length(int $type): bool {
             return $type == ColumnTypes::VARCHAR;
         }
 
-        public function get_column_quote_character(string $type): string {
+        public function get_column_quote_character(int $type): string {
             if($type == ColumnTypes::INT || $type == ColumnTypes::BOOLEAN)
                 return "";
             return "'";
