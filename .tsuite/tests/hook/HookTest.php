@@ -2,7 +2,7 @@
 
     function test_hooks_1($properties) {
 
-        require_once($properties['INSTALL_LOCATION'] . "/lib/hook/Hook.php");
+        require($properties['INSTALL_LOCATION'] . "/lib/hook/Hook.php");
         
         $hook = new Hook('test_hook_1', []);
 
@@ -18,8 +18,6 @@
     }
 
     function test_hooks_2($properties) {
-
-        require_once($properties['INSTALL_LOCATION'] . "/lib/hook/Hook.php");
         
         $hook = new Hook('test_hook_2', ['logged_in' => true]);
 
@@ -30,8 +28,6 @@
     }
     
     function test_hooks_3($properties) {
-
-        require_once($properties['INSTALL_LOCATION'] . "/lib/hook/Hook.php");
         
         $hook = new Hook('test_hook_3', ['logged_in' => true, 'uri' => '/seven']);
 
