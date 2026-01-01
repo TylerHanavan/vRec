@@ -28,6 +28,10 @@
 
         assertTrue($response['http_decode'] == 200, 'http code mismatch');
 
+        $response_arr = json_decode($response['response'], true);
+
+        assertTrue($response_arr['xhr_response_status'] != 'error', 'xhr_response_status is error');
+
         /*$response_arr = json_decode($response, true);
 
         assertEquals(200, $response['http_code'], 'http code mismatch');
