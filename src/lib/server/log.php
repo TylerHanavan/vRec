@@ -6,14 +6,14 @@ error_reporting(E_ALL);
 
     class Logger {
 
-        private $log_file = null;
-        private $uuid_length = 0;
-        private $uuid = null;
-        private $buffer = array();
-        private $bufferLimit = 100;
-        private $flushing = array();
+        private string $log_file;
+        private int $uuid_length = 0;
+        private string $uuid;
+        private array $buffer = array();
+        private int $bufferLimit = 100;
+        private array $flushing = array();
 
-        function __construct($log_file, $uuid_length = 10) {
+        function __construct(string $log_file, int $uuid_length = 10) {
             $this->uuid_length = $uuid_length;
             $this->log_file = $log_file;
         }
@@ -24,7 +24,7 @@ error_reporting(E_ALL);
             }
         }
 
-        function log($log_message, $log_level = 'INFO') {
+        function log(string $log_message, string $log_level = 'INFO'): void {
             $uuid = $this->get_uuid();
 
             $log_message = "[$uuid - " . date("Y-m-d H:i:s.").gettimeofday()["usec"] . "] $log_level - " . $log_message . PHP_EOL;
@@ -33,7 +33,7 @@ error_reporting(E_ALL);
 
         }
 
-        function log_other_file($file, $log_message, $log_level = 'INFO') {
+        function log_other_file(string $file, string $log_message, string $log_level = 'INFO'): void {
             $uuid = $this->get_uuid();
 
             $log_message = "[$uuid - " . date("Y-m-d H:i:s.").gettimeofday()["usec"] . "] $log_level - " . $log_message . PHP_EOL;
@@ -42,8 +42,8 @@ error_reporting(E_ALL);
 
         }
 
-        private function get_uuid() {
-            if($this->uuid != null) {
+        private function get_uuid(): string {
+            if($this->uuid !== null) {
                 return $this->uuid;
             }
             $nano = exec('date +%s%N');
@@ -51,7 +51,7 @@ error_reporting(E_ALL);
             return $this->uuid;
         }
 
-        private function buffer_log($path, $message) {
+        private function buffer_log(string $path, string $message): void {
             if(!isset($this->buffer[$path])) {
                 $this->buffer[$path] = array();
             }
@@ -62,7 +62,7 @@ error_reporting(E_ALL);
             }
         }
 
-        private function flush_buffer($path) {
+        private function flush_buffer(string $path): void {
             $cmd = "mkdir -p " . dirname($path) . "";
             $output = '';
 
