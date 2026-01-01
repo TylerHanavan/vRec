@@ -8,12 +8,12 @@
                 'raw_state' => array(
                     '_CMS' => array (
                         '_GET' => array(
-                            'path' => '/test/1'
                         ),
                         '_POST' => array(
                             'record_name' => 'test'
                         ),
-                        'user_id' => 2
+                        'user_id' => 2,
+                        'path' => '/test/1'
                     )
                 ),
                 'http_response' => '<p>Test</p>',
