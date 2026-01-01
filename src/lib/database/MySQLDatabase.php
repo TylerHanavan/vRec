@@ -162,8 +162,6 @@ declare(strict_types=1);
 
             $query = $this->get_records_query($record);
 
-            echo htmlspecialchars("$query\n");
-
             $stmt = $this->connection->prepare($query);
 
             $stmt->execute();

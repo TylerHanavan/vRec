@@ -11,8 +11,6 @@
         global $session_token;
         $response = test_curl($properties['endpoint_url'] . '/xhr/update_record', array('record_name' => 'test', 'fields' => '{"t3":{"value":"7","type":"TEXT"}}', 'criteria' => '{"id":{"value":"1","type":"INT"}}'), true, $session_token);
 
-
-        var_dump($response);
         $response_arr = json_decode($response['response'], true);
 
         assertEquals(200, $response['http_code'], 'http code mismatch');
