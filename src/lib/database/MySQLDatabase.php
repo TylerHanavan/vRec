@@ -3,14 +3,14 @@ declare(strict_types=1);
 
     final class MySQLDatabase extends Database {
         
-        private PDO $connection = null;
+        private ?PDO $connection = null;
         private array $params = null;
 
         public function __construct(array $params) {
             $this->params = $params;
         }
 
-        public function connect(PDO $connection = null): bool {
+        public function connect(?PDO $connection = null): bool {
 
             if($this->connection != null)
                 return true;
