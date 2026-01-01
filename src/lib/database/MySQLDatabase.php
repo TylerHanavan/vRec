@@ -133,7 +133,7 @@ declare(strict_types=1);
                     }
                     $type = $args['type'];
                     if(is_string($type)) {
-                        $type = ColumnTypes::translateString($type);
+                        $type = ColumnTypes::translate_string($type);
                     }
                     $quote_char = $this->get_column_quote_character($type);
                     $sql .= $field . ' = ' . $quote_char . $value . $quote_char . ' AND ';
