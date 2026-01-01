@@ -162,7 +162,7 @@ declare(strict_types=1);
 
             $query = $this->get_records_query($record);
 
-            echo "$query\n";
+            echo htmlentities("$query\n");
 
             $stmt = $this->connection->prepare($query);
 
