@@ -92,6 +92,14 @@
 
             if(isset($audit_data['raw_state']) && isset($audit_data['raw_state']['_POST']) && isset($audit_data['raw_state']['_POST']['record_name'])) {
                 $record_name = $audit_data['raw_state']['_POST']['record_name'];
+            } else {
+                $response['xhr_response_status'] = 'error';
+                $response['error'] = $record_name !== '' ? "'$record_name' is not not a valid record definition" : 'record_name field was not passed in or was blank';
+
+                http_response_code(401);
+
+                echo json_encode($response);
+                graceful_exit();
             }
 
             $record_def_record = new Record('record_definitions', array('table_name' => array('type' => 'VARCHAR', 'value' => $record_name)));
@@ -101,7 +109,7 @@
             if(sizeof($record_def_results) == 0) {
 
                 $response['xhr_response_status'] = 'error';
-                $response['error'] = $record_name !== '' ? "'$record_name' is not not a valid record definition" : 'record_name field was not passed in or was blank';
+                $response['error'] = "zero record definitions returned for '$record_name'";
 
                 http_response_code(401);
 
