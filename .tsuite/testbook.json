@@ -45,6 +45,18 @@
           }
         ]
       },
+      "runPHPObjectsTests": {
+        "title": "Run PHP Objects Tests",
+        "description": "This runs the vRec PHP Objects tests.",
+        "stage_type": "test",
+        "actions": [
+          {
+            "php": [
+              "tests/ColumnTypesTest.php"
+            ]
+          }
+        ]
+      },
       "runXHRTests": {
         "title": "Run XHR Tests",
         "description": "This runs the vRec XHR tests.",
