@@ -16,7 +16,7 @@
         foreach($enums as $k => $v) {
             assertTrue(ColumnTypes::translate_string($k) === $v, "ColumnTypes::translate_string($k) did not resolve to $v");
             assertTrue(ColumnTypes::translate_string($v) === $v, "ColumnTypes::translate_string($v) did not resolve to $v");
-            assertTrue(ColumnTypes::$k === $v, "ColumnTypes::$k did not resolve to $v");
+            assertTrue(ColumnTypes::$$k === $v, "ColumnTypes::$k did not resolve to $v");
             assertTrue(ColumnTypes::transate_id($v) === $k, "ColumnTypes::translate_id($v) did not resolve to $k");
         }
 
