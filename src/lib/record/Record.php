@@ -1,24 +1,25 @@
-<?php declare(strict_types=1);
+<?php 
+declare(strict_types=1);
 
     final class Record {
 
-        private $record_name = null;
-        private $fields = null;
-        private $order_by = null;
-        private $limit = null;
+        private string $record_name = null;
+        private array $fields = null;
+        private array $order_by = null;
+        private int $limit = null;
 
-        public function __construct($record_name, $fields) {
+        public function __construct(string $record_name, array $fields) {
             $this->record_name = $record_name;
             $this->fields = $fields;
             $this->order_by = array();
             $this->limit = null;
         }
 
-        public function get_record_name() {
+        public function get_record_name(): string {
             return $this->record_name;
         }
 
-        public function set_record_name($record_name) {
+        public function set_record_name(string $record_name): void {
             $this->record_name = $record_name;
         }
 
@@ -26,11 +27,11 @@
             return $this->fields == null ? array() : $this->fields;
         }
 
-        public function set_fields($fields) {
+        public function set_fields(array $fields): void {
             $this->fields = $fields;
         }
 
-        public function field($field, $type, $value, $length = null) : Record {
+        public function field(string $field, string $type, mixed $value, int $length = null) : Record {
 
             if($this->fields == null)
                 $this->fields = array();
@@ -40,15 +41,15 @@
             return $this;
         }
 
-        public function get_field($field) {
+        public function get_field(string $field): ?array {
             return $this->fields[$field] ?? null;
         }
 
-        public function add_field($field, $args) {
+        public function add_field(string $field, array $args): void {
             $this->fields[$field] = $args;
         }
 
-        public function get_field_property($field, $property) {
+        public function get_field_property(string $field, string $property): ?mixed {
             if(!isset($this->fields) || empty($this->fields))
                 return null;
             if(!isset($this->fields[$field]) || empty($this->fields[$field]))
@@ -58,25 +59,25 @@
             return $this->fields[$field][$property] ?? null;
         }
 
-        public function set_field_property($field, $property, $value) : Record {
+        public function set_field_property(string $field, string $property, mixed $value) : Record {
             $this->fields[$field][$property] = $value;
 
             return $this;
         }
 
-        public function get_order_by() : ?array {
+        public function get_order_by(): ?array {
             if($this->order_by == null || sizeof($this->order_by) == 0)
                 return null;
             return $this->order_by;
         }
 
-        public function order_by($field, $direction) : Record {
+        public function order_by(string $field, string $direction): Record {
             $this->order_by[] = array('field' => $field, 'direction' => $direction);
 
             return $this;
         }
 
-        public function limit($amount) : Record {
+        public function limit(int $amount): Record {
 
             if($amount == null)
                 $amount = 0;
@@ -92,7 +93,7 @@
             return $this;
         }
 
-        public function get_limit() {
+        public function get_limit(): int {
             return $this->limit == null ? 0 : $this->limit;
         }
 

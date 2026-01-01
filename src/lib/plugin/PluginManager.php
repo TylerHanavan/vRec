@@ -3,19 +3,19 @@ declare(strict_types=1);
 
     final class PluginManager {
         private static $instance = null;
-        private $plugins = [];
-        private $plugin_directory;
-        private $logger;
-        private $hookman;
+        private array $plugins = [];
+        private string $plugin_directory;
+        private Logger $logger;
+        private HookManager $hookman;
 
-        private function __construct(string $plugin_directory, $logger, $hookman) {
+        private function __construct(string $plugin_directory, Logger $logger, HookManager $hookman) {
             $this->plugin_directory = $plugin_directory;
             $this->logger = $logger;
             $this->hookman = $hookman;
             $this->loadPlugins();
         }
 
-        public static function getInstance(string $plugin_directory, $logger, $hookman): PluginManager {
+        public static function getInstance(string $plugin_directory, Logger $logger, HookManager $hookman): PluginManager {
             if(($plugin_directory == null || $plugin_directory == '' || $logger == null || $hookman == null) && self::$instance == null) {
                 throw new Exception('Plugin directory not set');
             }

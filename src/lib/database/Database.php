@@ -6,25 +6,25 @@ declare(strict_types=1);
         abstract public function connect() : bool;
         abstract public function disconnect() : bool;
 
-        abstract public function create_table($record) : bool;
-        abstract public function get_create_table_query($record) : string;
+        abstract public function create_table(Record $record) : bool;
+        abstract public function get_create_table_query(Record $record) : string;
 
-        abstract public function insert_record($record) : bool;
-        abstract public function get_insert_record_query($record) : string;
+        abstract public function insert_record(Record $record) : bool;
+        abstract public function get_insert_record_query(Record $record) : string;
 
-        abstract public function get_records($record) : array;
-        abstract public function get_records_query($record) : string;
+        abstract public function get_records(Record $record) : array;
+        abstract public function get_records_query(Record $record) : string;
 
-        abstract public function update_record($table_name, $record, $criteria) : bool;
-        abstract public function delete_record($table_name, $criteria) : bool;
+        abstract public function update_record(string $table_name, Record $record, array $criteria) : bool;
+        abstract public function delete_record(string $table_name, array $criteria) : bool;
 
-        abstract public function describe_record($table);
+        abstract public function describe_record(string $table);
 
         abstract public function show_record_definitions() : array;
 
-        abstract public function get_column_declaration($field, $type, $length) : string;
-        abstract public function get_column_requires_length($type) : bool;
-        abstract public function get_column_quote_character($type) : string;
+        abstract public function get_column_declaration(string $field, string $type, int $length) : string;
+        abstract public function get_column_requires_length(string $type) : bool;
+        abstract public function get_column_quote_character(string $type) : string;
 
     }
 

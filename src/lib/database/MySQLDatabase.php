@@ -3,14 +3,14 @@ declare(strict_types=1);
 
     final class MySQLDatabase extends Database {
         
-        private $connection = null;
-        private $params = null;
+        private PDO $connection = null;
+        private array $params = null;
 
-        public function __construct($params) {
+        public function __construct(array $params) {
             $this->params = $params;
         }
 
-        public function connect($connection = null) : bool {
+        public function connect(PDO $connection = null): bool {
 
             if($this->connection != null)
                 return true;
@@ -40,7 +40,7 @@ declare(strict_types=1);
             return true;
         }
 
-        public function create_table($record) : bool {
+        public function create_table(Record $record): bool {
             if($this->connection == null)
                 $this->connect();
             $query = $this->get_create_table_query($record);
@@ -52,7 +52,7 @@ declare(strict_types=1);
             return $res;
         }
 
-        public function get_create_table_query($record) : string {
+        public function get_create_table_query(Record $record): string {
             $table_name = $record->get_record_name();
             $sql = "CREATE TABLE $table_name (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, ";
             foreach ($record->get_fields() as $field => $args) {
@@ -63,7 +63,7 @@ declare(strict_types=1);
             return $sql;
         }
 
-        public function get_insert_record_query($record) : string {
+        public function get_insert_record_query(Record $record): string {
 
             $table_name = $record->get_record_name();
 
@@ -91,7 +91,7 @@ declare(strict_types=1);
             return $sql;
         }
 
-        public function insert_record($record) : bool {
+        public function insert_record(Record $record): bool {
             if($this->connection == null)
                 $this->connect();
 
@@ -112,7 +112,7 @@ declare(strict_types=1);
             return $res;
         }
 
-        public function get_records_query($record) : string {
+        public function get_records_query(Record $record): string {
 
             $table_name = $record->get_record_name();
 
@@ -152,7 +152,7 @@ declare(strict_types=1);
             return rtrim($sql, ' ');
         }
 
-        public function get_records($record) : array {
+        public function get_records(Record $record) : array {
             if($this->connection == null)
                 $this->connect();
 
@@ -184,7 +184,7 @@ declare(strict_types=1);
             return $records;
         }
 
-        public function get_update_record_query($table_name, $record, $criteria) : string {
+        public function get_update_record_query(string $table_name, Record $record, array $criteria): string {
                 
                 $sql = "UPDATE $table_name SET ";
     
@@ -207,7 +207,7 @@ declare(strict_types=1);
                 return $sql;
         }
 
-        public function update_record($table_name, $record, $criteria) : bool {
+        public function update_record(string $table_name, Record $record, array $criteria): bool {
             if($this->connection == null)
                 $this->connect();
 
@@ -228,7 +228,7 @@ declare(strict_types=1);
             return $res;
         }
 
-        public function delete_record($table_name, $criteria) : bool {
+        public function delete_record(string $table_name, array $criteria): bool {
             if($this->connection == null)
                 $this->connect();
             if($criteria == null || !is_array($criteria))
@@ -252,7 +252,7 @@ declare(strict_types=1);
             return $res;
         }
 
-        public function get_column_declaration($field, $type, $length = 0) : string {
+        public function get_column_declaration(string $field, string $type, int $length = 0): string {
 
             switch($type) {
                 case ColumnTypes::VARCHAR:
@@ -276,17 +276,17 @@ declare(strict_types=1);
             }
         }
 
-        public function get_column_requires_length($type): bool {
+        public function get_column_requires_length(string $type): bool {
             return $type == ColumnTypes::VARCHAR;
         }
 
-        public function get_column_quote_character($type) : string {
+        public function get_column_quote_character(string $type): string {
             if($type == ColumnTypes::INT || $type == ColumnTypes::BOOLEAN)
                 return "";
             return "'";
         }
 
-        public function describe_record($table) {
+        public function describe_record(string $table): ?Record {
             if($this->connection == null)
                 $this->connect();
 
@@ -333,7 +333,7 @@ declare(strict_types=1);
             return new Record($table, $fields);
         }
 
-        public function show_record_definitions() : array {
+        public function show_record_definitions(): array {
             if($this->connection == null)
                 $this->connect();
 
@@ -359,7 +359,7 @@ declare(strict_types=1);
             return $record_definitions;
         }
 
-        private function escapeString($input) {
+        private function escapeString(string $input): string {
             if($input == null || !is_string($input)) return $input;
             return str_replace(
                 ["\\", "\0", "\n", "\r", "'", "\"", "\x1a"],

@@ -5,13 +5,13 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
     final class HookManager {
         
-        private $hooks;
-        private $hooksIndex;
-        private $logger;
+        private array $hooks;
+        private int $hooksIndex;
+        private Logger $logger;
 
-        private $debug = false;
+        private bool $debug = false;
 
-        function __construct($logger) {
+        function __construct(Logger $logger) {
             $this->hooks = array();
             $this->hooksIndex = array();
             $this->logger = $logger;
@@ -34,7 +34,7 @@ error_reporting(E_ALL);
          *    )
          * 
          */
-        function add_hook($function, $conditions = null): void {
+        function add_hook(string $function, ?array $conditions = null): void {
 
             $hook = new Hook($function, $conditions);
 
@@ -78,7 +78,7 @@ error_reporting(E_ALL);
             // TODO: Implement
         }
     
-        function call_hook(&$parameters, $conditions): void {
+        function call_hook(array &$parameters, array $conditions): void {
 
             $this->logger->log("BEGIN HookManager::call_hook " . $conditions['layer']);
     
@@ -108,7 +108,7 @@ error_reporting(E_ALL);
             $this->logger->log("END HookManager::call_hook " . $conditions['layer']);
         }
 
-        function get_hooks_for_condition($condition, $value): array {
+        function get_hooks_for_condition(string $condition, mixed $value): array {
             $hooks = array();
             if(isset($this->hooksIndex[$condition]) && isset($this->hooksIndex[$condition][$value])) {
                 $hooks = $this->hooksIndex[$condition][$value];
@@ -116,11 +116,11 @@ error_reporting(E_ALL);
             return $hooks;
         }
 
-        private function compare_hooks($hook1, $hook2): int {
+        private function compare_hooks(Hook $hook1, Hook $hook2): int {
             return $hook1->get_function() == $hook2->get_function() ? 0 : 1;
         }
 
-        function get_hooks_callable($conditions): array {
+        function get_hooks_callable(array $conditions): array {
             $hooks = null;
 
             foreach($conditions as $condition => $value) {

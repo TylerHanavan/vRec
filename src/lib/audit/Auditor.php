@@ -1,18 +1,19 @@
 <?php
+declare(strict_types=1);
 
     final class Auditor {
 
-        private $audit_dir = null;
-        private $audit_buffer_size = null;
+        private string $audit_dir = null;
+        private int $audit_buffer_size = null;
 
-        private $buffer = array();
+        private array $buffer = array();
 
-        public function __construct($audit_dir, $audit_buffer_size) {
+        public function __construct(string $audit_dir, int $audit_buffer_size) {
             $this->audit_dir = $audit_dir;
             $this->audit_buffer_size = $audit_buffer_size;
         }
 
-        public function audit($message) {
+        public function audit(string $message): void {
             $this->buffer[] = $message . PHP_EOL;
             if(sizeof($this->buffer) >= $this->audit_buffer_size) {
                 $this->flush_buffer();
@@ -23,11 +24,11 @@
             $this->flush_buffer();
         }
 
-        private function get_file_name() {
+        private function get_file_name(): string {
             return $this->audit_dir . '/audit_' . microtime(true) . '.audit';
         }
 
-        private function flush_buffer() {
+        private function flush_buffer(): void {
             if(sizeof($this->buffer) == 0) {
                 return;
             }

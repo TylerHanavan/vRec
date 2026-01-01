@@ -6,12 +6,12 @@ declare(strict_types=1);
         private $components = [];
         private $database;
 
-        private function __construct($database) {
+        private function __construct(Database $database) {
             $this->database = $database;
             $this->load_components();
         }
 
-        public static function getInstance($database): ComponentManager {
+        public static function getInstance(Database $database): ComponentManager {
             if (self::$instance != null) {
                 return self::$instance;
             }

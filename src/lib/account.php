@@ -1,17 +1,18 @@
-<?php declare(strict_types=1);
+<?php 
+declare(strict_types=1);
 
 require_once(__DIR__ . '/record/Record.php');
 require_once(__DIR__ . '/record/ColumnTypes.php');
 
 class Account {
     private $db;
-    private const PEPPER = "SediCMS_Secure_Pepper_2023"; // In production, this should be in a secure config
+    private const PEPPER = "SediCMS_Secure_Pepper_2023"; // TODO: In production, this should be in a secure config
 
     public function __construct($db) {
         $this->db = $db;
     }
 
-    public function createAccount($username, $password, $email) {
+    public function createAccount(string $username, string $password, string $email): bool {
         if (empty($username) || empty($password) || empty($email)) {
             return false;
         }
@@ -33,7 +34,7 @@ class Account {
         return $this->db->insert_record($record);
     }
 
-    public function verifyPassword($username, $password) {
+    public function verifyPassword(string $username, string $password): bool {
         // Create record for query
         $queryRecord = new Record('accounts', array());
         $queryRecord->field('username', ColumnTypes::VARCHAR, $username);
@@ -58,7 +59,7 @@ class Account {
         return false;
     }
 
-    public function createSession($userId) {
+    public function createSession(int $userId): string|bool {
         $token = bin2hex(random_bytes(32));
         $expiresAt = date('Y-m-d H:i:s', strtotime('+24 hours'));
         
@@ -75,7 +76,7 @@ class Account {
         return false;
     }
 
-    public function validateSession($token) {
+    public function validateSession(string $token): mixed {
         // Create record for query
         $queryRecord = new Record('sessions', array());
         $queryRecord->field('session_token', ColumnTypes::VARCHAR, $token);
