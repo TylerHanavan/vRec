@@ -48,7 +48,7 @@
                 graceful_exit();
             }
 
-            if(isset($audit_data['raw_state']) && isset($audit_data['raw_state']['_GET']) && isset($audit_data['raw_state']['_GET']['cms_path'])) {
+            if(isset($audit_data['raw_state']) && isset($audit_data['raw_state']['_GET']) && isset($audit_data['raw_state']['_GET']['path'])) {
                 $cms_path = $audit_data['raw_state']['_CMS']['path'];
             } else {
                 $response['xhr_response_status'] = 'error';
