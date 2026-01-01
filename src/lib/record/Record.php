@@ -3,10 +3,10 @@ declare(strict_types=1);
 
     final class Record {
 
-        private string $record_name = null;
-        private array $fields = null;
-        private array $order_by = null;
-        private int $limit = null;
+        private string $record_name;
+        private array $fields;
+        private ?array $order_by = null;
+        private ?int $limit = null;
 
         public function __construct(string $record_name, array $fields) {
             $this->record_name = $record_name;

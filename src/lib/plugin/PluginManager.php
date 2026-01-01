@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
     final class PluginManager {
-        private static $instance = null;
+        private static $instance;
         private array $plugins = [];
         private string $plugin_directory;
         private Logger $logger;

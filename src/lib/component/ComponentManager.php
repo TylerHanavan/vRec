@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
     final class ComponentManager {
-        private static $instance = null;
+        private static $instance;
         private $components = [];
         private $database;
 

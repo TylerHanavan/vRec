@@ -3,8 +3,8 @@ declare(strict_types=1);
 
     final class Auditor {
 
-        private string $audit_dir = null;
-        private int $audit_buffer_size = null;
+        private string $audit_dir;
+        private int $audit_buffer_size;
 
         private array $buffer = array();
 
