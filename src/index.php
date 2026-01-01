@@ -203,7 +203,17 @@
     require dirname(__FILE__) . '/lib/server/xhr/xhr_get_worker_jobs.php';
     require dirname(__FILE__) . '/lib/audit/Auditor.php';
 
-    $auditmon = new Auditor($_CONF['AUDIT.DIR'], $_CONF['AUDIT.BUFFER_SIZE']);
+    int $audit_buffer_size = 1;
+
+    if(isset($_CONF['AUDIT.BUFFER_SIZE'])) {
+        try {
+            $audit_buffer_size = (int) $_CONF['AUDIT.BUFFER_SIZE'];
+        } catch (Exception $e) {
+            $_CMS['logger']->log("Unable to parse config value 'AUDIT.BUFFER_SIZE': not an int. Defaulting to 1");
+        }
+    }
+
+    $auditmon = new Auditor($_CONF['AUDIT.DIR'], $audit_buffer_size);
 
     $_CMS['AUDITMON'] = $auditmon;
 
