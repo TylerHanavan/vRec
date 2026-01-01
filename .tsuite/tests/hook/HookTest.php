@@ -1,6 +1,6 @@
 <?php
 
-    function test_enums_1($properties) {
+    function test_hooks_1($properties) {
 
         require_once($properties['INSTALL_LOCATION'] . "/lib/hook/Hook.php");
         
