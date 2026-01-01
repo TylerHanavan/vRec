@@ -28,4 +28,4 @@
 
         echo 'Finished testing ColumnTypes.php';
     }
-?
+?>
