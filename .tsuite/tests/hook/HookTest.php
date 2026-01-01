@@ -14,6 +14,11 @@
 
         assertTrue($hook->can_call_hook([]) === true, 'can_call_hook was false for empty set of calling conditions');
         assertTrue($hook->can_call_hook(['logged_in' => true]) === true, 'can_call_hook was false for empty set of calling conditions');
+        
+        $hook = new Hook('test_hook_1', ['logged_in' => true]);
+
+        assertTrue($hook->can_call_hook([]) === false, 'can_call_hook was true for empty set of calling conditions, when hook conditions needed logged_in => true');
+        assertTrue($hook->can_call_hook(['logged_in' => false]) === false, 'can_call_hook was true for logged_in => false calling conditions, when hook conditions needed logged_in => true');
 
     }
 ?>
