@@ -31,7 +31,7 @@ declare(strict_types=1);
             $this->fields = $fields;
         }
 
-        public function field(string $field, string $type, mixed $value, int $length = null) : Record {
+        public function field(string $field, int $type, mixed $value, int $length = null) : Record {
 
             if($this->fields == null)
                 $this->fields = array();
