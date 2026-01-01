@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php 
+declare(strict_types=1);
     
     abstract class ColumnTypes {
         const INT = 0;
@@ -17,7 +18,7 @@
             self::TEXT => 'TEXT'
         );
 
-        public static function translate_string($type) {
+        public static function translate_string(string $type): ?int {
             foreach(self::$enums as $key => $value) {
                 if($value == $type) {
                     return $key;
@@ -26,7 +27,7 @@
             return null;
         }
 
-        public static function translate_id($id) {
+        public static function translate_id(int $id): ?string {
             foreach(self::$enums as $key => $value) {
                 if($id === $key) {
                     return $value;
