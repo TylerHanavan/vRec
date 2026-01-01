@@ -68,7 +68,21 @@
 
             $record_def_record = new Record('record_definitions', array('table_name' => array('type' => 'VARCHAR', 'value' => $record_name)));
 
-            $record_def = $data['_CMS']['database']->get_records($record_def_record)[0];
+            $record_def_results = $data['_CMS']['database']->get_records($record_def_record);
+
+            if(sizeof($record_def_results) == 0) {
+
+                $response['xhr_response_status'] = 'error';
+                $response['error'] = $record_name !== '' ? "'$record_name' is not not a valid record definition" : 'record_name field was not passed in or was blank';
+
+                http_response_code(401);
+
+                echo json_encode($response);
+                graceful_exit();
+
+            }
+
+            // TODO: Throw error if record definition doesn't exist
 
             $table_id = $record_def->get_field('id')['value'];
 
