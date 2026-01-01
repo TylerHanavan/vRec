@@ -18,7 +18,8 @@ declare(strict_types=1);
             self::TEXT => 'TEXT'
         );
 
-        public static function translate_string(string $type): ?int {
+        public static function translate_string(string|int $type): ?int {
+            if(is_int($type)) return $type;
             foreach(self::$enums as $key => $value) {
                 if($value == $type) {
                     return $key;
