@@ -6,7 +6,7 @@ error_reporting(E_ALL);
     final class HookManager {
         
         private array $hooks;
-        private int $hooksIndex;
+        private array $hooksIndex;
         private Logger $logger;
 
         private bool $debug = false;
