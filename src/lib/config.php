@@ -33,7 +33,7 @@
         $line = strtok("\r\n");
     }
 
-    function get_config_value($key): ?mixed {
+    function get_config_value($key): mixed {
         global $_CONF;
 
         return (isset($_CONF[$key]) && !empty($_CONF[$key])) ? $_CONF[$key] : null;

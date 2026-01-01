@@ -49,7 +49,7 @@ declare(strict_types=1);
             $this->fields[$field] = $args;
         }
 
-        public function get_field_property(string $field, string $property): ?mixed {
+        public function get_field_property(string $field, string $property): mixed {
             if(!isset($this->fields) || empty($this->fields))
                 return null;
             if(!isset($this->fields[$field]) || empty($this->fields[$field]))
