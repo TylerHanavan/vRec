@@ -4,7 +4,7 @@
 
         var_dump($properties);
 
-        require_once($properties['INSTALL_LOCATION'] . "/src/lib/record/ColumnTypes.php");
+        require_once($properties['INSTALL_LOCATION'] . "/lib/record/ColumnTypes.php");
         
         $enums = [
             'INT' => 0,
