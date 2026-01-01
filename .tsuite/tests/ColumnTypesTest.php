@@ -3,6 +3,8 @@
     function test_enums_1($properties) {
 
         var_dump($properties);
+
+        require_once($properties['INSTALL_LOCATION'] . "/src/lib/record/ColumnTypes.php");
         
         $enums = [
             'INT' => 0,
