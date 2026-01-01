@@ -4,13 +4,14 @@ declare(strict_types=1);
     final class Record {
 
         private string $record_name;
-        private array $fields;
+        private array $fields = [];
         private ?array $order_by = null;
         private ?int $limit = null;
 
-        public function __construct(string $record_name, array $fields) {
+        public function __construct(string $record_name, ?array $fields) {
             $this->record_name = $record_name;
-            $this->fields = $fields;
+            if($fields !== null)
+                $this->fields = $fields;
             $this->order_by = array();
             $this->limit = null;
         }
