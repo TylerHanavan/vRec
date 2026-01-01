@@ -20,10 +20,10 @@
         }
 
         assertTrue(ColumnTypes::INT         === 0, "ColumnTypes::INT did not resolve to 0");
-        assertTrue(ColumnTypes::VARCHAR     === 1, "ColumnTypes::INT did not resolve to 1");
-        assertTrue(ColumnTypes::BOOLEAN     === 2, "ColumnTypes::INT did not resolve to 2");
-        assertTrue(ColumnTypes::DATE        === 3, "ColumnTypes::INT did not resolve to 3");
-        assertTrue(ColumnTypes::TIMESTAMP   === 4, "ColumnTypes::INT did not resolve to 4");
-        assertTrue(ColumnTypes::TEXT        === 5, "ColumnTypes::INT did not resolve to 5");
+        assertTrue(ColumnTypes::VARCHAR     === 1, "ColumnTypes::VARCHAR did not resolve to 1");
+        assertTrue(ColumnTypes::BOOLEAN     === 2, "ColumnTypes::BOOLEAN did not resolve to 2");
+        assertTrue(ColumnTypes::DATE        === 3, "ColumnTypes::DATE did not resolve to 3");
+        assertTrue(ColumnTypes::TIMESTAMP   === 4, "ColumnTypes::TIMESTAMP did not resolve to 4");
+        assertTrue(ColumnTypes::TEXT        === 5, "ColumnTypes::TEXT did not resolve to 5");
     }
 ?
