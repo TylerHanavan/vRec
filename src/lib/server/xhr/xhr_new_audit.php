@@ -30,6 +30,14 @@
 
             if(isset($audit_data['raw_state']) && isset($audit_data['raw_state']['_GET']) && isset($audit_data['raw_state']['_GET']['cms_path'])) {
                 $cms_path = $audit_data['raw_state']['_CMS']['path'];
+            } else {
+                $response['xhr_response_status'] = 'error';
+                $response['error'] = $record_name !== '' ? "'$cms_path' is not not a valid cms_path" : 'cms_path field was not passed in or was blank';
+
+                http_response_code(401);
+
+                echo json_encode($response);
+                graceful_exit();
             }
 
             if(isset($audit_data['http_response'])) {
