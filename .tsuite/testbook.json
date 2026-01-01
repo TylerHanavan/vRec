@@ -64,15 +64,15 @@
         "actions": [
           {
             "php": [
-              "tests/XHRSignupTest.php",
-              "tests/XHRSetupTest.php",
-              "tests/XHRLoginTest.php",
-              "tests/XHRRecordDefinitionTest.php",
-              "tests/XHRRecordTest.php",
-              "tests/XHRRecordInsertTest.php",
-              "tests/XHRRecordUpdateTest.php",
-              "tests/XHRHardDeleteRecordTest.php",
-              "tests/XHRAuditTest.php"
+              "tests/server/xhr/XHRSignupTest.php",
+              "tests/server/xhr/XHRSetupTest.php",
+              "tests/server/xhr/XHRLoginTest.php",
+              "tests/server/xhr/XHRRecordDefinitionTest.php",
+              "tests/server/xhr/XHRRecordTest.php",
+              "tests/server/xhr/XHRRecordInsertTest.php",
+              "tests/server/xhr/XHRRecordUpdateTest.php",
+              "tests/server/xhr/XHRHardDeleteRecordTest.php",
+              "tests/server/xhr/XHRAuditTest.php"
             ]
           }
         ]

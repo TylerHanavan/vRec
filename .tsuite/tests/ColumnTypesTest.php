@@ -25,5 +25,7 @@
         assertTrue(ColumnTypes::DATE        === 3, "ColumnTypes::DATE did not resolve to 3");
         assertTrue(ColumnTypes::TIMESTAMP   === 4, "ColumnTypes::TIMESTAMP did not resolve to 4");
         assertTrue(ColumnTypes::TEXT        === 5, "ColumnTypes::TEXT did not resolve to 5");
+
+        echo 'Finished testing ColumnTypes.php';
     }
 ?
