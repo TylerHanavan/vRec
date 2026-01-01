@@ -131,7 +131,12 @@ declare(strict_types=1);
                             return false;
                         }
                     }
-                    $sql .= $field . ' = ' . $this->get_column_quote_character($args['type']) . $value . $this->get_column_quote_character($args['type']) . ' AND ';
+                    $type = $args['type'];
+                    if(is_string($type)) {
+                        $type = ColumnTypes::translateString($type);
+                    }
+                    $quote_char = $this->get_column_quote_character($type);
+                    $sql .= $field . ' = ' . $quote_char . $value . $quote_char . ' AND ';
                 }
     
                 $sql = rtrim($sql, ' AND ');
