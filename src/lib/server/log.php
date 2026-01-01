@@ -43,7 +43,7 @@ error_reporting(E_ALL);
         }
 
         private function get_uuid(): string {
-            if($this->uuid !== null) {
+            if(isset($this->uuid) && $this->uuid !== null) {
                 return $this->uuid;
             }
             $nano = exec('date +%s%N');
