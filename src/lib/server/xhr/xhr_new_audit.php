@@ -82,6 +82,8 @@
 
             }
 
+            $record_def = $record_def_results[0];
+
             // TODO: Throw error if record definition doesn't exist
 
             $table_id = $record_def->get_field('id')['value'];

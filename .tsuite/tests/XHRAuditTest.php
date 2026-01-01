@@ -26,6 +26,8 @@
 
         var_dump($response);
 
+        assertTrue($response('http_decode') == 200, 'http code mismatch');
+
         /*$response_arr = json_decode($response, true);
 
         assertEquals(200, $response['http_code'], 'http code mismatch');
