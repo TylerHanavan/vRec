@@ -9,4 +9,4 @@
         assertEquals($hook->get_function(), 'test_hook_1', 'function getter not right');
 
     }
-?
+?>
