@@ -24,7 +24,7 @@ function xhr_login(&$data) {
 
             $userId = $account->verifyPassword($username, $password);
             
-            if ($userId) {
+            if ($userId !== false) {
                 // Create session token
                 $sessionToken = $account->createSession($userId);
                 
