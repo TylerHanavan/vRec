@@ -203,7 +203,7 @@
     require dirname(__FILE__) . '/lib/server/xhr/xhr_get_worker_jobs.php';
     require dirname(__FILE__) . '/lib/audit/Auditor.php';
 
-    int $audit_buffer_size = 1;
+    $audit_buffer_size = 1;
 
     if(isset($_CONF['AUDIT.BUFFER_SIZE'])) {
         try {
