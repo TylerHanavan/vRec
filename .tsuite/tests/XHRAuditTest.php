@@ -24,8 +24,6 @@
         ),
          true, $session_token);
 
-        var_dump($response);
-
         assertTrue($response['http_decode'] == 200, 'http code mismatch');
 
         $response_arr = json_decode($response['response'], true);
