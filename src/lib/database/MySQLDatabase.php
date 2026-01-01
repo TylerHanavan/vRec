@@ -132,9 +132,6 @@ declare(strict_types=1);
                         }
                     }
                     $type = $args['type'];
-                    if(is_string($type)) {
-                        $type = ColumnTypes::translate_string($type);
-                    }
                     $quote_char = $this->get_column_quote_character($type);
                     $sql .= $field . ' = ' . $quote_char . $value . $quote_char . ' AND ';
                 }
@@ -283,11 +280,17 @@ declare(strict_types=1);
             }
         }
 
-        public function get_column_requires_length(int $type): bool {
+        public function get_column_requires_length(int|string $type): bool {
+            if(is_int($type)) {
+                $type = ColumnTypes::translate_string($type);
+            }
             return $type == ColumnTypes::VARCHAR;
         }
 
-        public function get_column_quote_character(int $type): string {
+        public function get_column_quote_character(int|string $type): string {
+            if(is_int($type)) {
+                $type = ColumnTypes::translate_string($type);
+            }
             if($type == ColumnTypes::INT || $type == ColumnTypes::BOOLEAN)
                 return "";
             return "'";
