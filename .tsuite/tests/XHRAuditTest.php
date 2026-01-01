@@ -24,7 +24,9 @@
         ),
          true, $session_token);
 
-        $response_arr = json_decode($response['response'], true);
+        $response_arr = json_decode($response, true);
+
+        echo $response['error'];
 
         assertEquals(200, $response['http_code'], 'http code mismatch');
 
