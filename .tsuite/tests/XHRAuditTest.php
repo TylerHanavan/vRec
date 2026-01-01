@@ -4,7 +4,7 @@
 
         global $session_token;
         $response = test_curl($properties['endpoint_url'] . '/xhr/new_audit', array(
-            'audit_data' => json_decode(array(
+            'audit_data' => json_encode(array(
                 'raw_state' => array(
                     '_CMS' => array (
                         '_GET' => array(
