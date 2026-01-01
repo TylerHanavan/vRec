@@ -1,6 +1,8 @@
 <?php
 
     function test_enums_1($properties) {
+
+        var_dump($properties);
         
         $enums = [
             'INT' => 0,
