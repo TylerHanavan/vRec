@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php 
+declare(strict_types=1);
 
     final class ComponentManager {
         private static $instance = null;
@@ -10,7 +11,7 @@
             $this->load_components();
         }
 
-        public static function getInstance($database) {
+        public static function getInstance($database): ComponentManager {
             if (self::$instance != null) {
                 return self::$instance;
             }
@@ -23,7 +24,7 @@
             return self::$instance;
         }
 
-        private function load_components() {
+        private function load_components(): void {
             $record = new Record('components', array());
             $components = $this->database->get_records($record);
             foreach($components as $component) {
@@ -31,7 +32,7 @@
             }
         }
 
-        public function get_components() {
+        public function get_components(): array {
             return $this->components;
         }
     }

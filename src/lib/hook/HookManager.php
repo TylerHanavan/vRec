@@ -1,4 +1,5 @@
-<?php declare(strict_types=1); // strict typing
+<?php 
+declare(strict_types=1); // strict typing
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
@@ -33,7 +34,7 @@ error_reporting(E_ALL);
          *    )
          * 
          */
-        function add_hook($function, $conditions = null) {
+        function add_hook($function, $conditions = null): void {
 
             $hook = new Hook($function, $conditions);
 
@@ -77,7 +78,7 @@ error_reporting(E_ALL);
             // TODO: Implement
         }
     
-        function call_hook(&$parameters, $conditions) {
+        function call_hook(&$parameters, $conditions): void {
 
             $this->logger->log("BEGIN HookManager::call_hook " . $conditions['layer']);
     
@@ -107,7 +108,7 @@ error_reporting(E_ALL);
             $this->logger->log("END HookManager::call_hook " . $conditions['layer']);
         }
 
-        function get_hooks_for_condition($condition, $value) {
+        function get_hooks_for_condition($condition, $value): array {
             $hooks = array();
             if(isset($this->hooksIndex[$condition]) && isset($this->hooksIndex[$condition][$value])) {
                 $hooks = $this->hooksIndex[$condition][$value];
@@ -115,11 +116,11 @@ error_reporting(E_ALL);
             return $hooks;
         }
 
-        private function compare_hooks($hook1, $hook2) {
+        private function compare_hooks($hook1, $hook2): int {
             return $hook1->get_function() == $hook2->get_function() ? 0 : 1;
         }
 
-        function get_hooks_callable($conditions) {
+        function get_hooks_callable($conditions): array {
             $hooks = null;
 
             foreach($conditions as $condition => $value) {
@@ -165,7 +166,7 @@ error_reporting(E_ALL);
             return $hooks ?? array();
         }
 
-        function get_default_hooks() {
+        function get_default_hooks(): array {
             return array(
                 'url' => null,
                 'logged_in' => null,

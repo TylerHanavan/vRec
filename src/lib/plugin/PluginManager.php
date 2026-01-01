@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php 
+declare(strict_types=1);
 
     final class PluginManager {
         private static $instance = null;
@@ -7,14 +8,14 @@
         private $logger;
         private $hookman;
 
-        private function __construct($plugin_directory, $logger, $hookman) {
+        private function __construct(string $plugin_directory, $logger, $hookman) {
             $this->plugin_directory = $plugin_directory;
             $this->logger = $logger;
             $this->hookman = $hookman;
             $this->loadPlugins();
         }
 
-        public static function getInstance($plugin_directory, $logger, $hookman) {
+        public static function getInstance(string $plugin_directory, $logger, $hookman): PluginManager {
             if(($plugin_directory == null || $plugin_directory == '' || $logger == null || $hookman == null) && self::$instance == null) {
                 throw new Exception('Plugin directory not set');
             }
@@ -25,7 +26,7 @@
             return self::$instance;
         }
 
-        private function loadPlugins() {
+        private function loadPlugins(): void {
             $this->logger->log('Loading plugins');
             $pluginDir = $this->plugin_directory;
             $plugins = scandir($pluginDir);
@@ -49,7 +50,7 @@
             $this->logger->log('Finished loading plugins');
         }
 
-        public function getPlugins() {
+        public function getPlugins(): array {
             return $this->plugins;
         }
     }

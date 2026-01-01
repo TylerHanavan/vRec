@@ -1,16 +1,17 @@
-<?php declare(strict_types=1); // strict typing
+<?php 
+declare(strict_types=1); // strict typing
 
     class Hook {
             
-            private $function;
-            private $conditions;
+            private string $function;
+            private array $conditions;
     
-            function __construct($function, $conditions) {
+            function __construct(string $function, array $conditions) {
                 $this->function = $function;
                 $this->conditions = $conditions;
             }
     
-            function get_function() {
+            function get_function(): string {
                 return $this->function;
             }
 
@@ -23,11 +24,11 @@
              * 
              * @return mixed
              */
-            function get_conditions() {
+            function get_conditions(): array {
                 return $this->conditions;
             }
 
-            function can_call_hook($cur_conditions) {
+            function can_call_hook(array $cur_conditions): bool {
 
                 if($this->conditions == null)
                     return true;
