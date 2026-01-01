@@ -32,7 +32,7 @@
                 $cms_path = $audit_data['raw_state']['_CMS']['path'];
             } else {
                 $response['xhr_response_status'] = 'error';
-                $response['error'] = $record_name !== '' ? "'$cms_path' is not not a valid cms_path" : 'cms_path field was not passed in or was blank';
+                $response['error'] = $cms_path !== '' ? "'$cms_path' is not not a valid cms_path" : 'cms_path field was not passed in or was blank';
 
                 http_response_code(401);
 
