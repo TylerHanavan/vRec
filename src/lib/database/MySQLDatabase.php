@@ -254,7 +254,7 @@ declare(strict_types=1);
             return $res;
         }
 
-        public function get_column_declaration(string $field, int $type, int $length = 0): string {
+        public function get_column_declaration(string $field, int $type, ?int $length): string {
 
             switch($type) {
                 case ColumnTypes::VARCHAR:
