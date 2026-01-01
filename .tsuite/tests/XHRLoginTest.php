@@ -29,6 +29,9 @@
     function test_login_success($properties) {
         $response = test_curl($properties['endpoint_url'] . '/xhr/login', array('username' => 'username', 'password' => '12345678'), true);
         $response_array = json_decode($response['response'], true);
+        if(isset($response_array['error'])) {
+            echo 'Response array -> error: ', $response_array['error'], '\n';
+        }
         assertTrue(isset($response_array['session_token']), 'session token not set');
         assertEquals(200, $response['http_code'], 'http code mismatch');
 
