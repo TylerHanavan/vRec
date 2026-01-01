@@ -68,7 +68,7 @@
 
             if(isset($audit_data['old_record_json'])) {
                 $old_record_json = json_encode($audit_data['old_record_json']);
-            }
+            } else {}
 
             $new_record_json = '';
 
