@@ -4,9 +4,9 @@ declare(strict_types=1);
     final class MySQLDatabase extends Database {
         
         private ?PDO $connection = null;
-        private array $params = null;
+        private ?array $params = null;
 
-        public function __construct(array $params) {
+        public function __construct(?array $params) {
             $this->params = $params;
         }
 
