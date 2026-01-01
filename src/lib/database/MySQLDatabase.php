@@ -124,7 +124,9 @@ declare(strict_types=1);
                 $sql .= " WHERE ";
 
                 foreach($record->get_fields() as $field => $args) {
-                    $value = $this->escapeString($args['value']);
+                    $value = $args['value'];
+                    if(is_string($value))
+                        $value = $this->escapeString($value);
                     if($args['type'] == ColumnTypes::INT) {
                         $integer = filter_var($value, FILTER_VALIDATE_INT);
                         if($integer === false) {
