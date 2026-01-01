@@ -1,6 +1,7 @@
-<?php declare(strict_types=1); // strict typing
+<?php 
+declare(strict_types=1); // strict typing
 
-    function get_database_connection($servername = 'localhost', $username = 'root', $password = 'password', $database = 'vrec') {
+    function get_database_connection(string $servername = 'localhost', string $username = 'root', string $password = 'password', string $database = 'vrec'): ?PDO {
 
         try {
 
@@ -16,7 +17,7 @@
         }
     }
 
-    function list_tables() {
+    function list_tables(): array {
         global $conn;
 
         $query = 'SHOW TABLES';
@@ -34,7 +35,7 @@
         return $ret;
     }
 
-    function get_table_columns($table) {
+    function get_table_columns(string $table): array {
         global $conn;
 
         $query = "SHOW COLUMNS FROM $table";
@@ -54,7 +55,7 @@
         return $columns;
     }
 
-    function insert_table_entry($table, $columns, $data) {
+    function insert_table_entry(string $table, array $columns, array $data): bool {
         global $conn;
 
         $columns_string = '(';
