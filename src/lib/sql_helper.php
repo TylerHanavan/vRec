@@ -99,7 +99,7 @@ declare(strict_types=1); // strict typing
 
     }
 
-    function export_table($table) {
+    function export_table(string $table): string {
         global $conn;
 
         $query = "SELECT * FROM $table";
@@ -123,7 +123,7 @@ declare(strict_types=1); // strict typing
         return json_encode($ret);
     }
 
-    function create_table($table) {
+    function create_table(string $table): bool {
         global $conn;
 
         $query = get_table_create_query($table);
@@ -143,7 +143,7 @@ declare(strict_types=1); // strict typing
     *      [id = #, [key1 = val1, key2 = val2]]
     *
     */
-    function update_table($table, $updates) {
+    function update_table(string $table, array $updates): void {
         global $conn;
 
         for($x = 0; $x < sizeof($updates); $x++) {
@@ -159,7 +159,7 @@ declare(strict_types=1); // strict typing
 
     }
 
-    function query($query) {
+    function query(string $query): null|bool|array {
         if($query == null || $query == '')
             return null;
 
