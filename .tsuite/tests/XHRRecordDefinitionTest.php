@@ -28,8 +28,6 @@
             throw new Exception('session token unexpectedly blank');
         }
         $response = test_curl($properties['endpoint_url'] . '/xhr/new-record-definition', $data, true, $session_token);
-
-        var_dump($response);
         
         $response_array = json_decode($response['response'], true);
         
