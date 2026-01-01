@@ -24,6 +24,9 @@
         $data['field_type2'] = 'Boolean';
         $data['field_name2'] = 't3';
         global $session_token;
+        if($session_token === null || !isset($session_token) || $session_token === '') {
+            throw new Exception('session token unexpectedly blank');
+        }
         $response = test_curl($properties['endpoint_url'] . '/xhr/new-record-definition', $data, true, $session_token);
         
         $response_array = json_decode($response['response'], true);
