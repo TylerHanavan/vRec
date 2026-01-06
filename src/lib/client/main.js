@@ -391,6 +391,16 @@ class RecordsFilterTable extends FilterTable {
             let header = $("<th></th>");
             tr.append(header);
             header.text(xhr_response['record_definition']['record_fields'][i]['field_name']);
+            header.css('cursor', 'pointer'); // Visual cue for users
+    
+            // ADD THIS CLICK EVENT
+            header.on('click', function() {
+                const tableElement = $(this).closest('table');
+                const headerIndex = $(this).index();
+                const currentIsAsc = $(this).hasClass('th-sort-asc');
+                
+                sortTable(tableElement, headerIndex, !currentIsAsc);
+            });
         }
 
         let actionsTh = $("<th></th>");
@@ -878,4 +888,34 @@ function ajaxInlineEditor(record_name, record_id, field_name, field_type, new_va
             alert('Update error:', data);
         }
     });
+}
+
+function sortTable(table, column, asc = true) {
+    const dirModifier = asc ? 1 : -1;
+    const tbody = table.find('tbody');
+    const rows = Array.from(tbody.find('tr.table-body-row'));
+
+    // Sort the rows
+    const sortedRows = rows.sort((a, b) => {
+        // Get text from the specific column index
+        const aColText = $(a).find(`td:eq(${column})`).text().trim().toLowerCase();
+        const bColText = $(b).find(`td:eq(${column})`).text().trim().toLowerCase();
+
+        // Check if values are numeric for proper sorting
+        const aColNo = parseFloat(aColText);
+        const bColNo = parseFloat(bColText);
+
+        if (!isNaN(aColNo) && !isNaN(bColNo)) {
+            return aColNo > bColNo ? (1 * dirModifier) : (-1 * dirModifier);
+        }
+
+        return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+    });
+
+    // Remove existing rows and re-append sorted ones
+    tbody.empty().append(sortedRows);
+
+    // Remember the sort direction on the header
+    table.find('th').removeClass('th-sort-asc th-sort-desc');
+    table.find(`th:eq(${column})`).addClass(asc ? 'th-sort-asc' : 'th-sort-desc');
 }
