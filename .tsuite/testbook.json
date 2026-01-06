@@ -48,7 +48,7 @@
       "runPHPObjectsTests": {
         "title": "Run PHP Objects Tests",
         "description": "This runs the vRec PHP Objects tests.",
-        "stage_type": "test",
+        "stage_type": "unit",
         "actions": [
           {
             "php": [
@@ -61,7 +61,7 @@
       "runXHRTests": {
         "title": "Run XHR Tests",
         "description": "This runs the vRec XHR tests.",
-        "stage_type": "test",
+        "stage_type": "integration",
         "actions": [
           {
             "php": [
@@ -81,7 +81,7 @@
       "seleniumTests": {
         "title": "Selenium Web Tests",
         "description": "Test UI components with Selenium.",
-        "stage_type": "test",
+        "stage_type": "integration",
         "actions": [
           {
             "php": [
