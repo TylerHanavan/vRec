@@ -893,29 +893,39 @@ function ajaxInlineEditor(record_name, record_id, field_name, field_type, new_va
 function sortTable(table, column, asc = true) {
     const dirModifier = asc ? 1 : -1;
     const tbody = table.find('tbody');
+    
+    // Use your existing class to select rows
     const rows = Array.from(tbody.find('tr.table-body-row'));
 
-    // Sort the rows
     const sortedRows = rows.sort((a, b) => {
-        // Get text from the specific column index
+        // 1. Get primary column values
         const aColText = $(a).find(`td:eq(${column})`).text().trim().toLowerCase();
         const bColText = $(b).find(`td:eq(${column})`).text().trim().toLowerCase();
 
-        // Check if values are numeric for proper sorting
+        // Numeric check for primary sort
         const aColNo = parseFloat(aColText);
         const bColNo = parseFloat(bColText);
-
+        
+        let primaryResult = 0;
         if (!isNaN(aColNo) && !isNaN(bColNo)) {
-            return aColNo > bColNo ? (1 * dirModifier) : (-1 * dirModifier);
+            primaryResult = aColNo > bColNo ? 1 : (aColNo < bColNo ? -1 : 0);
+        } else {
+            primaryResult = aColText > bColText ? 1 : (aColText < bColText ? -1 : 0);
         }
 
-        return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+        // 2. Tie-breaker: If values are identical, sort by 'xhr-record-id'
+        if (primaryResult === 0) {
+            const aId = parseInt($(a).attr('xhr-record-id')) || 0;
+            const bId = parseInt($(b).attr('xhr-record-id')) || 0;
+            return (aId > bId ? 1 : -1) * dirModifier;
+        }
+
+        return primaryResult * dirModifier;
     });
 
-    // Remove existing rows and re-append sorted ones
     tbody.empty().append(sortedRows);
 
-    // Remember the sort direction on the header
+    // Update visual indicators
     table.find('th').removeClass('th-sort-asc th-sort-desc');
     table.find(`th:eq(${column})`).addClass(asc ? 'th-sort-asc' : 'th-sort-desc');
 }
