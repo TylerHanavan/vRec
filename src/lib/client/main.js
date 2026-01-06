@@ -917,6 +917,7 @@ function sortTable(table, column, asc = true) {
         if (primaryResult === 0) {
             const aId = parseInt($(a).attr('xhr-record-id')) || 0;
             const bId = parseInt($(b).attr('xhr-record-id')) || 0;
+            console.log(aId + " " + bId);
             return (aId > bId ? 1 : -1) * dirModifier;
         }
 
