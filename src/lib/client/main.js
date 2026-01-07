@@ -430,7 +430,7 @@ class RecordsFilterTable extends FilterTable {
         let addBtn = $("<button></button>");
         addBtn.text("Add");
 
-        addBtn.on('click', function() {
+        addBtn.on('click', function(event) {
             let matchedFilter = $(this).closest('.filter-dropdown-menu') 
                 .find('input[type="checkbox"]:checked');
             if(matchedFilter.length > 0) {
@@ -442,6 +442,7 @@ class RecordsFilterTable extends FilterTable {
                 $(".column-filter-check").prop('checked', false);
                 dropdownMenu.css('display', 'none');
             }
+            event.preventDefault();
         });
 
         dropdownMenu.append(addBtn);
