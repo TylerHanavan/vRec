@@ -408,10 +408,11 @@ class RecordsFilterTable extends FilterTable {
                 .val(index)
                 .prop('checked', true); // Default to search all
 
-            checkbox.on('click', () => {
-                $(this).parent().find('input[type="checkbox"]').not(this).each(function() {
-                    $(this).prop('checked', false);
-                });
+            checkbox.on('click', function() {
+                $(this).closest('.filter-dropdown-menu') 
+                    .find('input[type="checkbox"]')
+                    .not(this)
+                    .prop('checked', false);
             });
 
             let label = $("<label></label>")
