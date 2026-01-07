@@ -33,7 +33,7 @@
         $found_add_new_record_button = false;
 
         foreach($buttons as $button) {
-            if($button->getText() === 'Add New Recor1d') {
+            if($button->getText() === 'Add New Record') {
                 $found_add_new_record_button = true;
             }
         }
