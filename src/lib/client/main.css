@@ -51,17 +51,3 @@ main > .container {
 .styled-table th { cursor: pointer; }
 .th-sort-asc::after { content: " ▲"; }
 .th-sort-desc::after { content: " ▼"; }
-
-.styled-table {
-    width: 100%;             /* Spans the full width of the parent div */
-    border-collapse: collapse;
-    table-layout: auto;      /* Allows columns to size based on content while filling 100% */
-    margin-bottom: 1rem;
-}
-
-/* Optional: Ensure the container div doesn't restrict it */
-.filter-table {
-    width: 100%;
-    display: block; 
-    overflow-x: auto; /* Adds a scrollbar if the screen is too small */
-}
