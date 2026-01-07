@@ -5,45 +5,53 @@ function get_table_body_rows(table_element) {
 }
 
 function do_filter_table(event) {
-    let search = event.data.search;
+    let searchText = event.data.search.val().toLowerCase();
+    let checkboxes = event.data.checkboxes;
     let table_element = event.data.table_element;
     let rows = get_table_body_rows(table_element);
-    if(rows == null) {
-        return null;
-    }
-    let searchText = search.val().toLowerCase();
-    rows.each(function(index) {
-        const startTime = Date.now();
+    
+    if(!rows) return;
+
+    // Get array of indices for checked columns
+    let activeIndices = [];
+    checkboxes.each(function() {
+        if ($(this).is(':checked')) {
+            activeIndices.push(parseInt($(this).val()));
+        }
+    });
+
+    rows.each(function() {
         let rowText = '';
-        $(this).find('td').not('[filter-table-exclude-search="true"]').each(function() {
-            rowText += $(this).text().toLowerCase() + ' ';
+        let cells = $(this).find('td');
+
+        activeIndices.forEach(index => {
+            // Append text only from columns selected in the "Add filter" menu
+            rowText += cells.eq(index).text().toLowerCase() + ' ';
         });
+
         if(!rowText.includes(searchText)) {
             $(this).hide();
         } else {
             $(this).show();
         }
-
-        const endTime = Date.now();
-        console.log('do_filter_table run time:', endTime - startTime, 'ms');
     });
 }
 
 function register_tables() {
-    $(".filter-table").each(function(index) {
-        const startTime = Date.now();
+    $(".filter-table").each(function() {
         let table = $(this);
-        let search = table.children(".form-inline").children(".table-search");
-        let table_element = table.children(".styled-table");
-        if(search != null && table_element != null) {
-            search.on("input", {
-                search: search,
-                table_element: table_element
-            }, do_filter_table);
-        }
+        let search = table.find(".table-search");
+        let checkboxes = table.find(".column-filter-check");
+        let table_element = table.find(".styled-table");
 
-        const endTime = Date.now();
-        console.log('register_tables run time:', endTime - startTime, 'ms');
+        let eventData = {
+            search: search,
+            checkboxes: checkboxes,
+            table_element: table_element
+        };
+
+        search.on("input", eventData, do_filter_table);
+        checkboxes.on("change", eventData, do_filter_table);
     });
 }
 
@@ -369,6 +377,58 @@ class RecordsFilterTable extends FilterTable {
         input.attr('type', 'text');
         input.attr('placeholder', 'Search');
         form.append(input);
+
+        // Inside populateFilterTable() in RecordsFilterTable class:
+
+        form = $("<form></form>").addClass('form-inline position-relative'); // Relative for dropdown positioning
+        elements.append(form);
+
+        // 1. Create the "Add filter" Button
+        let filterBtn = $("<button type='button'></button>")
+            .addClass('btn btn-light border mr-sm-2')
+            .html('<span><i class="filter-icon"></i> Add filter</span>')
+            .on('click', function(e) {
+                $(this).next('.filter-dropdown-menu').toggle();
+                e.stopPropagation();
+            });
+        form.append(filterBtn);
+
+        // 2. Create the Dropdown Menu (initially hidden)
+        let dropdownMenu = $("<div></div>")
+            .addClass('filter-dropdown-menu p-3 border rounded shadow-sm bg-white')
+            .css({ 'display': 'none', 'position': 'absolute', 'top': '100%', 'z-index': 1000, 'min-width': '250px' });
+
+        // Add Search Box inside dropdown
+        let dropdownSearch = $("<input type='text'>")
+            .addClass('form-control mb-2 table-search')
+            .attr('placeholder', 'Search');
+        dropdownMenu.append(dropdownSearch);
+
+        // Add Checkboxes for each field
+        xhr_response['record_definition']['record_fields'].forEach((field, index) => {
+            if(field.field_name === 'table') return;
+
+            let wrapper = $("<div></div>").addClass('custom-control custom-checkbox mb-1');
+            let checkbox = $("<input type='checkbox'>")
+                .addClass('custom-control-input column-filter-check')
+                .attr('id', 'filter-' + field.field_name)
+                .val(index)
+                .prop('checked', true); // Default to search all
+
+            let label = $("<label></label>")
+                .addClass('custom-control-label ml-2')
+                .attr('for', 'filter-' + field.field_name)
+                .text(field.field_name);
+
+            wrapper.append(checkbox).append(label);
+            dropdownMenu.append(wrapper);
+        });
+
+        form.append(dropdownMenu);
+
+        // Close menu when clicking outside
+        $(document).on('click', () => $('.filter-dropdown-menu').hide());
+        dropdownMenu.on('click', (e) => e.stopPropagation());
 
         elements.append(table);
         
