@@ -408,6 +408,7 @@ class RecordsFilterTable extends FilterTable {
             let checkbox = $("<input type='checkbox'>")
                 .addClass('custom-control-input column-filter-check')
                 .attr('id', 'filter-' + field.field_name)
+                .attr('xhr-record-field', field.field_name)
                 .val(index)
                 .prop('checked', false); // Default to search all
 
@@ -437,7 +438,7 @@ class RecordsFilterTable extends FilterTable {
                 let newFilterDiv = $("<div></div>");
                 let newFilterP = $("<h3></h3>");
                 newFilterDiv.append(newFilterP);
-                newFilterP.text(matchedFilter.text());
+                newFilterP.text(matchedFilter.attr('xhr-record-field'));
                 activeFiltersDiv.append(newFilterDiv);
                 $(".column-filter-check").prop('checked', false);
                 dropdownMenu.css('display', 'none');
