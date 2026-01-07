@@ -409,12 +409,8 @@ class RecordsFilterTable extends FilterTable {
                 .prop('checked', true); // Default to search all
 
             checkbox.on('click', () => {
-                $(this).parent().forEach((e, index) => {
-                    if($(this) !== e) {
-                        if(e.prop('checked') === 'true') {
-                            e.prop('checked', false);
-                        }
-                    }
+                $(this).parent().find('input[type="checkbox"]').not(this).each(function() {
+                    $(this).prop('checked', false);
                 });
             });
 
