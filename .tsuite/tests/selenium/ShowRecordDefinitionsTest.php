@@ -300,7 +300,13 @@
 
         assertTrue($session_cookie !== null, 'session_cookie is not set');
 
-        var_dump($session_cookie);
+        assertTrue(is_array($session_cookie), 'session_cookie is not an array');
+        assertTrue(!empty($session_cookie), 'session_cookie array is empty');
+
+        $session_string = $session_cookie['value'];
+
+        assertTrue(is_string($session_string), 'session_cookie\'s values is not a string');
+
 
         /** TODO: Add .modal-footer checks */
 
