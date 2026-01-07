@@ -424,6 +424,11 @@ class RecordsFilterTable extends FilterTable {
             dropdownMenu.append(wrapper);
         });
 
+        let addBtn = $("<button></button>");
+        addBtn.text("Add");
+
+        dropdownMenu.append(addBtn);
+
         form.append(dropdownMenu);
 
         // Close menu when clicking outside
