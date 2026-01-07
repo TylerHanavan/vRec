@@ -5,9 +5,7 @@
 
     function test_show_records($properties) {
 
-        global $session_token;
-
-        var_dump($session_token);
+        var_dump($properties['selenium']->manage()->getCookies());
 
     }
 

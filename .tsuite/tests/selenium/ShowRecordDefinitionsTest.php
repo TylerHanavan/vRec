@@ -296,15 +296,13 @@
 
         assertTrue($cookies !== null && !empty($cookies), 'Could not access cookies via Selenium');
         
-        $session_cookie = $cookies[0];
+        $cookie1 = $cookies[0];
 
-        $session_string = $session_cookie['value'];
+        assertTrue($cookie1['name'] === 'session_token', 'first cookie is not session token');
 
-        assertTrue(is_string($session_string), 'session_cookie\'s values is not a string');
+        global $session_cookie;
 
-        global $session_token;
-
-        $session_token = $session_string;
+        $session_cookie = $cookie1;
 
 
         /** TODO: Add .modal-footer checks */
