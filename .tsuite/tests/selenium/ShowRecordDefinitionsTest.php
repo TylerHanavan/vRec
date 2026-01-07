@@ -292,6 +292,8 @@
             '#login-link did not become invisible after clicking #login-link'
         );
 
+        var_dump($selenium->manage()->getcookies());
+
         /** TODO: Add .modal-footer checks */
 
         /** TODO: Add signup-form checks */
