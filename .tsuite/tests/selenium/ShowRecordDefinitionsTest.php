@@ -292,7 +292,7 @@
             '#login-link did not become invisible after clicking #login-link'
         );
 
-        var_dump($selenium->manage()->getcookies());
+        var_dump($selenium->manage()->getCookies());
 
         /** TODO: Add .modal-footer checks */
 
