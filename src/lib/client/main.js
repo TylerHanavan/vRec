@@ -6,54 +6,44 @@ function get_table_body_rows(table_element) {
 
 function do_filter_table(event) {
     let search = event.data.search;
-    let columnSelect = event.data.columnSelect;
     let table_element = event.data.table_element;
-    
     let rows = get_table_body_rows(table_element);
-    if (!rows) return;
-
+    if(rows == null) {
+        return null;
+    }
     let searchText = search.val().toLowerCase();
-    let colIndex = columnSelect.val(); // Get selected column index (or "all")
-
-    rows.each(function() {
-        let match = false;
-        
-        if (colIndex === "all") {
-            // Original logic: Search all columns
-            let rowText = '';
-            $(this).find('td').not('[filter-table-exclude-search="true"]').each(function() {
-                rowText += $(this).text().toLowerCase() + ' ';
-            });
-            match = rowText.includes(searchText);
-        } else {
-            // New logic: Search ONLY the specific column index
-            let targetCell = $(this).find('td').eq(colIndex);
-            match = targetCell.text().toLowerCase().includes(searchText);
-        }
-
-        if (match) {
-            $(this).show();
-        } else {
+    rows.each(function(index) {
+        const startTime = Date.now();
+        let rowText = '';
+        $(this).find('td').not('[filter-table-exclude-search="true"]').each(function() {
+            rowText += $(this).text().toLowerCase() + ' ';
+        });
+        if(!rowText.includes(searchText)) {
             $(this).hide();
+        } else {
+            $(this).show();
         }
+
+        const endTime = Date.now();
+        console.log('do_filter_table run time:', endTime - startTime, 'ms');
     });
 }
 
 function register_tables() {
-    $(".filter-table").each(function() {
+    $(".filter-table").each(function(index) {
+        const startTime = Date.now();
         let table = $(this);
-        let search = table.find(".table-search");
-        let columnSelect = table.find(".column-filter-select"); // Select dropdown
-        let table_element = table.find(".styled-table");
+        let search = table.children(".form-inline").children(".table-search");
+        let table_element = table.children(".styled-table");
+        if(search != null && table_element != null) {
+            search.on("input", {
+                search: search,
+                table_element: table_element
+            }, do_filter_table);
+        }
 
-        let eventData = {
-            search: search,
-            columnSelect: columnSelect,
-            table_element: table_element
-        };
-
-        search.on("input", eventData, do_filter_table);
-        columnSelect.on("change", eventData, do_filter_table); // Trigger on dropdown change
+        const endTime = Date.now();
+        console.log('register_tables run time:', endTime - startTime, 'ms');
     });
 }
 
@@ -381,33 +371,6 @@ class RecordsFilterTable extends FilterTable {
         form.append(input);
 
         elements.append(table);
-        
-        // Inside populateFilterTable() in RecordsFilterTable class:
-
-        form = $("<form></form>");
-        form.addClass('form-inline');
-        elements.append(form);
-
-        // 1. Create the Column Selector Dropdown
-        let columnSelect = $("<select></select>");
-        columnSelect.addClass('form-control mr-sm-2 column-filter-select');
-        columnSelect.append($("<option></option>").val("all").text("All Columns"));
-
-        // Populate dropdown with actual column names
-        xhr_response['record_definition']['record_fields'].forEach((field, index) => {
-            if(field.field_name !== 'table') {
-                let opt = $("<option></option>").val(index).text(field.field_name);
-                columnSelect.append(opt);
-            }
-        });
-        form.append(columnSelect);
-
-        // 2. The Search Input
-        input = $("<input></input>");
-        input.addClass('form-control table-search mr-sm-2');
-        input.attr('type', 'text');
-        input.attr('placeholder', 'Search...');
-        form.append(input);
         
         table.children('h2').text(record_name);
         table.attr('xhr-table-record-name', record_name);
