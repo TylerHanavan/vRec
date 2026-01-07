@@ -302,11 +302,13 @@
 
         assertTrue(is_string($session_string), 'session_cookie\'s values is not a string');
 
+        global $session_token;
+
+        $session_token = $session_string;
+
 
         /** TODO: Add .modal-footer checks */
 
         /** TODO: Add signup-form checks */
-
-        echo "Reached end of selenium tests\n";
     }
 ?>

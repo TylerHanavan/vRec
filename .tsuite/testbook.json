@@ -85,7 +85,8 @@
         "actions": [
           {
             "php": [
-              "tests/selenium/ShowRecordDefinitionsTest.php"
+              "tests/selenium/ShowRecordDefinitionsTest.php",
+              "tests/selenium/ShowRecordsTest.php"
             ]
           }
         ]
