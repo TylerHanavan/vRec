@@ -29,6 +29,17 @@
 
         assertTrue(isset($buttons) && is_array($buttons), 'buttons not set or is not array');
 
+        // Find button for Add New Record
+        $found_add_new_record_button = false;
+
+        foreach($buttons as $button) {
+            if($button->getText() === 'Add New Recor1d') {
+                $found_add_new_record_button = true;
+            }
+        }
+
+        assertTrue($found_add_new_record_button, '\'Add New Record\' button not found');
+
     }
 
 ?>
