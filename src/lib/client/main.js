@@ -375,6 +375,9 @@ class RecordsFilterTable extends FilterTable {
         let columnFilterDiv = $("<div></div>");
         elements.append(columnFilterDiv);
 
+        let activeFiltersDiv = $("<div></div>");
+        columnFilterDiv.append(activeFiltersDiv);
+
         form = $("<form></form>").addClass('form-inline position-relative'); // Relative for dropdown positioning
         columnFilterDiv.append(form);
         
@@ -406,7 +409,7 @@ class RecordsFilterTable extends FilterTable {
                 .addClass('custom-control-input column-filter-check')
                 .attr('id', 'filter-' + field.field_name)
                 .val(index)
-                .prop('checked', true); // Default to search all
+                .prop('checked', false); // Default to search all
 
             checkbox.on('click', function() {
                 $(this).closest('.filter-dropdown-menu') 
@@ -426,6 +429,20 @@ class RecordsFilterTable extends FilterTable {
 
         let addBtn = $("<button></button>");
         addBtn.text("Add");
+
+        addBtn.on('click', function() {
+            let matchedFilter = $(this).closest('.filter-dropdown-menu') 
+                .find('input[type="checkbox"]:checked');
+            if(matchedFilter.length > 0) {
+                let newFilterDiv = $("<div></div>");
+                let newFilterP = $("<h3></h3>");
+                newFilterDiv.append(newFilterP);
+                newFilterP.text(matchedFilter.text());
+                activeFiltersDiv.append(newFilterDiv);
+                $(".column-filter-check").prop('checked', false);
+                dropdownMenu.css('display', 'none');
+            }
+        });
 
         dropdownMenu.append(addBtn);
 
