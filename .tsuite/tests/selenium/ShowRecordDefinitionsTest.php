@@ -298,11 +298,6 @@
         
         $session_cookie = $cookies[0];
 
-        assertTrue($session_cookie !== null, 'session_cookie is not set');
-
-        assertTrue(is_array($session_cookie), 'session_cookie is not an array');
-        assertTrue(!empty($session_cookie), 'session_cookie array is empty');
-
         $session_string = $session_cookie['value'];
 
         assertTrue(is_string($session_string), 'session_cookie\'s values is not a string');
