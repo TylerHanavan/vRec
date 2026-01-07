@@ -292,7 +292,15 @@
             '#login-link did not become invisible after clicking #login-link'
         );
 
-        var_dump($selenium->manage()->getCookies());
+        $cookie_mgr = $selenium->manage()->getCookies();
+
+        assertTrue($cookie_mgr !== null, 'Could not access Selenium cookie manager');
+        
+        $session_cookie = $cookie_mgr->getCookieNamed('session_token');
+
+        assertTrue($session_cookie !== null, 'session_cookie is not set');
+
+        var_dump($session_cookie);
 
         /** TODO: Add .modal-footer checks */
 
