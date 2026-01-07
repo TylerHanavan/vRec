@@ -375,11 +375,8 @@ class RecordsFilterTable extends FilterTable {
         let columnFilterDiv = $("<div></div>");
         elements.append(columnFilterDiv);
 
-
-
-
         form = $("<form></form>").addClass('form-inline position-relative'); // Relative for dropdown positioning
-        columnFilterDiv.append(elements);
+        columnFilterDiv.append(form);
         
         let filterBtn = $("<button type='button'></button>")
             .addClass('btn btn-light border mr-sm-2')
