@@ -9,6 +9,8 @@
 
         $url = 'http://' . $properties['endpoint_url'] . '/admin/show-records?r=test';
 
+        $selenium = $properties['selenium'];
+
         $selenium->get("$url");
 
         if($properties['tester']->has_driver_quit()) throw new Exception("Selenium driver quit prior to test");
