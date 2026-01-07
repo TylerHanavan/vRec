@@ -25,6 +25,10 @@
             'Error locating five or more elements'
         );
 
+        $buttons = $selenium->findElements(WebDriverBy::className('btn-primary'));
+
+        assertTrue(isset($buttons) && is_array($buttons), 'buttons not set or is not array');
+
     }
 
 ?>
