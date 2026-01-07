@@ -292,11 +292,11 @@
             '#login-link did not become invisible after clicking #login-link'
         );
 
-        $cookie_mgr = $selenium->manage()->getCookies();
+        $cookies = $selenium->manage()->getCookies();
 
-        assertTrue($cookie_mgr !== null, 'Could not access Selenium cookie manager');
+        assertTrue($cookies !== null && !empty($cookies), 'Could not access cookies via Selenium');
         
-        $session_cookie = $cookie_mgr->getCookieNamed('session_token');
+        $session_cookie = $cookies[0];
 
         assertTrue($session_cookie !== null, 'session_cookie is not set');
 
