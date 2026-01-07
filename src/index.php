@@ -384,7 +384,7 @@
 
 
         <!-- Custom styles for this template -->
-        <link rel="stylesheet" href="/main_doc_css.css" type="text/css" />
+        <link rel="stylesheet" href="/main_doc_css.css?t=' . microtime() . '" type="text/css" />
         </head>
         <body class="d-flex flex-column h-100">
 
