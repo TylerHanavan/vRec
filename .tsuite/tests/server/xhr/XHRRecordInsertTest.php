@@ -132,4 +132,21 @@
 
     }
 
+    function test_new_record_4($properties) {
+
+        global $session_token;
+        
+        for($x = 0; $x < 100; $x++) {
+            $response = test_curl($properties['endpoint_url'] . '/new', array('table' => 'test', 't1' => $x, 't2' => $x * 3, 't3' => $x - 4), true, $session_token);
+
+            $response_arr = json_decode($response['response'], true);
+
+            assertEquals(200, $response['http_code'], 'http code mismatch');
+
+            assertTrue(isset($response_arr) && !empty($response_arr), 'response array empty');
+
+            assertEquals('success', $response_arr['xhr_response_status'], 'mismatching xhr_response_status');
+        }
+    }
+
 ?>
