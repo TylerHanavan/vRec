@@ -66,10 +66,14 @@
                 },
                 'Form was not cleared by JavaScript after submission'
             );
-
-            assertEquals($input1->getAttribute('value'), '');
-            assertEquals($input2->getAttribute('value'), '');
-            assertEquals($input3->getAttribute('value'), '');
+            
+            // 5. Final verification via JS (1 network trip instead of 3)
+            $isCleared = $selenium->executeScript("
+                return document.getElementsByName('t1')[0].value === '' &&
+                    document.getElementsByName('t2')[0].value === '' &&
+                    document.getElementsByName('t3')[0].value === '';
+            ");
+            assertTrue($isCleared, 'Form was not cleared after submit');
             
         }
 
