@@ -33,18 +33,13 @@
 
         assertTrue($add_new_record_modal->isDisplayed(), 'modal is invisible but expected it to be visible');
 
-        // Fetch all three elements into an array using one JS execution
-        $elements = $selenium->executeScript("
-            return [
-                document.querySelector('input[name=\"t1\"]'),
-                document.querySelector('input[name=\"t2\"]'),
-                document.querySelector('input[name=\"t3\"]')
-            ];
-        ");
+        $inputs = $selenium->findElements(
+            WebDriverBy::xpath("//input[@name='t1'] | //input[@name='t2'] | //input[@name='t3']")
+        );
 
-        $input1 = $elements[0];
-        $input2 = $elements[1];
-        $input3 = $elements[2];
+        $input1 = $inputs[0];
+        $input2 = $inputs[1]; 
+        $input3 = $inputs[2];
 
         $submit_button = $selenium->findElement(
             WebDriverBy::xpath("//button[text()='Submit']")
