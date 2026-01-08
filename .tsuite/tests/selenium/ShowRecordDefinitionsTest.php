@@ -14,7 +14,7 @@
         if($properties['tester']->has_driver_quit()) throw new Exception("Selenium driver quit prior to test");
 
         /* Check that Selenium can find more than 4 elements */
-        $selenium->wait(10, 50)->until(
+        $selenium->wait(10, 100)->until(
             function () use ($selenium) {
                 $elements = $selenium->findElements(WebDriverBy::cssSelector('*'));
         
@@ -24,7 +24,7 @@
         );
         
         /* Check that Selenium can locate #login-link and that it's text says 'Login' */
-        $selenium->wait(10, 50)->until(
+        $selenium->wait(10, 100)->until(
             function () use ($selenium) {
                 $elements = $selenium->findElements(WebDriverBy::id('login-link'));
         
@@ -34,7 +34,7 @@
         );
         
         /* Check that the element .modal exists */
-        $selenium->wait(10, 50)->until(
+        $selenium->wait(10, 100)->until(
             function () use ($selenium) {
                 $elements = $selenium->findElements(WebDriverBy::className('modal'));
         
@@ -44,7 +44,7 @@
         );
         
         /* Ensure there is only one .modal */
-        $selenium->wait(10, 50)->until(
+        $selenium->wait(10, 100)->until(
             function () use ($selenium) {
                 $elements = $selenium->findElements(WebDriverBy::className('modal'));
         
@@ -61,7 +61,7 @@
         $login_anchor->click();
         
         /* Ensure the modal becomes visible */
-        $selenium->wait(10, 50)->until(
+        $selenium->wait(10, 100)->until(
             WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::cssSelector('.modal')),
             'Modal did not become visible after clicking #login-link'
         );
@@ -261,7 +261,7 @@
             $login_button->click();
 
             // Wait for the alert to appear
-            $selenium->wait(10, 50)->until(
+            $selenium->wait(10, 100)->until(
                 WebDriverExpectedCondition::alertIsPresent(),
                 'Expected alert did not appear.'
             );
@@ -287,7 +287,7 @@
 
         $login_button->click();
 
-        $selenium->wait(10, 50)->until(
+        $selenium->wait(10, 100)->until(
             WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::id('login-link')),
             '#login-link did not become invisible after clicking #login-link'
         );

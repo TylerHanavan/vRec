@@ -16,7 +16,7 @@
         if($properties['tester']->has_driver_quit()) throw new Exception("Selenium driver quit prior to test");
 
         /* Check that Selenium can find more than 4 elements */
-        $selenium->wait(10, 50)->until(
+        $selenium->wait(10, 100)->until(
             function () use ($selenium) {
                 $elements = $selenium->findElements(WebDriverBy::cssSelector('*'));
         
@@ -53,7 +53,7 @@
 
         $add_new_record_button->click();
 
-        $selenium->wait(10, 50)->until(
+        $selenium->wait(10, 100)->until(
             WebDriverExpectedCondition::visibilityOf($add_new_record_modal),
             'Modal did not become visible after clicking #add-new-record-modal'
         );
