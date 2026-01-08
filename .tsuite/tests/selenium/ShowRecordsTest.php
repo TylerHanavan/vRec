@@ -43,13 +43,10 @@
 
         for($x = 0; $x < 3; $x++) {
 
-            $input1->click();
             $input1->sendKeys('1');
 
-            $input2->click();
             $input2->sendKeys('3');
             
-            $input3->click();
             $input3->sendKeys('6');
 
             assertEquals($input1->getAttribute('value'), '1');
