@@ -85,7 +85,7 @@
 
             $submit_button->click();
 
-            $selenium->wait(5, 10)->until(
+            $selenium->wait(5, 25)->until(
                 function () use ($input1) {
                     // We wait until the value attribute is empty
                     return $input1->getAttribute('value') === '';
