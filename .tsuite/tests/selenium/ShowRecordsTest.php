@@ -25,6 +25,9 @@
             'Error locating five or more elements'
         );
 
+        $add_new_record_modal = $selenium->findElements(WebDriverBy::id('add-new-record-modal'));
+        var_dump($add_new_record_modal);
+
         $buttons = $selenium->findElements(WebDriverBy::className('btn-primary'));
 
         assertTrue(isset($buttons) && is_array($buttons), 'buttons not set or is not array');
@@ -32,13 +35,18 @@
         // Find button for Add New Record
         $found_add_new_record_button = false;
 
+        $add_new_record_button = null;
+
         foreach($buttons as $button) {
             if($button->getText() === 'Add New Record') {
                 $found_add_new_record_button = true;
+                $add_new_record_button = $button;
             }
         }
 
         assertTrue($found_add_new_record_button, '\'Add New Record\' button not found');
+
+
 
     }
 
