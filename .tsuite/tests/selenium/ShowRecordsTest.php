@@ -54,9 +54,11 @@
         $add_new_record_button->click();
 
         $selenium->wait(10, 500)->until(
-            WebDriverExpectedCondition::visibilityOfElementLocated($add_new_record_modal),
+            WebDriverExpectedCondition::visibilityOf($add_new_record_modal),
             'Modal did not become visible after clicking #add-new-record-modal'
         );
+
+        assertTrue($add_new_record_modal->isDisplayed(), 'modal is invisible but expected it to be visible');
 
     }
 
