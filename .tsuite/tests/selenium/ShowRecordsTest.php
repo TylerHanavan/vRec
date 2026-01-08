@@ -49,9 +49,13 @@
             
             $input3->sendKeys('6');
 
-            assertEquals($input1->getAttribute('value'), '1');
-            assertEquals($input2->getAttribute('value'), '3');
-            assertEquals($input3->getAttribute('value'), '6');
+            // Verify values via JS (1 network trip instead of 3)
+            $valuesMatch = $selenium->executeScript("
+                return document.getElementsByName('t1')[0].value === '1' &&
+                    document.getElementsByName('t2')[0].value === '3' &&
+                    document.getElementsByName('t3')[0].value === '6';
+            ");
+            assertTrue($valuesMatch, 'Input values did not match expected data before submit');
 
             $submit_button->click();
 
