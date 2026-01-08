@@ -73,11 +73,27 @@
         $input3->click();
         $input3->sendKeys('6');
 
+        assertEquals($input1->getAttribute('value'), '1');
+        assertEquals($input2->getAttribute('value'), '3');
+        assertEquals($input3->getAttribute('value'), '6');
+
         $submit_button = $selenium->findElement(
             WebDriverBy::xpath("//button[text()='Submit']")
         );
 
         $submit_button->click();
+
+        $selenium->wait(5)->until(
+            function () use ($input1) {
+                // We wait until the value attribute is empty
+                return $input1->getAttribute('value') === '';
+            },
+            'Form was not cleared by JavaScript after submission'
+        );
+
+        assertEquals($input1->getAttribute('value'), '');
+        assertEquals($input2->getAttribute('value'), '');
+        assertEquals($input3->getAttribute('value'), '');
 
     }
 
