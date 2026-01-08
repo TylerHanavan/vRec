@@ -190,6 +190,33 @@ declare(strict_types=1);
             return $records;
         }
 
+        public function count_records(Record $record) : int {
+            if($this->connection == null)
+                $this->connect();
+
+            try {
+
+                $query = $this->get_count_records_query($record);
+    
+                $stmt = $this->connection->prepare($query);
+    
+                $res = $stmt->execute();
+
+            } catch(Exception $e) {
+                print($query);
+                print($e->getMessage());
+                return false;
+            }
+
+            return $res;
+        }
+
+        public function get_count_records_query(Record $record) : string {
+            $record_name = $record->get_record_name();
+
+            return "SELECT COUNT(*) FROM $record_name";
+        }
+
         public function get_update_record_query(string $table_name, Record $record, array $criteria): string {
                 
                 $sql = "UPDATE $table_name SET ";

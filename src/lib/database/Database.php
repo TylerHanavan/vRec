@@ -15,6 +15,9 @@ declare(strict_types=1);
         abstract public function get_records(Record $record) : array;
         abstract public function get_records_query(Record $record) : string;
 
+        abstract public function count_records(Record $record) : int;
+        abstract public function get_count_records_query(Record $record): string;
+
         abstract public function update_record(string $table_name, Record $record, array $criteria) : bool;
         abstract public function delete_record(string $table_name, array $criteria) : bool;
 

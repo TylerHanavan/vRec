@@ -690,7 +690,7 @@
         $backup_schedules = $database->get_records($record);
 
         foreach($tables as $table) {
-            $count = sizeof($database->get_records(new Record($table, null)));
+            $count = $database->count_records(new Record($table, null));
             $tables_array[$table]['count'] = $count;
             $tables_array[$table]['table_name'] = $table;
         }
