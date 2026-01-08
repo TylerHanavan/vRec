@@ -22,7 +22,7 @@
 
         $add_new_record_modal = $selenium->findElement(WebDriverBy::id('add-new-record-modal'));
 
-        if(!isset($add_new_record_modal), 'Add New Record modal not found');
+        assertTrue(isset($add_new_record_modal), 'Add New Record modal not found');
 
         $add_new_record_button->click();
 
