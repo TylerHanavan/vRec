@@ -64,6 +64,10 @@
         $input2 = $selenium->findElement(WebDriverBy::cssSelector('input.form-control[name="t2"]'));
         $input3 = $selenium->findElement(WebDriverBy::cssSelector('input.form-control[name="t3"]'));
 
+        $submit_button = $selenium->findElement(
+            WebDriverBy::xpath("//button[text()='Submit']")
+        );
+
         for($x = 0; $x < 3; $x++) {
 
             $input1->click();
@@ -78,10 +82,6 @@
             assertEquals($input1->getAttribute('value'), '1');
             assertEquals($input2->getAttribute('value'), '3');
             assertEquals($input3->getAttribute('value'), '6');
-
-            $submit_button = $selenium->findElement(
-                WebDriverBy::xpath("//button[text()='Submit']")
-            );
 
             $submit_button->click();
 
