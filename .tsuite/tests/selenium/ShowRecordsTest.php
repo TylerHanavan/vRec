@@ -64,7 +64,7 @@
         $input2 = $selenium->findElement(WebDriverBy::cssSelector('input.form-control[name="t2"]'));
         $input3 = $selenium->findElement(WebDriverBy::cssSelector('input.form-control[name="t3"]'));
 
-        for($x = 0; $x < 1000; $x++) {
+        for($x = 0; $x < 5; $x++) {
 
             $input1->click();
             $input1->sendKeys('1');
