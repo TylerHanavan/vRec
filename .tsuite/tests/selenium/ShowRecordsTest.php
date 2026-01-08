@@ -25,8 +25,13 @@
             'Error locating five or more elements'
         );
 
-        $add_new_record_modal = $selenium->findElements(WebDriverBy::id('add-new-record-modal'));
-        var_dump($add_new_record_modal);
+        $add_new_record_modals = $selenium->findElements(WebDriverBy::id('add-new-record-modal'));
+        
+        assertTrue(isset($add_new_record_modals) && is_array($add_new_record_modals) && sizeof($add_new_record_modals) === 1, 'the search for #add-new-record-modal did not yield one result');
+
+        $add_new_record_modal = $add_new_record_modals[0];
+
+        assertTrue($add_new_record_modal->isDisplayed(), 'modal is visible but expected it to be invisible');
 
         $buttons = $selenium->findElements(WebDriverBy::className('btn-primary'));
 
