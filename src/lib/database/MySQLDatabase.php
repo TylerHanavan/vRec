@@ -200,7 +200,9 @@ declare(strict_types=1);
     
                 $stmt = $this->connection->prepare($query);
     
-                $res = $stmt->execute();
+                $stmt->execute();
+
+                return (int) $stmt->fetchColumn();
 
             } catch(Exception $e) {
                 print($query);
