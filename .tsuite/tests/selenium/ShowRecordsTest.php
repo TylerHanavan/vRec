@@ -31,7 +31,7 @@
 
         $add_new_record_modal = $add_new_record_modals[0];
 
-        assertTrue($add_new_record_modal->isDisplayed(), 'modal is visible but expected it to be invisible');
+        assertFalse($add_new_record_modal->isDisplayed(), 'modal is visible but expected it to be invisible');
 
         $buttons = $selenium->findElements(WebDriverBy::className('btn-primary'));
 
@@ -51,7 +51,12 @@
 
         assertTrue($found_add_new_record_button, '\'Add New Record\' button not found');
 
+        $add_new_record_button->click();
 
+        $selenium->wait(10, 500)->until(
+            WebDriverExpectedCondition::visibilityOfElementLocated($add_new_record_modal),
+            'Modal did not become visible after clicking #add-new-record-modal'
+        );
 
     }
 
