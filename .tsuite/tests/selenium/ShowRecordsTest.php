@@ -64,36 +64,40 @@
         $input2 = $selenium->findElement(WebDriverBy::cssSelector('input.form-control[name="t2"]'));
         $input3 = $selenium->findElement(WebDriverBy::cssSelector('input.form-control[name="t3"]'));
 
-        $input1->click();
-        $input1->sendKeys('1');
+        for($x = 0; $x < 1000; $x++) {
 
-        $input2->click();
-        $input2->sendKeys('3');
-        
-        $input3->click();
-        $input3->sendKeys('6');
+            $input1->click();
+            $input1->sendKeys('1');
 
-        assertEquals($input1->getAttribute('value'), '1');
-        assertEquals($input2->getAttribute('value'), '3');
-        assertEquals($input3->getAttribute('value'), '6');
+            $input2->click();
+            $input2->sendKeys('3');
+            
+            $input3->click();
+            $input3->sendKeys('6');
 
-        $submit_button = $selenium->findElement(
-            WebDriverBy::xpath("//button[text()='Submit']")
-        );
+            assertEquals($input1->getAttribute('value'), '1');
+            assertEquals($input2->getAttribute('value'), '3');
+            assertEquals($input3->getAttribute('value'), '6');
 
-        $submit_button->click();
+            $submit_button = $selenium->findElement(
+                WebDriverBy::xpath("//button[text()='Submit']")
+            );
 
-        $selenium->wait(5)->until(
-            function () use ($input1) {
-                // We wait until the value attribute is empty
-                return $input1->getAttribute('value') === '';
-            },
-            'Form was not cleared by JavaScript after submission'
-        );
+            $submit_button->click();
 
-        assertEquals($input1->getAttribute('value'), '');
-        assertEquals($input2->getAttribute('value'), '');
-        assertEquals($input3->getAttribute('value'), '');
+            $selenium->wait(5)->until(
+                function () use ($input1) {
+                    // We wait until the value attribute is empty
+                    return $input1->getAttribute('value') === '';
+                },
+                'Form was not cleared by JavaScript after submission'
+            );
+
+            assertEquals($input1->getAttribute('value'), '');
+            assertEquals($input2->getAttribute('value'), '');
+            assertEquals($input3->getAttribute('value'), '');
+            
+        }
 
     }
 
