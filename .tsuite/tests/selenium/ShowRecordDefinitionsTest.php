@@ -239,7 +239,11 @@
         
         if(is_array($login_button)) $login_button = $login_button[0];
 
+        $username_input->click();
+
         $username_input->sendKeys('username');
+
+        $password_input->click();
 
         $password_input->sendKeys('123456789');
 
@@ -261,9 +265,13 @@
 
         $username_input->clear();
 
+        $username_input->click();
+
         $username_input->sendKeys('username');
 
         $password_input->clear();
+
+        $password_input->click();
 
         $password_input->sendKeys('12345678');
 
