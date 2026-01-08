@@ -33,9 +33,18 @@
 
         assertTrue($add_new_record_modal->isDisplayed(), 'modal is invisible but expected it to be visible');
 
-        $input1 = $selenium->findElement(WebDriverBy::cssSelector('input.form-control[name="t1"]'));
-        $input2 = $selenium->findElement(WebDriverBy::cssSelector('input.form-control[name="t2"]'));
-        $input3 = $selenium->findElement(WebDriverBy::cssSelector('input.form-control[name="t3"]'));
+        // Fetch all three elements into an array using one JS execution
+        $elements = $selenium->executeScript("
+            return [
+                document.querySelector('input[name=\"t1\"]'),
+                document.querySelector('input[name=\"t2\"]'),
+                document.querySelector('input[name=\"t3\"]')
+            ];
+        ");
+
+        $input1 = $elements[0];
+        $input2 = $elements[1];
+        $input3 = $elements[2];
 
         $submit_button = $selenium->findElement(
             WebDriverBy::xpath("//button[text()='Submit']")
