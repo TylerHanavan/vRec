@@ -16,7 +16,7 @@
         if($properties['tester']->has_driver_quit()) throw new Exception("Selenium driver quit prior to test");
 
         $add_new_record_button = $selenium->wait(10, 100)->until(
-            WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::xpath('button.btn-primary[data-target="#add-new-record-modal"]')),
+            WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::xpath('//button[text()=\'Add New Record\'')),
             'Add New Record button not found'
         );
 
