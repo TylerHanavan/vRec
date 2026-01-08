@@ -354,6 +354,12 @@
         $login_link_class = $logged_in ? 'hidden' : '';
         $my_account_class = $logged_in ? '' : 'hidden';
 
+        $time_to_append = microtime();
+
+        $append_time_flag = false;
+
+        if(!$append_time_flag) $time_to_append = '';
+
         return '<!doctype html>
         <html lang="en" class="h-100">
         <head>
@@ -384,7 +390,7 @@
 
 
         <!-- Custom styles for this template -->
-        <link rel="stylesheet" href="/main_doc_css.css?t=' . microtime() . '" type="text/css" />
+        <link rel="stylesheet" href="/main_doc_css.css?t=' . $time_to_append . '" type="text/css" />
         </head>
         <body class="d-flex flex-column h-100">
 
